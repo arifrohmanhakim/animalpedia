@@ -6,14 +6,20 @@ export function ProfileScreen() {
   const xp = useGameStore((s) => s.xp);
   const getLevel = useGameStore((s) => s.getLevel);
   const badges = useGameStore((s) => s.badges);
+  const dailyStreak = useGameStore((s) => s.dailyStreak);
+  const getCollectionProgress = useGameStore((s) => s.getCollectionProgress);
 
   const level = getLevel();
+  const progress = getCollectionProgress();
 
   const characterEmojis: Record<string, string> = {
     fox: '🦊',
     dolphin: '🐬',
     owl: '🦉',
   };
+
+  const unlockedCount = badges.filter((b) => b.unlocked).length;
+  const totalBadges = badges.length;
 
   return (
     <div className="screen-container bg-[var(--cream)]">
@@ -58,9 +64,48 @@ export function ProfileScreen() {
           </div>
         </div>
 
+        {/* Streak Card */}
+        <div className="px-5 pt-4">
+          <div className="crayon-card p-3.5 bg-[var(--paper)] flex items-center gap-3">
+            <div className="text-3xl">🔥</div>
+            <div>
+              <div className="font-bold text-sm">Daily Streak</div>
+              <div className="text-[11px] font-semibold text-[var(--ink-soft)]">
+                {dailyStreak} hari berturut-turut
+              </div>
+            </div>
+            <div className="ml-auto text-xl font-extrabold" style={{ color: 'var(--orange-deep)' }}>
+              {dailyStreak}
+            </div>
+          </div>
+        </div>
+
+        {/* Collection Progress */}
+        <div className="px-5 pt-4">
+          <div className="crayon-card p-3.5 bg-[var(--paper)] flex items-center gap-3">
+            <div className="text-3xl">📚</div>
+            <div className="flex-1">
+              <div className="font-bold text-sm">Koleksi Hewan</div>
+              <div className="text-[11px] font-semibold text-[var(--ink-soft)]">
+                {progress.discovered} dari {progress.total}
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-xl font-extrabold" style={{ color: 'var(--green-deep)' }}>
+                {Math.round((progress.discovered / progress.total) * 100)}%
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Badges */}
         <div className="px-5 pt-5 pb-6">
-          <h3 className="font-display text-sm font-bold mb-3">🏅 Badge Terkumpul</h3>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-display text-sm font-bold">🏅 Badge</h3>
+            <span className="text-xs font-semibold text-[var(--ink-soft)]">
+              {unlockedCount}/{totalBadges}
+            </span>
+          </div>
           <div className="grid grid-cols-3 gap-4">
             {badges.map((badge) => (
               <div
@@ -93,8 +138,8 @@ export function ProfileScreen() {
           </div>
         </div>
 
-        {/* Unlocked badge info */}
-        <div className="px-5 pb-6">
+        {/* Badge details */}
+        <div className="px-5 pb-8">
           <h3 className="font-display text-sm font-bold mb-3">📋 Pencapaian</h3>
           <div className="space-y-2.5">
             {badges.map((badge) => (

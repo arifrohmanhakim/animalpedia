@@ -77,6 +77,53 @@ function generateQuestions(animalId: string): QuizQuestion[] {
   ];
 }
 
+function CelebrationConfetti() {
+  const emojis = ['🎉', '🎊', '⭐', '🌟', '✨', '💫', '🌈', '🦋'];
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    emoji: emojis[i % emojis.length],
+    x: Math.random() * 100,
+    delay: Math.random() * 0.5,
+    duration: 1 + Math.random() * 1.5,
+    size: 16 + Math.random() * 24,
+  }));
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="absolute animate-fade-in-up"
+          style={{
+            left: `${p.x}%`,
+            top: '-10%',
+            fontSize: `${p.size}px`,
+            animation: `confetti-fall ${p.duration}s ease-out ${p.delay}s forwards`,
+          }}
+        >
+          {p.emoji}
+        </div>
+      ))}
+      <style>{`
+        @keyframes confetti-fall {
+          0% {
+            transform: translateY(0) rotate(0deg) scale(0);
+            opacity: 1;
+          }
+          20% {
+            transform: translateY(20vh) rotate(180deg) scale(1.2);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(100vh) rotate(720deg) scale(0.5);
+            opacity: 0;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export function QuizScreen({ animalId, onBack, onFinish }: Props) {
   const animal = animals.find((a) => a.id === animalId);
   const addXP = useGameStore((s) => s.addXP);
@@ -125,10 +172,8 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
         for (let i = 0; i < score; i++) recordCorrectQuiz();
       }
 
-      // Show toast
       showToastXP(xpAmount, `Kuis ${animal.name} selesai!`);
 
-      // Check badges
       setTimeout(() => {
         const newBadges = checkNewBadges();
         newBadges.forEach((badgeId) => showToastBadge(badgeId));
@@ -142,27 +187,28 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
 
   if (finished) {
     return (
-      <div className="absolute inset-0 z-30 bg-[var(--cream)] flex flex-col items-center justify-center px-8 animate-scale-in">
-        <div className="text-8xl mb-4">
+      <div className="absolute inset-0 z-30 bg-[var(--cream)] flex flex-col items-center justify-center px-8 overflow-hidden">
+        {score >= totalQuestions / 2 && <CelebrationConfetti />}
+        <div className="text-8xl mb-4 z-20">
           {score === totalQuestions ? '🏆' : score >= totalQuestions / 2 ? '🎉' : '💪'}
         </div>
-        <h2 className="font-display text-2xl font-extrabold text-center">
+        <h2 className="font-display text-2xl font-extrabold text-center z-20">
           {score === totalQuestions
             ? 'Sempurna!'
             : score >= totalQuestions / 2
             ? 'Hebat!'
             : 'Ayo coba lagi!'}
         </h2>
-        <p className="text-sm font-semibold text-[var(--ink-soft)] mt-2 text-center">
+        <p className="text-sm font-semibold text-[var(--ink-soft)] mt-2 text-center z-20">
           Kamu menjawab {score} dari {totalQuestions} pertanyaan dengan benar
         </p>
-        <div className="mt-4 text-lg font-bold" style={{ color: 'var(--green-deep)' }}>
+        <div className="mt-4 text-lg font-bold z-20" style={{ color: 'var(--green-deep)' }}>
           +{score === totalQuestions ? 15 : 10} XP ⭐
         </div>
 
         <button
           onClick={onFinish}
-          className="mt-8 w-full crayon-btn bg-[var(--orange)] text-white text-sm py-3.5 max-w-xs"
+          className="mt-8 w-full crayon-btn bg-[var(--orange)] text-white text-sm py-3.5 max-w-xs z-20"
         >
           Selesai
         </button>

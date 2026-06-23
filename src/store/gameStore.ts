@@ -39,7 +39,7 @@ interface GameState {
   lastViewedAnimalId: string | null;
 
   // Games hub
-  activeGame: string | null; // null = menu, 'sound', 'memory', etc.
+  activeGame: string | null;
 
   // Daily challenge
   dailyChallengeDate: string;
@@ -151,6 +151,30 @@ const dailyChallengeCompleted =
     ? savedState?.dailyChallengeCompleted ?? false
     : false;
 
+// Check daily streak on init
+let initialDailyStreak = savedState?.dailyStreak ?? 0;
+let initialLastLoginDate = savedState?.lastLoginDate ?? '';
+
+if (initialLastLoginDate) {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = yesterday.toDateString();
+
+  if (initialLastLoginDate === today) {
+    // Already logged in today, keep streak
+  } else if (initialLastLoginDate === yesterdayStr) {
+    // Logged in yesterday, increment streak
+    initialDailyStreak += 1;
+  } else {
+    // Missed a day, reset streak to 1
+    initialDailyStreak = 1;
+  }
+} else {
+  // First login ever
+  initialDailyStreak = 1;
+}
+initialLastLoginDate = today;
+
 export const useGameStore = create<GameState>((set, get) => ({
   showSplash: true,
   onboardingComplete: savedState?.onboardingComplete ?? false,
@@ -165,8 +189,8 @@ export const useGameStore = create<GameState>((set, get) => ({
   discoveredAnimals: savedState?.discoveredAnimals ?? [],
   favoriteAnimals: savedState?.favoriteAnimals ?? [],
   quizCorrectCount: savedState?.quizCorrectCount ?? 0,
-  lastLoginDate: savedState?.lastLoginDate ?? '',
-  dailyStreak: savedState?.dailyStreak ?? 0,
+  lastLoginDate: initialLastLoginDate,
+  dailyStreak: initialDailyStreak,
   badges: savedState?.badges ?? badgeList.map((b) => ({ ...b })),
 
   quizInProgress: false,
