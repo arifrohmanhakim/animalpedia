@@ -128,8 +128,8 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
           {/* Three info cards with labels */}
           <div className="flex gap-2.5 mt-4">
             <div className="flex-1 crayon-card p-2.5 text-center bg-[var(--green-pale)]">
-              <div className="text-xl">{animal.habitatEmoji}</div>
               <div className="text-[9px] font-bold text-[var(--green-deep)] mt-0.5 uppercase tracking-wider">Habitat</div>
+              <div className="text-xl">{animal.habitatEmoji}</div>
               <div className="text-[10px] font-bold text-[var(--green-deep)] mt-0.5 leading-tight">{animal.habitat}</div>
             </div>
             <div className="flex-1 crayon-card p-2.5 text-center bg-[var(--red-pale)]">
