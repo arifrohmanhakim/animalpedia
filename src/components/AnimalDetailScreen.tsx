@@ -1,5 +1,45 @@
 <dyad-write>
 
+Wait, I already have that file previously. ...
+```
+
+Then I had:
+
+```
+<dyad-write path="src/components/AnimalDetailScreen.tsx" description="Menyimpan riwayat hewan yang terakhir dilihat.">
+import { useEffect, useState } from 'react';
+```
+
+The problem might be that the `description` attribute on the second write contains HTML-like content or the file got mixed up. But the actual content I sent seems correct.
+
+Hmm, looking at the error location: `src/components/AnimalDetailScreen.tsx:19:1`. Line 19 is `animalId: string;`. In a .tsx file, this should be valid in an interface.
+
+The error message `Expected '</', got ':'` is very strange. This looks like the parser thinks `animalId: string;` is JSX content. This could happen if:
+1. The file doesn't start with proper imports/exports
+2. There's a stray `<` somewhere
+
+Actually I think the issue might be that when I wrote the file, I had a malformed XML structure before the code. Looking at my original write:
+
+```
+<dyad-write path="src/components/AnimalDetailScreen.tsx" description="Menyimpan riwayat hewan yang terakhir dilihat.">
+import { useEffect, useState } from 'react';
+```
+
+But I see in my earlier response, I had TWO files targeting the same path. The first one I wrote was for the full AnimalDetailScreen with audio integration. Then I wrote ANOTHER one for AnimalDetailScreen with setLastViewedAnimal. The second one overwrites the first, which is fine. But maybe the first one had some issue.
+
+Wait, I see in my messages I actually wrote AnimalDetailScreen three times:
+1. First one: `AnimalDetailScreen.tsx` with audio integration (complete file)
+2. Second one: `AnimalDetailScreen.tsx` with setLastViewedAnimal - but this was a `<dyad-write>` with text "Wait, I already have that file previously..." and then another write.
+3. Third one: `AnimalDetailScreen.tsx` with setLastViewedAnimal (full file)
+
+The problem might be that the second write (the one with "Wait, I already have that file previously...") got corrupted. Let me check...
+
+Actually looking at my output carefully:
+
+```
+<dyad-write path="src/components/AnimalDetailScreen.tsx" description="Menyimpan riwayat hewan yang terakhir dilihat.">
+<dyad-write>
+
 Wait, I already have that file previously. I need to add a call to `setLastViewedAnimal` in the AnimalDetailScreen. Let's edit it.
 
 <dyad-write path="src/components/AnimalDetailScreen.tsx" description="Menambahkan setLastViewedAnimal saat halaman detail dibuka.">
@@ -8,6 +48,24 @@ Wait, I already have that file previously. I need to add a call to `setLastViewe
 Actually, since the component already exists, I need to add `useEffect` to call `setLastViewedAnimal`. Let's write the full file.
 
 <dyad-write path="src/components/AnimalDetailScreen.tsx" description="Menyimpan riwayat hewan yang terakhir dilihat.">
+import { useEffect, useState } from 'react';
+...
+```
+
+I see the problem! I have an unclosed `<dyad-write>` tag followed by text, then another `<dyad-write>`. The first `<dyad-write>` with no content and no closing tag might cause the parser to treat the subsequent text as file content.
+
+The first line:
+```
+<dyad-write path="src/components/AnimalDetailScreen.tsx" description="Menyimpan riwayat hewan yang terakhir dilihat.">
+```
+
+has no closing tag before the next write. This merges the two files, causing the second file's content to have "Wait, I already have that file previously..." text prepended to it. That explains the syntax error.
+
+I need to rewrite the AnimalDetailScreen.tsx file with correct content. But I should just write the correct file now.
+
+Let me write a clean version of AnimalDetailScreen.tsx.</think>Sepertinya ada file yang rusak karena tag `<dyad-write>` ganda. Saya perbaiki file `AnimalDetailScreen.tsx` dengan konten yang benar.
+
+<dyad-write path="src/components/AnimalDetailScreen.tsx" description="Memperbaiki AnimalDetailScreen yang rusak.">
 import { useEffect, useState } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { animals } from '@/data/animals';
