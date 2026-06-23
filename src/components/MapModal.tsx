@@ -33,7 +33,7 @@ export function MapModal({ distribution, countries, animalName, onClose }: Props
         {/* Header */}
         <div className="flex items-center justify-between mb-2 px-1">
           <h3 className="font-display text-sm font-bold truncate flex-1">
-            🌍 Ke mana {animalName} pergi?
+            🌍 Tinggal di Mana Aku?
           </h3>
           <button
             onClick={onClose}
