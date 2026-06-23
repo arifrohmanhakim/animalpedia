@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useGameStore } from '@/store/gameStore';
-import { animals } from '@/data/animals';
-import { showToastXP, showToastBadge } from '@/components/ToastNotification';
-import { AudioPlayer } from '@/components/AudioPlayer';
-import { AudioNarrationModal } from '@/components/AudioNarrationModal';
-import { VideoPlayerModal } from '@/components/VideoPlayerModal';
+import { useEffect } from "react";
+import { useState } from "react";
+import { useGameStore } from "@/store/gameStore";
+import { animals } from "@/data/animals";
+import { showToastXP, showToastBadge } from "@/components/ToastNotification";
+import { AudioPlayer } from "@/components/AudioPlayer";
+import { AudioNarrationModal } from "@/components/AudioNarrationModal";
+import { VideoPlayerModal } from "@/components/VideoPlayerModal";
+import { DistributionMapLeaflet } from "@/components/DistributionMapLeaflet";
 
 interface Props {
   animalId: string;
@@ -23,6 +24,7 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
   const discoveredAnimals = useGameStore((s) => s.discoveredAnimals);
   const [showNarration, setShowNarration] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
+  const [showMap, setShowMap] = useState(false);
 
   useEffect(() => {
     if (animal) {
@@ -185,6 +187,7 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             </div>
           </div>
 
+          {/* Status Konservasi */}
           <div className="mt-5">
             <h3 className="font-display text-sm font-bold mb-2.5">🌍 Status Konservasi</h3>
             <div className="crayon-card p-3.5 bg-[var(--paper)] flex items-center gap-3">
@@ -215,6 +218,23 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             <span>▶</span>
             Tonton Video {animal.name} dari National Geographic
           </button>
+
+          {/* Tombol Lihat Peta Persebaran */}
+          <button
+            onClick={() => setShowMap(!showMap)}
+            className="mt-2 w-full crayon-btn py-3 text-sm font-bold bg-[var(--green-deep)] text-white border-[var(--ink)] shadow-[0_3px_0_var(--ink)] flex items-center justify-center gap-2"
+          >
+            <span>🗺️</span>
+            {showMap ? 'Tutup Peta' : `Lihat Peta Persebaran ${animal.name}`}
+          </button>
+
+          {/* Peta Leaflet (muncul saat tombol diklik) */}
+          {showMap && (
+            <DistributionMapLeaflet
+              distribution={animal.distribution}
+              countries={animal.distributionCountries}
+            />
+          )}
 
           <button
             onClick={() => {
