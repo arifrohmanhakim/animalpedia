@@ -1,12 +1,11 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGameStore } from "@/store/gameStore";
 import { animals } from "@/data/animals";
 import { showToastXP, showToastBadge } from "@/components/ToastNotification";
 import { AudioPlayer } from "@/components/AudioPlayer";
 import { AudioNarrationModal } from "@/components/AudioNarrationModal";
 import { VideoPlayerModal } from "@/components/VideoPlayerModal";
-import { DistributionMapLeaflet } from "@/components/DistributionMapLeaflet";
+import { MapModal } from "@/components/MapModal";
 
 interface Props {
   animalId: string;
@@ -24,7 +23,7 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
   const discoveredAnimals = useGameStore((s) => s.discoveredAnimals);
   const [showNarration, setShowNarration] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
-  const [showMap, setShowMap] = useState(false);
+  const [showMapModal, setShowMapModal] = useState(false);
 
   useEffect(() => {
     if (animal) {
@@ -216,26 +215,19 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             className="mt-4 w-full crayon-btn py-3 text-sm font-bold bg-[#FF0000] text-white border-[var(--ink)] shadow-[0_3px_0_var(--ink)] flex items-center justify-center gap-2"
           >
             <span>▶</span>
-            Tonton Video {animal.name} dari National Geographic
+            Tonton Video {animal.name}
           </button>
 
-          {/* Tombol Lihat Peta Persebaran */}
+          {/* Tombol Peta Persebaran */}
           <button
-            onClick={() => setShowMap(!showMap)}
+            onClick={() => setShowMapModal(true)}
             className="mt-2 w-full crayon-btn py-3 text-sm font-bold bg-[var(--green-deep)] text-white border-[var(--ink)] shadow-[0_3px_0_var(--ink)] flex items-center justify-center gap-2"
           >
             <span>🗺️</span>
-            {showMap ? 'Tutup Peta' : `Lihat Peta Persebaran ${animal.name}`}
+            Ada di mana aku?
           </button>
 
-          {/* Peta Leaflet (muncul saat tombol diklik) */}
-          {showMap && (
-            <DistributionMapLeaflet
-              distribution={animal.distribution}
-              countries={animal.distributionCountries}
-            />
-          )}
-
+          {/* Kuis */}
           <button
             onClick={() => {
               showToastXP(10, `Mulai kuis ${animal.name}!`);
@@ -250,6 +242,7 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
         </div>
       </div>
 
+      {/* Audio Narration Modal */}
       {showNarration && (
         <AudioNarrationModal
           animal={animal}
@@ -257,11 +250,22 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
         />
       )}
 
+      {/* Video Modal */}
       {showVideo && (
         <VideoPlayerModal
           videoEmbedUrl={animal.videoEmbedUrl}
           animalName={animal.name}
           onClose={() => setShowVideo(false)}
+        />
+      )}
+
+      {/* Map Modal */}
+      {showMapModal && (
+        <MapModal
+          distribution={animal.distribution}
+          countries={animal.distributionCountries}
+          animalName={animal.name}
+          onClose={() => setShowMapModal(false)}
         />
       )}
     </div>
