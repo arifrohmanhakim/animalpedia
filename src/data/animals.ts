@@ -17,6 +17,8 @@ export interface Animal {
   color: string;
   videoUrl: string;
   videoEmbedUrl: string;
+  distribution: string[];
+  distributionCountries: string;
 }
 
 export const categories = [
@@ -54,6 +56,8 @@ export const animals: Animal[] = [
     color: '#FCE6CC',
     videoUrl: 'https://www.youtube.com/watch?v=OMkEVX23BdM',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/OMkEVX23BdM',
+    distribution: ['Afrika Sub-Sahara'],
+    distributionCountries: 'Tanzania, Kenya, Afrika Selatan, Botswana, Zambia, Zimbabwe, dan beberapa negara Afrika lainnya.',
   },
   {
     id: 'gajah',
@@ -79,6 +83,8 @@ export const animals: Animal[] = [
     color: '#DCEFF8',
     videoUrl: 'https://www.youtube.com/watch?v=dPmZqsQj4F0',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/dPmZqsQj4F0',
+    distribution: ['Afrika Sub-Sahara', 'Asia Selatan', 'Asia Tenggara'],
+    distributionCountries: 'Gajah Afrika: Kenya, Tanzania, Botswana, Zimbabwe. Gajah Asia: India, Sri Lanka, Thailand, Indonesia (Sumatera).',
   },
   {
     id: 'jerapah',
@@ -104,6 +110,8 @@ export const animals: Animal[] = [
     color: '#FCE6CC',
     videoUrl: 'https://www.youtube.com/watch?v=pW4rH2y5sFc',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/pW4rH2y5sFc',
+    distribution: ['Afrika Sub-Sahara'],
+    distributionCountries: 'Kenya, Tanzania, Uganda, Botswana, Namibia, Zimbabwe, Afrika Selatan, Niger.',
   },
   {
     id: 'panda',
@@ -129,6 +137,8 @@ export const animals: Animal[] = [
     color: '#DCEFF8',
     videoUrl: 'https://www.youtube.com/watch?v=dP15zly7jhw',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/dP15zly7jhw',
+    distribution: ['Asia Timur'],
+    distributionCountries: 'Tiongkok (terutama provinsi Sichuan, Shaanxi, dan Gansu).',
   },
   {
     id: 'zebra',
@@ -154,6 +164,8 @@ export const animals: Animal[] = [
     color: '#F3E4CC',
     videoUrl: 'https://www.youtube.com/watch?v=o1j4Q4rJX4Q',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/o1j4Q4rJX4Q',
+    distribution: ['Afrika Sub-Sahara'],
+    distributionCountries: 'Kenya, Tanzania, Uganda, Ethiopia, Namibia, Afrika Selatan, Botswana.',
   },
   {
     id: 'harimau',
@@ -179,6 +191,8 @@ export const animals: Animal[] = [
     color: '#FCE6CC',
     videoUrl: 'https://www.youtube.com/watch?v=6n4Q6fB4qDg',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/6n4Q6fB4qDg',
+    distribution: ['Asia Selatan', 'Asia Tenggara', 'Asia Timur'],
+    distributionCountries: 'India, Bangladesh, Nepal, Thailand, Malaysia, Indonesia (Sumatera), Rusia Timur, Tiongkok.',
   },
   {
     id: 'kucing',
@@ -204,6 +218,8 @@ export const animals: Animal[] = [
     color: '#FCE6CC',
     videoUrl: 'https://www.youtube.com/watch?v=4GR1L4Uz-R4',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/4GR1L4Uz-R4',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Kucing peliharaan ditemukan di hampir setiap negara di dunia.',
   },
   {
     id: 'kuda',
@@ -229,6 +245,8 @@ export const animals: Animal[] = [
     color: '#F3E4CC',
     videoUrl: 'https://www.youtube.com/watch?v=ZOLJ1CsBBEo',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/ZOLJ1CsBBEo',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Kuda peliharaan ditemukan di seluruh dunia. Kuda liar Przewalski ditemukan di Mongolia.',
   },
   {
     id: 'elang',
@@ -254,6 +272,8 @@ export const animals: Animal[] = [
     color: '#DCEFF8',
     videoUrl: 'https://www.youtube.com/watch?v=91u6R1bVQl0',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/91u6R1bVQl0',
+    distribution: ['Amerika Utara', 'Eropa', 'Asia', 'Afrika Utara'],
+    distributionCountries: 'Amerika Serikat, Kanada, Meksiko, Spanyol, Rusia, Mongolia, Jepang, Maroko.',
   },
   {
     id: 'burung-hantu',
@@ -279,6 +299,8 @@ export const animals: Animal[] = [
     color: '#F3E4CC',
     videoUrl: 'https://www.youtube.com/watch?v=gBJXTc1Qb9I',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/gBJXTc1Qb9I',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Burung hantu ditemukan di semua benua kecuali Antartika.',
   },
   {
     id: 'flamingo',
@@ -304,6 +326,8 @@ export const animals: Animal[] = [
     color: '#FBDCD5',
     videoUrl: 'https://www.youtube.com/watch?v=OavqvBwCBL8',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/OavqvBwCBL8',
+    distribution: ['Afrika', 'Amerika Selatan', 'Asia Selatan', 'Eropa'],
+    distributionCountries: 'Flamingo besar: Afrika, India, Pakistan, Lebanon, Spanyol, Prancis Selatan. Flamingo Andes: Peru, Chili, Argentina.',
   },
   {
     id: 'kakaktua',
@@ -329,6 +353,8 @@ export const animals: Animal[] = [
     color: '#FCE6CC',
     videoUrl: 'https://www.youtube.com/watch?v=9Nj_e5R90i0',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/9Nj_e5R90i0',
+    distribution: ['Australia & Oseania', 'Asia Tenggara'],
+    distributionCountries: 'Australia, Indonesia (Papua, Maluku), Filipina, Papua Nugini, Kepulauan Solomon.',
   },
   {
     id: 'merak',
@@ -354,6 +380,8 @@ export const animals: Animal[] = [
     color: '#DCEFF8',
     videoUrl: 'https://www.youtube.com/watch?v=ROxtvZAZ-5I',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/ROxtvZAZ-5I',
+    distribution: ['Asia Selatan', 'Asia Tenggara'],
+    distributionCountries: 'India, Sri Lanka, Pakistan, Bangladesh, Nepal, Myanmar, Thailand, Laos, Vietnam, Indonesia (Jawa).',
   },
   {
     id: 'penguin',
@@ -379,6 +407,8 @@ export const animals: Animal[] = [
     color: '#DCEFF8',
     videoUrl: 'https://www.youtube.com/watch?v=FLkROigIfs0',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/FLkROigIfs0',
+    distribution: ['Antartika', 'Amerika Selatan', 'Australia & Oseania', 'Afrika'],
+    distributionCountries: 'Antartika, Argentina, Chili, Afrika Selatan, Namibia, Australia, Selandia Baru, Kepulauan Galapagos (Ekuador).',
   },
   {
     id: 'buaya',
@@ -404,6 +434,8 @@ export const animals: Animal[] = [
     color: '#DCF0E1',
     videoUrl: 'https://www.youtube.com/watch?v=7TGfxI0zDnA',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/7TGfxI0zDnA',
+    distribution: ['Afrika', 'Asia', 'Amerika', 'Australia & Oseania'],
+    distributionCountries: 'Buaya Nil: Afrika Sub-Sahara. Buaya Muara: Asia Tenggara, Australia Utara. Buaya Amerika: Florida, Karibia, Amerika Tengah.',
   },
   {
     id: 'komodo',
@@ -429,6 +461,8 @@ export const animals: Animal[] = [
     color: '#FCE6CC',
     videoUrl: 'https://www.youtube.com/watch?v=KVZqsvSDINs',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/KVZqsvSDINs',
+    distribution: ['Asia Tenggara'],
+    distributionCountries: 'Indonesia (Pulau Komodo, Rinca, Flores, Gili Motang, Padar) — endemik!',
   },
   {
     id: 'kura-kura',
@@ -454,6 +488,8 @@ export const animals: Animal[] = [
     color: '#DCF0E1',
     videoUrl: 'https://www.youtube.com/watch?v=QvIx1z_xlDQ',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/QvIx1z_xlDQ',
+    distribution: ['Semua Lautan', 'Amerika', 'Afrika', 'Asia', 'Australia & Oseania'],
+    distributionCountries: 'Penyu laut: semua lautan tropis dan subtropis. Kura-kura darat: Galapagos, Aldabra, Madagaskar, Indonesia.',
   },
   {
     id: 'ular',
@@ -479,6 +515,8 @@ export const animals: Animal[] = [
     color: '#DCF0E1',
     videoUrl: 'https://www.youtube.com/watch?v=8pAFQxWvLQY',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/8pAFQxWvLQY',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Ular ditemukan di semua benua kecuali Antartika. Paling banyak di daerah tropis seperti Indonesia, Brasil, India, Australia.',
   },
   {
     id: 'bunglon',
@@ -504,6 +542,8 @@ export const animals: Animal[] = [
     color: '#DCF0E1',
     videoUrl: 'https://www.youtube.com/watch?v=Y_pSmYlcn94',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/Y_pSmYlcn94',
+    distribution: ['Afrika', 'Asia', 'Eropa'],
+    distributionCountries: 'Madagaskar (setengah spesies dunia), Afrika, India, Sri Lanka, Pakistan, Portugal, Spanyol, Yunani.',
   },
   {
     id: 'paus',
@@ -529,6 +569,8 @@ export const animals: Animal[] = [
     color: '#DCEFF8',
     videoUrl: 'https://www.youtube.com/watch?v=wCOIn6E1zLE',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/wCOIn6E1zLE',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Paus ditemukan di semua samudra dunia, dari Kutub Utara hingga Antartika.',
   },
   {
     id: 'lumba-lumba',
@@ -554,6 +596,8 @@ export const animals: Animal[] = [
     color: '#DCEFF8',
     videoUrl: 'https://www.youtube.com/watch?v=DTliMftcdkE',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/DTliMftcdkE',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Lumba-lumba ditemukan di semua samudra, terutama di perairan tropis dan subtropis.',
   },
   {
     id: 'hiu',
@@ -579,6 +623,8 @@ export const animals: Animal[] = [
     color: '#DCEFF8',
     videoUrl: 'https://www.youtube.com/watch?v=QBOm0o75haQ',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/QBOm0o75haQ',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Hiu ditemukan di semua samudra dunia, dari perairan dangkal hingga laut dalam.',
   },
   {
     id: 'gurita',
@@ -604,6 +650,8 @@ export const animals: Animal[] = [
     color: '#F3E4CC',
     videoUrl: 'https://www.youtube.com/watch?v=1QVl0S6_V0o',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/1QVl0S6_V0o',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Gurita ditemukan di semua samudra, terutama di terumbu karang dan dasar laut berbatu.',
   },
   {
     id: 'ikan-badut',
@@ -629,6 +677,8 @@ export const animals: Animal[] = [
     color: '#FCE6CC',
     videoUrl: 'https://www.youtube.com/watch?v=SF2SZLHkFUU',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/SF2SZLHkFUU',
+    distribution: ['Asia Tenggara', 'Australia & Oseania'],
+    distributionCountries: 'Indonesia, Filipina, Papua Nugini, Australia, Kepulauan Solomon, Fiji, Thailand, Malaysia.',
   },
   {
     id: 'penyu',
@@ -654,6 +704,8 @@ export const animals: Animal[] = [
     color: '#DCF0E1',
     videoUrl: 'https://www.youtube.com/watch?v=5R-mMlOFhfk',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/5R-mMlOFhfk',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Penyu laut ditemukan di semua samudra tropis dan subtropis, termasuk Indonesia, Brasil, Kosta Rika, Australia, Karibia.',
   },
   {
     id: 'kupu-kupu',
@@ -679,6 +731,8 @@ export const animals: Animal[] = [
     color: '#F1E6FA',
     videoUrl: 'https://www.youtube.com/watch?v=O1s5DkS-M8U',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/O1s5DkS-M8U',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Kupu-kupu ditemukan di semua benua kecuali Antartika. Paling beragam di hutan hujan tropis.',
   },
   {
     id: 'lebah',
@@ -704,6 +758,8 @@ export const animals: Animal[] = [
     color: '#FFC857',
     videoUrl: 'https://www.youtube.com/watch?v=9wD6Kjy0E5I',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/9wD6Kjy0E5I',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Lebah madu ditemukan di seluruh dunia, kecuali daerah kutub.',
   },
   {
     id: 'semut',
@@ -729,6 +785,8 @@ export const animals: Animal[] = [
     color: '#F3E4CC',
     videoUrl: 'https://www.youtube.com/watch?v=7BtWx5cDlE0',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/7BtWx5cDlE0',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Semut ditemukan di semua benua kecuali Antartika. Paling beragam di daerah tropis.',
   },
   {
     id: 'capung',
@@ -754,6 +812,8 @@ export const animals: Animal[] = [
     color: '#DCEFF8',
     videoUrl: 'https://www.youtube.com/watch?v=plMuqJSkQbI',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/plMuqJSkQbI',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Capung ditemukan di semua benua kecuali Antartika. Paling banyak di daerah tropis dan dekat perairan.',
   },
   {
     id: 'katak',
@@ -779,6 +839,8 @@ export const animals: Animal[] = [
     color: '#DCF0E1',
     videoUrl: 'https://www.youtube.com/watch?v=0kABn3LDQ-4',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/0kABn3LDQ-4',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Katak ditemukan di semua benua kecuali Antartika. Paling beragam di hutan hujan tropis.',
   },
   {
     id: 'salamander',
@@ -804,6 +866,8 @@ export const animals: Animal[] = [
     color: '#DCF0E1',
     videoUrl: 'https://www.youtube.com/watch?v=jLihJcNK8jY',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/jLihJcNK8jY',
+    distribution: ['Amerika Utara', 'Eropa', 'Asia'],
+    distributionCountries: 'Amerika Serikat, Kanada, Meksiko, Eropa (terutama Italia, Balkan), Tiongkok, Jepang, Rusia.',
   },
   {
     id: 'axolotl',
@@ -829,6 +893,8 @@ export const animals: Animal[] = [
     color: '#FBDCD5',
     videoUrl: 'https://www.youtube.com/watch?v=UWbR8bUHaYQ',
     videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/UWbR8bUHaYQ',
+    distribution: ['Amerika Utara'],
+    distributionCountries: 'Meksiko (endemik — hanya ditemukan di Danau Xochimilco, dekat Mexico City).',
   },
 ];
 
