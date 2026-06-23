@@ -5,6 +5,7 @@ import { animals } from '@/data/animals';
 import { showToastXP, showToastBadge } from '@/components/ToastNotification';
 import { AudioPlayer } from '@/components/AudioPlayer';
 import { AudioNarrationModal } from '@/components/AudioNarrationModal';
+import { VideoPlayerModal } from '@/components/VideoPlayerModal';
 
 interface Props {
   animalId: string;
@@ -21,6 +22,7 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
   const setLastViewedAnimal = useGameStore((s) => s.setLastViewedAnimal);
   const discoveredAnimals = useGameStore((s) => s.discoveredAnimals);
   const [showNarration, setShowNarration] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     if (animal) {
@@ -61,10 +63,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
     if (status === 'rentan') return 'Rentan';
     if (status === 'terancam') return 'Terancam';
     return 'Aman';
-  };
-
-  const handleWatchVideo = () => {
-    window.open(animal.videoUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -209,13 +207,13 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             </div>
           </div>
 
-          {/* Tombol Tonton Video YouTube */}
+          {/* Tombol Tonton Video */}
           <button
-            onClick={handleWatchVideo}
+            onClick={() => setShowVideo(true)}
             className="mt-4 w-full crayon-btn py-3 text-sm font-bold bg-[#FF0000] text-white border-[var(--ink)] shadow-[0_3px_0_var(--ink)] flex items-center justify-center gap-2"
           >
             <span>▶</span>
-            Tonton Video {animal.name} di YouTube
+            Tonton Video {animal.name} dari National Geographic
           </button>
 
           <button
@@ -236,6 +234,14 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
         <AudioNarrationModal
           animal={animal}
           onClose={() => setShowNarration(false)}
+        />
+      )}
+
+      {showVideo && (
+        <VideoPlayerModal
+          videoEmbedUrl={animal.videoEmbedUrl}
+          animalName={animal.name}
+          onClose={() => setShowVideo(false)}
         />
       )}
     </div>
