@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { SplashScreen } from '@/components/SplashScreen';
 import { OnboardingScreen } from '@/components/OnboardingScreen';
@@ -22,7 +22,53 @@ const Index = () => {
 
   const [detailAnimalId, setDetailAnimalId] = useState<string | null>(null);
 
-  // Listen for custom event from ExploreScreen
+  // --- Browser back button handling for overlays ---
+  const ignorePopRef = useRef(false);
+
+  // Keep refs to current overlay states so popstate listener can read them
+  const detailAnimalIdRef = useRef(detailAnimalId);
+  detailAnimalIdRef.current = detailAnimalId;
+
+  const quizInProgressRef = useRef(quizInProgress);
+  quizInProgressRef.current = quizInProgress;
+
+  // Push a history entry when an overlay opens
+  useEffect(() => {
+    if (detailAnimalId) {
+      window.history.pushState(null, '');
+    }
+  }, [detailAnimalId]);
+
+  useEffect(() => {
+    if (quizInProgress) {
+      window.history.pushState(null, '');
+    }
+  }, [quizInProgress]);
+
+  // Listen for physical back button / popstate
+  useEffect(() => {
+    const handlePopState = () => {
+      if (ignorePopRef.current) {
+        ignorePopRef.current = false;
+        return;
+      }
+
+      if (detailAnimalIdRef.current) {
+        setDetailAnimalId(null);
+        return;
+      }
+
+      if (quizInProgressRef.current) {
+        endQuiz();
+        return;
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [endQuiz]);
+
+  // Listen for custom event from ExploreScreen / HomeScreen
   useEffect(() => {
     const handler = (e: CustomEvent) => {
       setDetailAnimalId(e.detail.animalId);
@@ -38,6 +84,18 @@ const Index = () => {
       document.body.style.overflow = '';
     };
   }, []);
+
+  const handleCloseDetail = useCallback(() => {
+    ignorePopRef.current = true;
+    setDetailAnimalId(null);
+    window.history.back();
+  }, []);
+
+  const handleCloseQuiz = useCallback(() => {
+    ignorePopRef.current = true;
+    endQuiz();
+    window.history.back();
+  }, [endQuiz]);
 
   const renderTabContent = () => {
     switch (currentTab) {
@@ -87,7 +145,7 @@ const Index = () => {
       {detailAnimalId && (
         <AnimalDetailScreen
           animalId={detailAnimalId}
-          onBack={() => setDetailAnimalId(null)}
+          onBack={handleCloseDetail}
         />
       )}
 
@@ -95,8 +153,8 @@ const Index = () => {
       {quizInProgress && currentQuizAnimalId && (
         <QuizScreen
           animalId={currentQuizAnimalId}
-          onBack={() => endQuiz()}
-          onFinish={() => endQuiz()}
+          onBack={handleCloseQuiz}
+          onFinish={handleCloseQuiz}
         />
       )}
 
