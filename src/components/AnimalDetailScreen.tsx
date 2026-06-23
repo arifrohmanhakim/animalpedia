@@ -236,7 +236,7 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             className="mt-2 w-full crayon-btn py-3 text-sm font-bold bg-[var(--green-deep)] text-white border-[var(--ink)] shadow-[0_3px_0_var(--ink)] flex items-center justify-center gap-2"
           >
             <span>🗺️</span>
-            Ada di mana aku?
+            Tinggal di mana aku?
           </button>
 
           <button
