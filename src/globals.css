@@ -4,98 +4,190 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --cream: #FBF3E7;
+    --cream-deep: #F3E4CC;
+    --paper: #FFFCF6;
+    --ink: #5B3E2B;
+    --ink-soft: #8C6B4F;
+    --green: #3FA66C;
+    --green-deep: #2C7A4F;
+    --green-pale: #DCF0E1;
+    --orange: #F2994A;
+    --orange-deep: #C9671F;
+    --orange-pale: #FCE6CC;
+    --blue: #4FA8D8;
+    --blue-deep: #2E7CA8;
+    --blue-pale: #DCEFF8;
+    --yellow: #FFC857;
+    --yellow-deep: #C98E12;
+    --red: #E8604C;
+    --red-pale: #FBDCD5;
+    --line: #E8D8BE;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --background: 37 50% 95%;
+    --foreground: 30 38% 26%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 99%;
+    --card-foreground: 30 38% 26%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --popover: 0 0% 99%;
+    --popover-foreground: 30 38% 26%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --primary: 147 50% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 37 50% 92%;
+    --secondary-foreground: 30 38% 26%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 37 50% 92%;
+    --muted-foreground: 32 22% 43%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --accent: 30 85% 62%;
+    --accent-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 7 74% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    --border: 37 38% 83%;
+    --input: 37 38% 83%;
+    --ring: 147 50% 45%;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 1rem;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#EDE3CF] text-[var(--ink)];
+    font-family: 'Quicksand', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
   }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Baloo 2', cursive;
+  }
+
+  .crayon-card {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 26px;
+    box-shadow: 0 4px 0 var(--ink);
+  }
+
+  .crayon-btn {
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    box-shadow: 0 3px 0 var(--ink);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+
+  .crayon-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 var(--ink);
+  }
+
+  .sticker-badge {
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 11px;
+    color: #fff;
+    background: var(--orange);
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    padding: 3px 10px;
+    display: inline-block;
+    transform: rotate(-4deg);
+    box-shadow: 0 2px 0 var(--ink);
+  }
+
+  .progress-track {
+    height: 14px;
+    background: var(--cream-deep);
+    border: 2px solid var(--ink);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 20px;
+    transition: width 0.6s ease;
+  }
+
+  .pill-tab {
+    font-family: 'Baloo 2', cursive;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 16px;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .screen-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .screen-scroll {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(63, 166, 108, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(63, 166, 108, 0); }
+  }
+
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.4s ease-out forwards;
+  }
+
+  .animate-stagger-1 { animation-delay: 0.1s; opacity: 0; }
+  .animate-stagger-2 { animation-delay: 0.2s; opacity: 0; }
+  .animate-stagger-3 { animation-delay: 0.3s; opacity: 0; }
+  .animate-stagger-4 { animation-delay: 0.4s; opacity: 0; }
+  .animate-stagger-5 { animation-delay: 0.5s; opacity: 0; }
 }
