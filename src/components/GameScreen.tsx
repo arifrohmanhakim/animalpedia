@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { animals } from '@/data/animals';
+import { playAnimalSound } from '@/lib/audio';
 import { showToastXP, showToastBadge } from '@/components/ToastNotification';
 
 type GameState = 'playing' | 'correct' | 'wrong' | 'finished';
@@ -15,32 +16,52 @@ export function GameScreen() {
   const [options, setOptions] = useState<typeof animals>([]);
   const [correctAnimal, setCorrectAnimal] = useState<(typeof animals)[0] | null>(null);
   const [showHint, setShowHint] = useState(false);
+  const [soundPlaying, setSoundPlaying] = useState(false);
+  const soundPlayedRef = useRef(false);
 
-  // Maximum rounds for the game
   const MAX_ROUNDS = 5;
 
   const generateRound = useCallback(() => {
-    // Pick a random animal as the answer
     const pool = [...animals].sort(() => Math.random() - 0.5);
     const correct = pool[0];
 
-    // Pick 3 other random animals as wrong options
     const wrongPool = animals.filter((a) => a.id !== correct.id);
     const shuffledWrong = wrongPool.sort(() => Math.random() - 0.5);
     const wrongOptions = shuffledWrong.slice(0, 3);
 
-    // Combine and shuffle
     const allOptions = [correct, ...wrongOptions].sort(() => Math.random() - 0.5);
 
     setCorrectAnimal(correct);
     setOptions(allOptions);
     setGameState('playing');
     setShowHint(false);
+    soundPlayedRef.current = false;
   }, []);
 
   useEffect(() => {
     generateRound();
   }, [generateRound]);
+
+  const handlePlaySound = () => {
+    if (!correctAnimal || soundPlaying) return;
+    setSoundPlaying(true);
+    playAnimalSound(correctAnimal);
+    soundPlayedRef.current = true;
+    setTimeout(() => {
+      setSoundPlaying(false);
+      setShowHint(true);
+    }, 1500);
+  };
+
+  // Auto-play sound when round starts
+  useEffect(() => {
+    if (correctAnimal && !soundPlayedRef.current) {
+      const timer = setTimeout(() => {
+        handlePlaySound();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [correctAnimal]);
 
   const handleAnswer = (animalId: string) => {
     if (gameState !== 'playing' || !correctAnimal) return;
@@ -61,7 +82,6 @@ export function GameScreen() {
       setCurrentRound((r) => r + 1);
       generateRound();
     } else {
-      // Game finished
       setGameState('finished');
       const bonusXP = streak >= 3 ? 5 : 0;
       addXP(score + bonusXP);
@@ -144,30 +164,36 @@ export function GameScreen() {
         {/* Sound button */}
         <div className="flex flex-col items-center py-6 animate-fade-in-up">
           <p className="text-xs font-semibold text-[var(--ink-soft)] mb-4 text-center px-8">
-            Dengarkan baik-baik, lalu tebak hewannya!
+            Dengarkan baik-baik suara hewan ini, lalu tebak!
           </p>
 
           <button
-            onClick={() => {
-              // Play sound placeholder
-              setShowHint(true);
-              alert(`🔊 Suara ${correctAnimal.name}! (Fitur audio akan segera hadir)`);
-            }}
-            className="w-[140px] h-[140px] rounded-full bg-[var(--blue)] border-[4px] border-[var(--ink)] flex items-center justify-center shadow-[0_5px_0_var(--ink)] hover:scale-105 active:scale-95 transition-transform"
+            onClick={handlePlaySound}
+            disabled={soundPlaying}
+            className={`w-[140px] h-[140px] rounded-full bg-[var(--blue)] border-[4px] border-[var(--ink)] flex items-center justify-center shadow-[0_5px_0_var(--ink)] transition-transform active:scale-95 ${
+              soundPlaying ? 'animate-pulse-glow' : 'hover:scale-105'
+            }`}
           >
-            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-              <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-              <path d="M18.5 5.5a9 9 0 0 1 0 13" />
-            </svg>
+            {soundPlaying ? (
+              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="6" y="4" width="4" height="16" />
+                <rect x="14" y="4" width="4" height="16" />
+              </svg>
+            ) : (
+              <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+                <path d="M18.5 5.5a9 9 0 0 1 0 13" />
+              </svg>
+            )}
           </button>
           <p className="text-[11px] font-bold text-[var(--blue-deep)] mt-3">
-            🎯 Ketuk untuk dengar
+            {soundPlaying ? '🔊 Memutar suara...' : '🎯 Ketuk untuk dengar lagi'}
           </p>
 
           {/* Hint */}
           {showHint && (
-            <div className="mt-3 crayon-card px-4 py-2 bg-[var(--yellow)]">
+            <div className="mt-3 crayon-card px-4 py-2 bg-[var(--yellow)] animate-scale-in">
               <span className="text-xs font-bold">💡 Petunjuk: </span>
               <span className="text-xs font-semibold">
                 {correctAnimal.habitat} · {correctAnimal.category}

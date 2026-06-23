@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { animals } from '@/data/animals';
 import { showToastXP, showToastBadge } from '@/components/ToastNotification';
+import { AudioPlayer } from '@/components/AudioPlayer';
+import { AudioNarrationModal } from '@/components/AudioNarrationModal';
 
 interface Props {
   animalId: string;
@@ -14,6 +17,7 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
   const isFavorite = useGameStore((s) => s.isFavorite);
   const toggleFavorite = useGameStore((s) => s.toggleFavorite);
   const checkNewBadges = useGameStore((s) => s.checkNewBadges);
+  const [showNarration, setShowNarration] = useState(false);
 
   if (!animal) return null;
 
@@ -21,12 +25,9 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
   const isNew = !useGameStore.getState().discoveredAnimals.includes(animalId);
   if (isNew) {
     discoverAnimal(animal.id);
-    // We check for new badges after a small delay to let state update
     setTimeout(() => {
       const newBadges = checkNewBadges();
-      if (!isNew) {
-        showToastXP(5, `Kamu menemukan ${animal.name}!`);
-      }
+      showToastXP(5, `Kamu menemukan ${animal.name}!`);
       newBadges.forEach((badgeId) => showToastBadge(badgeId));
     }, 100);
   }
@@ -107,7 +108,7 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
 
         {/* Content */}
         <div className="px-5 pt-4 pb-6">
-          {/* Name and sound button */}
+          {/* Name and audio buttons */}
           <div className="flex justify-between items-start">
             <div>
               <h2 className="font-display text-2xl font-extrabold">{animal.name}</h2>
@@ -115,16 +116,16 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
                 {animal.englishName} · <span className="italic">{animal.scientificName}</span>
               </p>
             </div>
-            <button
-              className="w-[46px] h-[46px] rounded-full bg-[var(--green)] border-[3px] border-[var(--ink)] flex items-center justify-center text-lg shadow-[0_3px_0_var(--ink)] text-white flex-shrink-0"
-              onClick={() => {
-                // Sound placeholder - would play animal sound
-                alert(`🔊 Suara ${animal.name}! (Fitur audio akan segera hadir)`);
-              }}
-            >
-              🔊
-            </button>
+            <AudioPlayer animal={animal} variant="both" size="md" />
           </div>
+
+          {/* Narration button */}
+          <button
+            onClick={() => setShowNarration(true)}
+            className="mt-2 w-full crayon-btn py-2 text-xs font-bold bg-[var(--blue-pale)] text-[var(--blue-deep)] border-[var(--blue-deep)] shadow-[0_3px_0_var(--blue-deep)]"
+          >
+            🎤 Dengarkan {animal.name} bercerita!
+          </button>
 
           {/* Info cards */}
           <div className="flex gap-2.5 mt-4">
@@ -228,6 +229,14 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
           <div className="h-8" />
         </div>
       </div>
+
+      {/* Narration Modal */}
+      {showNarration && (
+        <AudioNarrationModal
+          animal={animal}
+          onClose={() => setShowNarration(false)}
+        />
+      )}
     </div>
   );
 }
