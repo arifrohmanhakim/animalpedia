@@ -1,13 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Props {
   videoEmbedUrl: string;
+  videoUrl: string;
   animalName: string;
   onClose: () => void;
 }
 
-export function VideoPlayerModal({ videoEmbedUrl, animalName, onClose }: Props) {
+export function VideoPlayerModal({ videoEmbedUrl, videoUrl, animalName, onClose }: Props) {
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -46,21 +48,59 @@ export function VideoPlayerModal({ videoEmbedUrl, animalName, onClose }: Props) 
           </button>
         </div>
 
-        {/* Video embed */}
-        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-          <iframe
-            src={videoEmbedUrl}
-            title={`Video ${animalName}`}
-            className="absolute inset-0 w-full h-full rounded-xl"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
+        {/* Video embed or error fallback */}
+        {hasError ? (
+          <div className="w-full rounded-xl bg-[var(--cream-deep)] flex flex-col items-center justify-center py-10 px-4 text-center">
+            <div className="text-5xl mb-3">😕</div>
+            <h4 className="font-display text-base font-bold">Video tidak tersedia</h4>
+            <p className="text-xs font-semibold text-[var(--ink-soft)] mt-1 mb-4">
+              Video ini mungkin telah dihapus atau disetel ke pribadi.
+            </p>
+            <a
+              href={videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="crayon-btn bg-[#FF0000] text-white text-sm py-2.5 px-6 inline-flex items-center gap-2"
+            >
+              <span>▶</span>
+              Tonton di YouTube
+            </a>
+          </div>
+        ) : (
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              src={videoEmbedUrl}
+              title={`Video ${animalName}`}
+              className="absolute inset-0 w-full h-full rounded-xl"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              onError={() => setHasError(true)}
+            />
+          </div>
+        )}
 
         {/* Footer */}
-        <p className="text-[10px] font-semibold text-[var(--ink-soft)] mt-2 text-center">
-          Sumber: National Geographic
-        </p>
+        {!hasError && (
+          <>
+            <p className="text-[10px] font-semibold text-[var(--ink-soft)] mt-2 text-center">
+              Video tidak muncul?{' '}
+              <button
+                onClick={() => setHasError(true)}
+                className="text-[var(--blue-deep)] underline"
+              >
+                Klik di sini
+              </button>
+            </p>
+            <a
+              href={videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center text-[10px] font-semibold text-[var(--ink-soft)] mt-1 underline"
+            >
+              Buka di YouTube ↗
+            </a>
+          </>
+        )}
       </div>
     </div>
   );
