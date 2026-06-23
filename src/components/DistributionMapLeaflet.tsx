@@ -83,9 +83,6 @@ export function DistributionMapLeaflet({ distribution, countries }: Props) {
 
   return (
     <div className="mt-5">
-      <h3 className="font-display text-sm font-bold mb-2.5">
-        🌍 Tinggal di Mana Aku?
-      </h3>
 
       <div className="crayon-card p-2 bg-[var(--paper)] overflow-hidden">
         <div className="rounded-xl overflow-hidden" style={{ height: "250px" }}>
