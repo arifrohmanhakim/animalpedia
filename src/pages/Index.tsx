@@ -10,7 +10,7 @@ import { ProfileScreen } from '@/components/ProfileScreen';
 import { GameScreen } from '@/components/GameScreen';
 import { AnimalDetailScreen } from '@/components/AnimalDetailScreen';
 import { QuizScreen } from '@/components/QuizScreen';
-import { animals } from '@/data/animals';
+import { ToastContainer } from '@/components/ToastNotification';
 
 const Index = () => {
   const showSplash = useGameStore((s) => s.showSplash);
@@ -19,7 +19,6 @@ const Index = () => {
   const quizInProgress = useGameStore((s) => s.quizInProgress);
   const currentQuizAnimalId = useGameStore((s) => s.currentQuizAnimalId);
   const endQuiz = useGameStore((s) => s.endQuiz);
-  const addXP = useGameStore((s) => s.addXP);
 
   const [detailAnimalId, setDetailAnimalId] = useState<string | null>(null);
 
@@ -100,6 +99,9 @@ const Index = () => {
           onFinish={() => endQuiz()}
         />
       )}
+
+      {/* Toast notifications - always on top */}
+      <ToastContainer />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { useGameStore } from '@/store/gameStore';
 import { animals } from '@/data/animals';
+import { showToastXP, showToastBadge } from '@/components/ToastNotification';
 
 interface Props {
   animalId: string;
@@ -10,11 +11,27 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
   const animal = animals.find((a) => a.id === animalId);
   const discoverAnimal = useGameStore((s) => s.discoverAnimal);
   const startQuiz = useGameStore((s) => s.startQuiz);
+  const isFavorite = useGameStore((s) => s.isFavorite);
+  const toggleFavorite = useGameStore((s) => s.toggleFavorite);
+  const checkNewBadges = useGameStore((s) => s.checkNewBadges);
 
   if (!animal) return null;
 
-  // Mark as discovered
-  discoverAnimal(animal.id);
+  // Discover on view + check badges
+  const isNew = !useGameStore.getState().discoveredAnimals.includes(animalId);
+  if (isNew) {
+    discoverAnimal(animal.id);
+    // We check for new badges after a small delay to let state update
+    setTimeout(() => {
+      const newBadges = checkNewBadges();
+      if (!isNew) {
+        showToastXP(5, `Kamu menemukan ${animal.name}!`);
+      }
+      newBadges.forEach((badgeId) => showToastBadge(badgeId));
+    }, 100);
+  }
+
+  const fav = isFavorite(animal.id);
 
   const getConservationColor = (status: string) => {
     switch (status) {
@@ -62,9 +79,16 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             >
               ←
             </button>
-            <div className="w-[34px] h-[34px] rounded-full bg-[var(--paper)] border-2 border-[var(--ink)] flex items-center justify-center text-sm">
-              ♡
-            </div>
+            <button
+              onClick={() => toggleFavorite(animal.id)}
+              className={`w-[34px] h-[34px] rounded-full border-2 flex items-center justify-center text-sm transition-all active:scale-90 ${
+                fav
+                  ? 'bg-[var(--red-pale)] border-[var(--red)]'
+                  : 'bg-[var(--paper)] border-[var(--ink)]'
+              }`}
+            >
+              {fav ? '❤️' : '🤍'}
+            </button>
           </div>
 
           {/* Animal emoji */}
@@ -192,7 +216,10 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
 
           {/* Quick Quiz Button */}
           <button
-            onClick={() => startQuiz(animal.id)}
+            onClick={() => {
+              showToastXP(10, `Mulai kuis ${animal.name}!`);
+              startQuiz(animal.id);
+            }}
             className="mt-6 w-full crayon-btn bg-[var(--orange)] text-white text-sm py-3"
           >
             Mulai Kuis Cepat 🎯

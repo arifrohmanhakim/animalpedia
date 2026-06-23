@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { animals } from '@/data/animals';
+import { showToastXP, showToastBadge } from '@/components/ToastNotification';
 
 interface Props {
   animalId: string;
@@ -80,6 +81,7 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
   const animal = animals.find((a) => a.id === animalId);
   const addXP = useGameStore((s) => s.addXP);
   const recordCorrectQuiz = useGameStore((s) => s.recordCorrectQuiz);
+  const checkNewBadges = useGameStore((s) => s.checkNewBadges);
 
   const [questions] = useState(() => generateQuestions(animalId));
   const [currentQ, setCurrentQ] = useState(0);
@@ -117,10 +119,21 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
     } else {
       // Quiz finished
       const isPerfect = score === totalQuestions;
-      addXP(isPerfect ? 15 : 10);
+      const xpAmount = isPerfect ? 15 : 10;
+      addXP(xpAmount);
       if (score > 0) {
         for (let i = 0; i < score; i++) recordCorrectQuiz();
       }
+
+      // Show toast
+      showToastXP(xpAmount, `Kuis ${animal.name} selesai!`);
+
+      // Check badges
+      setTimeout(() => {
+        const newBadges = checkNewBadges();
+        newBadges.forEach((badgeId) => showToastBadge(badgeId));
+      }, 300);
+
       setFinished(true);
     }
   };

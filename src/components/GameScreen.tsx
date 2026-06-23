@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { animals } from '@/data/animals';
+import { showToastXP, showToastBadge } from '@/components/ToastNotification';
 
 type GameState = 'playing' | 'correct' | 'wrong' | 'finished';
 
@@ -48,6 +49,7 @@ export function GameScreen() {
       setGameState('correct');
       setScore((s) => s + 10);
       setStreak((s) => s + 1);
+      showToastXP(10, `Tebakan benar! ${correctAnimal.name}`);
     } else {
       setGameState('wrong');
       setStreak(0);

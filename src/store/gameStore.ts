@@ -25,6 +25,7 @@ interface GameState {
   // Progression
   xp: number;
   discoveredAnimals: string[];
+  favoriteAnimals: string[];
   quizCorrectCount: number;
   lastLoginDate: string;
   dailyStreak: number;
@@ -44,16 +45,51 @@ interface GameState {
   }) => void;
   setTab: (tab: string) => void;
   discoverAnimal: (animalId: string) => void;
+  toggleFavorite: (animalId: string) => void;
   addXP: (amount: number) => void;
   recordCorrectQuiz: () => void;
   startQuiz: (animalId: string) => void;
   endQuiz: () => void;
   checkBadges: () => void;
+  checkNewBadges: () => string[];
   getLevel: () => { level: number; title: string; xpForNext: number; progress: number };
   getAnimals: () => typeof allAnimals;
   isDiscovered: (animalId: string) => boolean;
+  isFavorite: (animalId: string) => boolean;
   getCollectionProgress: () => { discovered: number; total: number };
 }
+
+const STORAGE_KEY = 'animalpedia-kids-save';
+
+const loadState = () => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      return JSON.parse(saved);
+    }
+  } catch {}
+  return null;
+};
+
+const saveState = (state: Partial<GameState>) => {
+  try {
+    const toSave = {
+      onboardingComplete: state.onboardingComplete,
+      playerName: state.playerName,
+      selectedCharacter: state.selectedCharacter,
+      ageRange: state.ageRange,
+      favoriteCategories: state.favoriteCategories,
+      xp: state.xp,
+      discoveredAnimals: state.discoveredAnimals,
+      favoriteAnimals: state.favoriteAnimals,
+      quizCorrectCount: state.quizCorrectCount,
+      lastLoginDate: state.lastLoginDate,
+      dailyStreak: state.dailyStreak,
+      badges: state.badges,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+  } catch {}
+};
 
 const getLevelFromXP = (xp: number) => {
   const levelThresholds = [
@@ -91,36 +127,46 @@ const getLevelFromXP = (xp: number) => {
   };
 };
 
+const savedState = loadState();
+
 export const useGameStore = create<GameState>((set, get) => ({
   showSplash: true,
-  onboardingComplete: false,
+  onboardingComplete: savedState?.onboardingComplete ?? false,
   currentTab: 'home',
 
-  playerName: '',
-  selectedCharacter: '',
-  ageRange: '',
-  favoriteCategories: [],
+  playerName: savedState?.playerName ?? '',
+  selectedCharacter: savedState?.selectedCharacter ?? '',
+  ageRange: savedState?.ageRange ?? '',
+  favoriteCategories: savedState?.favoriteCategories ?? [],
 
-  xp: 0,
-  discoveredAnimals: [],
-  quizCorrectCount: 0,
-  lastLoginDate: '',
-  dailyStreak: 0,
-  badges: badgeList.map((b) => ({ ...b })),
+  xp: savedState?.xp ?? 0,
+  discoveredAnimals: savedState?.discoveredAnimals ?? [],
+  favoriteAnimals: savedState?.favoriteAnimals ?? [],
+  quizCorrectCount: savedState?.quizCorrectCount ?? 0,
+  lastLoginDate: savedState?.lastLoginDate ?? '',
+  dailyStreak: savedState?.dailyStreak ?? 0,
+  badges: savedState?.badges ?? badgeList.map((b) => ({ ...b })),
 
   quizInProgress: false,
   currentQuizAnimalId: null,
 
   finishSplash: () => set({ showSplash: false }),
 
-  completeOnboarding: (data) =>
-    set({
+  completeOnboarding: (data) => {
+    const today = new Date().toDateString();
+    const newState = {
       onboardingComplete: true,
       playerName: data.playerName,
       selectedCharacter: data.selectedCharacter,
       ageRange: data.ageRange,
       favoriteCategories: data.favoriteCategories,
-    }),
+      lastLoginDate: today,
+      dailyStreak: 1,
+    };
+    set(newState);
+    // Save immediately
+    saveState({ ...get(), ...newState });
+  },
 
   setTab: (tab) => set({ currentTab: tab }),
 
@@ -131,22 +177,44 @@ export const useGameStore = create<GameState>((set, get) => ({
     const newDiscovered = [...state.discoveredAnimals, animalId];
     const newXP = state.xp + 5;
 
-    set({
+    const newState = {
       discoveredAnimals: newDiscovered,
       xp: newXP,
-    });
+    };
 
+    set(newState);
     get().checkBadges();
+    saveState({ ...get(), ...newState });
+  },
+
+  toggleFavorite: (animalId) => {
+    const state = get();
+    const isFav = state.favoriteAnimals.includes(animalId);
+    const newFavorites = isFav
+      ? state.favoriteAnimals.filter((id) => id !== animalId)
+      : [...state.favoriteAnimals, animalId];
+
+    const newState = { favoriteAnimals: newFavorites };
+    set(newState);
+    saveState({ ...get(), ...newState });
   },
 
   addXP: (amount) => {
-    set((state) => ({ xp: state.xp + amount }));
+    const state = get();
+    const newXP = state.xp + amount;
+    const newState = { xp: newXP };
+    set(newState);
     get().checkBadges();
+    saveState({ ...get(), ...newState });
   },
 
   recordCorrectQuiz: () => {
-    set((state) => ({ quizCorrectCount: state.quizCorrectCount + 1 }));
+    const state = get();
+    const newCount = state.quizCorrectCount + 1;
+    const newState = { quizCorrectCount: newCount };
+    set(newState);
     get().checkBadges();
+    saveState({ ...get(), ...newState });
   },
 
   startQuiz: (animalId) => set({ quizInProgress: true, currentQuizAnimalId: animalId }),
@@ -154,35 +222,94 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   checkBadges: () => {
     const state = get();
+    let changed = false;
     const updatedBadges = state.badges.map((badge) => {
       if (badge.unlocked) return badge;
 
+      let shouldUnlock = false;
       switch (badge.id) {
         case 'explorer':
-          return { ...badge, unlocked: state.discoveredAnimals.length >= 10 };
+          shouldUnlock = state.discoveredAnimals.length >= 10;
+          break;
         case 'mammal-expert': {
           const mammalCount = state.discoveredAnimals.filter(
             (id) => allAnimals.find((a) => a.id === id)?.category === 'mamalia'
           ).length;
-          return { ...badge, unlocked: mammalCount >= 5 };
+          shouldUnlock = mammalCount >= 5;
+          break;
         }
         case 'ocean-master': {
           const oceanIds = allAnimals.filter((a) => a.category === 'laut').map((a) => a.id);
           const oceanDiscovered = oceanIds.filter((id) =>
             state.discoveredAnimals.includes(id)
           ).length;
-          return { ...badge, unlocked: oceanDiscovered === oceanIds.length };
+          shouldUnlock = oceanDiscovered === oceanIds.length;
+          break;
         }
         case 'quiz-champion':
-          return { ...badge, unlocked: state.quizCorrectCount >= 10 };
+          shouldUnlock = state.quizCorrectCount >= 10;
+          break;
         case 'daily-learner':
-          return { ...badge, unlocked: state.dailyStreak >= 7 };
-        default:
-          return badge;
+          shouldUnlock = state.dailyStreak >= 7;
+          break;
       }
+
+      if (shouldUnlock) changed = true;
+      return { ...badge, unlocked: badge.unlocked || shouldUnlock };
     });
 
-    set({ badges: updatedBadges });
+    if (changed) {
+      const newState = { badges: updatedBadges };
+      set(newState);
+      saveState({ ...get(), ...newState });
+    }
+  },
+
+  checkNewBadges: () => {
+    const state = get();
+    const newlyUnlocked: string[] = [];
+    const updatedBadges = state.badges.map((badge) => {
+      if (badge.unlocked) return badge;
+
+      let shouldUnlock = false;
+      switch (badge.id) {
+        case 'explorer':
+          shouldUnlock = state.discoveredAnimals.length >= 10;
+          break;
+        case 'mammal-expert': {
+          const mammalCount = state.discoveredAnimals.filter(
+            (id) => allAnimals.find((a) => a.id === id)?.category === 'mamalia'
+          ).length;
+          shouldUnlock = mammalCount >= 5;
+          break;
+        }
+        case 'ocean-master': {
+          const oceanIds = allAnimals.filter((a) => a.category === 'laut').map((a) => a.id);
+          const oceanDiscovered = oceanIds.filter((id) =>
+            state.discoveredAnimals.includes(id)
+          ).length;
+          shouldUnlock = oceanDiscovered === oceanIds.length;
+          break;
+        }
+        case 'quiz-champion':
+          shouldUnlock = state.quizCorrectCount >= 10;
+          break;
+        case 'daily-learner':
+          shouldUnlock = state.dailyStreak >= 7;
+          break;
+      }
+
+      if (shouldUnlock) newlyUnlocked.push(badge.id);
+      return { ...badge, unlocked: badge.unlocked || shouldUnlock };
+    });
+
+    if (newlyUnlocked.length > 0) {
+      const newState = { badges: updatedBadges };
+      set(newState);
+      saveState({ ...get(), ...newState });
+    }
+
+    return newlyUnlocked;
   },
 
   getLevel: () => getLevelFromXP(get().xp),
@@ -190,6 +317,8 @@ export const useGameStore = create<GameState>((set, get) => ({
   getAnimals: () => allAnimals,
 
   isDiscovered: (animalId) => get().discoveredAnimals.includes(animalId),
+
+  isFavorite: (animalId) => get().favoriteAnimals.includes(animalId),
 
   getCollectionProgress: () => ({
     discovered: get().discoveredAnimals.length,
