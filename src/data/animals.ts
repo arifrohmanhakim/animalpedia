@@ -15,6 +15,7 @@ export interface Animal {
   emoji: string;
   conservationStatus: 'aman' | 'rentan' | 'terancam';
   color: string;
+  videoUrl: string;
 }
 
 export const categories = [
@@ -50,6 +51,7 @@ export const animals: Animal[] = [
     emoji: '🦁',
     conservationStatus: 'rentan',
     color: '#FCE6CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Lion+animal+for+kids',
   },
   {
     id: 'gajah',
@@ -73,6 +75,7 @@ export const animals: Animal[] = [
     emoji: '🐘',
     conservationStatus: 'terancam',
     color: '#DCEFF8',
+    videoUrl: 'https://www.youtube.com/results?search_query=Elephant+animal+for+kids',
   },
   {
     id: 'jerapah',
@@ -96,6 +99,7 @@ export const animals: Animal[] = [
     emoji: '🦒',
     conservationStatus: 'rentan',
     color: '#FCE6CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Giraffe+animal+for+kids',
   },
   {
     id: 'panda',
@@ -119,6 +123,7 @@ export const animals: Animal[] = [
     emoji: '🐼',
     conservationStatus: 'rentan',
     color: '#DCEFF8',
+    videoUrl: 'https://www.youtube.com/results?search_query=Panda+animal+for+kids',
   },
   {
     id: 'zebra',
@@ -142,6 +147,7 @@ export const animals: Animal[] = [
     emoji: '🦓',
     conservationStatus: 'aman',
     color: '#F3E4CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Zebra+animal+for+kids',
   },
   {
     id: 'harimau',
@@ -165,6 +171,7 @@ export const animals: Animal[] = [
     emoji: '🐅',
     conservationStatus: 'terancam',
     color: '#FCE6CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Tiger+animal+for+kids',
   },
   {
     id: 'kucing',
@@ -188,6 +195,7 @@ export const animals: Animal[] = [
     emoji: '🐱',
     conservationStatus: 'aman',
     color: '#FCE6CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Cat+animal+for+kids',
   },
   {
     id: 'kuda',
@@ -211,6 +219,7 @@ export const animals: Animal[] = [
     emoji: '🐴',
     conservationStatus: 'aman',
     color: '#F3E4CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Horse+animal+for+kids',
   },
   {
     id: 'elang',
@@ -234,6 +243,7 @@ export const animals: Animal[] = [
     emoji: '🦅',
     conservationStatus: 'aman',
     color: '#DCEFF8',
+    videoUrl: 'https://www.youtube.com/results?search_query=Eagle+animal+for+kids',
   },
   {
     id: 'burung-hantu',
@@ -257,6 +267,7 @@ export const animals: Animal[] = [
     emoji: '🦉',
     conservationStatus: 'aman',
     color: '#F3E4CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Owl+animal+for+kids',
   },
   {
     id: 'flamingo',
@@ -280,6 +291,7 @@ export const animals: Animal[] = [
     emoji: '🦩',
     conservationStatus: 'aman',
     color: '#FBDCD5',
+    videoUrl: 'https://www.youtube.com/results?search_query=Flamingo+animal+for+kids',
   },
   {
     id: 'kakaktua',
@@ -303,6 +315,7 @@ export const animals: Animal[] = [
     emoji: '🦜',
     conservationStatus: 'rentan',
     color: '#FCE6CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Cockatoo+animal+for+kids',
   },
   {
     id: 'merak',
@@ -326,6 +339,7 @@ export const animals: Animal[] = [
     emoji: '🦚',
     conservationStatus: 'aman',
     color: '#DCEFF8',
+    videoUrl: 'https://www.youtube.com/results?search_query=Peacock+animal+for+kids',
   },
   {
     id: 'penguin',
@@ -349,6 +363,7 @@ export const animals: Animal[] = [
     emoji: '🐧',
     conservationStatus: 'aman',
     color: '#DCEFF8',
+    videoUrl: 'https://www.youtube.com/results?search_query=Penguin+animal+for+kids',
   },
   {
     id: 'buaya',
@@ -372,6 +387,7 @@ export const animals: Animal[] = [
     emoji: '🐊',
     conservationStatus: 'rentan',
     color: '#DCF0E1',
+    videoUrl: 'https://www.youtube.com/results?search_query=Crocodile+animal+for+kids',
   },
   {
     id: 'komodo',
@@ -395,6 +411,7 @@ export const animals: Animal[] = [
     emoji: '🦎',
     conservationStatus: 'terancam',
     color: '#FCE6CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Komodo+dragon+animal+for+kids',
   },
   {
     id: 'kura-kura',
@@ -418,6 +435,7 @@ export const animals: Animal[] = [
     emoji: '🐢',
     conservationStatus: 'rentan',
     color: '#DCF0E1',
+    videoUrl: 'https://www.youtube.com/results?search_query=Turtle+animal+for+kids',
   },
   {
     id: 'ular',
@@ -441,6 +459,7 @@ export const animals: Animal[] = [
     emoji: '🐍',
     conservationStatus: 'aman',
     color: '#DCF0E1',
+    videoUrl: 'https://www.youtube.com/results?search_query=Snake+animal+for+kids',
   },
   {
     id: 'bunglon',
@@ -464,6 +483,7 @@ export const animals: Animal[] = [
     emoji: '🦎',
     conservationStatus: 'aman',
     color: '#DCF0E1',
+    videoUrl: 'https://www.youtube.com/results?search_query=Chameleon+animal+for+kids',
   },
   {
     id: 'paus',
@@ -487,6 +507,7 @@ export const animals: Animal[] = [
     emoji: '🐳',
     conservationStatus: 'rentan',
     color: '#DCEFF8',
+    videoUrl: 'https://www.youtube.com/results?search_query=Whale+animal+for+kids',
   },
   {
     id: 'lumba-lumba',
@@ -510,6 +531,7 @@ export const animals: Animal[] = [
     emoji: '🐬',
     conservationStatus: 'aman',
     color: '#DCEFF8',
+    videoUrl: 'https://www.youtube.com/results?search_query=Dolphin+animal+for+kids',
   },
   {
     id: 'hiu',
@@ -533,6 +555,7 @@ export const animals: Animal[] = [
     emoji: '🦈',
     conservationStatus: 'rentan',
     color: '#DCEFF8',
+    videoUrl: 'https://www.youtube.com/results?search_query=Shark+animal+for+kids',
   },
   {
     id: 'gurita',
@@ -556,6 +579,7 @@ export const animals: Animal[] = [
     emoji: '🐙',
     conservationStatus: 'aman',
     color: '#F3E4CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Octopus+animal+for+kids',
   },
   {
     id: 'ikan-badut',
@@ -579,6 +603,7 @@ export const animals: Animal[] = [
     emoji: '🐠',
     conservationStatus: 'aman',
     color: '#FCE6CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Clownfish+animal+for+kids',
   },
   {
     id: 'penyu',
@@ -602,6 +627,7 @@ export const animals: Animal[] = [
     emoji: '🐢',
     conservationStatus: 'terancam',
     color: '#DCF0E1',
+    videoUrl: 'https://www.youtube.com/results?search_query=Sea+turtle+animal+for+kids',
   },
   {
     id: 'kupu-kupu',
@@ -625,6 +651,7 @@ export const animals: Animal[] = [
     emoji: '🦋',
     conservationStatus: 'aman',
     color: '#F1E6FA',
+    videoUrl: 'https://www.youtube.com/results?search_query=Butterfly+animal+for+kids',
   },
   {
     id: 'lebah',
@@ -648,6 +675,7 @@ export const animals: Animal[] = [
     emoji: '🐝',
     conservationStatus: 'aman',
     color: '#FFC857',
+    videoUrl: 'https://www.youtube.com/results?search_query=Bee+animal+for+kids',
   },
   {
     id: 'semut',
@@ -671,6 +699,7 @@ export const animals: Animal[] = [
     emoji: '🐜',
     conservationStatus: 'aman',
     color: '#F3E4CC',
+    videoUrl: 'https://www.youtube.com/results?search_query=Ant+animal+for+kids',
   },
   {
     id: 'capung',
@@ -694,6 +723,7 @@ export const animals: Animal[] = [
     emoji: '🪰',
     conservationStatus: 'aman',
     color: '#DCEFF8',
+    videoUrl: 'https://www.youtube.com/results?search_query=Dragonfly+animal+for+kids',
   },
   {
     id: 'katak',
@@ -717,6 +747,7 @@ export const animals: Animal[] = [
     emoji: '🐸',
     conservationStatus: 'aman',
     color: '#DCF0E1',
+    videoUrl: 'https://www.youtube.com/results?search_query=Frog+animal+for+kids',
   },
   {
     id: 'salamander',
@@ -740,6 +771,7 @@ export const animals: Animal[] = [
     emoji: '🦎',
     conservationStatus: 'rentan',
     color: '#DCF0E1',
+    videoUrl: 'https://www.youtube.com/results?search_query=Salamander+animal+for+kids',
   },
   {
     id: 'axolotl',
@@ -763,6 +795,7 @@ export const animals: Animal[] = [
     emoji: '🦎',
     conservationStatus: 'terancam',
     color: '#FBDCD5',
+    videoUrl: 'https://www.youtube.com/results?search_query=Axolotl+animal+for+kids',
   },
 ];
 

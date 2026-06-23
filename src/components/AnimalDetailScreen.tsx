@@ -63,6 +63,10 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
     return 'Aman';
   };
 
+  const handleWatchVideo = () => {
+    window.open(animal.videoUrl, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="absolute inset-0 z-30 bg-[var(--cream)] flex flex-col animate-fade-in-up">
       <div className="screen-scroll flex-1">
@@ -205,12 +209,21 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             </div>
           </div>
 
+          {/* Tombol Tonton Video YouTube */}
+          <button
+            onClick={handleWatchVideo}
+            className="mt-4 w-full crayon-btn py-3 text-sm font-bold bg-[#FF0000] text-white border-[var(--ink)] shadow-[0_3px_0_var(--ink)] flex items-center justify-center gap-2"
+          >
+            <span>▶</span>
+            Tonton Video {animal.name} di YouTube
+          </button>
+
           <button
             onClick={() => {
               showToastXP(10, `Mulai kuis ${animal.name}!`);
               startQuiz(animal.id);
             }}
-            className="mt-6 w-full crayon-btn bg-[var(--orange)] text-white text-sm py-3"
+            className="mt-3 w-full crayon-btn bg-[var(--orange)] text-white text-sm py-3"
           >
             Mulai Kuis Cepat 🎯
           </button>
