@@ -52,8 +52,8 @@ export const animals: Animal[] = [
     emoji: '🦁',
     conservationStatus: 'rentan',
     color: '#FCE6CC',
-    videoUrl: 'https://www.youtube.com/watch?v=8C73X2X6z9g',
-    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/8C73X2X6z9g',
+    videoUrl: 'https://www.youtube.com/watch?v=OMkEVX23BdM',
+    videoEmbedUrl: 'https://www.youtube-nocookie.com/embed/OMkEVX23BdM',
   },
   {
     id: 'gajah',
