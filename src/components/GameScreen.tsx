@@ -6,7 +6,7 @@ import { showToastXP, showToastBadge } from '@/components/ToastNotification';
 
 type GameState = 'playing' | 'correct' | 'wrong' | 'finished';
 
-export function GameScreen() {
+export function GameScreen({ onBack }: { onBack?: () => void }) {
   const addXP = useGameStore((s) => s.addXP);
 
   const [currentRound, setCurrentRound] = useState(0);
@@ -105,17 +105,27 @@ export function GameScreen() {
           <div className="mt-4 text-lg font-bold" style={{ color: 'var(--green-deep)' }}>
             +{score + (streak >= 3 ? 5 : 0)} XP ⭐
           </div>
-          <button
-            onClick={() => {
-              setScore(0);
-              setStreak(0);
-              setCurrentRound(0);
-              generateRound();
-            }}
-            className="mt-8 crayon-btn bg-[var(--orange)] text-white text-sm py-3.5 px-8"
-          >
-            Main Lagi 🔄
-          </button>
+          <div className="flex gap-3 mt-6">
+            <button
+              onClick={() => {
+                setScore(0);
+                setStreak(0);
+                setCurrentRound(0);
+                generateRound();
+              }}
+              className="flex-1 crayon-btn bg-[var(--orange)] text-white text-sm py-3"
+            >
+              Main Lagi 🔄
+            </button>
+            {onBack && (
+              <button
+                onClick={onBack}
+                className="flex-1 crayon-btn bg-[var(--green)] text-white text-sm py-3"
+              >
+                Kembali 🏠
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -129,6 +139,14 @@ export function GameScreen() {
         {/* Header */}
         <div className="px-5 pt-4 pb-2">
           <div className="flex items-center gap-2.5">
+            {onBack && (
+              <button
+                onClick={onBack}
+                className="w-8 h-8 rounded-full bg-[var(--paper)] border-2 border-[var(--ink)] flex items-center justify-center text-xs"
+              >
+                ←
+              </button>
+            )}
             <div className="flex-1">
               <h1 className="font-display text-xl font-bold">Tebak Suara 🔊</h1>
               <p className="text-xs font-semibold text-[var(--ink-soft)]">

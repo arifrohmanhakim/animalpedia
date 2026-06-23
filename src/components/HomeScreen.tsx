@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { animals } from '@/data/animals';
+import { showToastXP } from '@/components/ToastNotification';
 
 export function HomeScreen() {
   const playerName = useGameStore((s) => s.playerName);
@@ -8,10 +9,13 @@ export function HomeScreen() {
   const xp = useGameStore((s) => s.xp);
   const getLevel = useGameStore((s) => s.getLevel);
   const getCollectionProgress = useGameStore((s) => s.getCollectionProgress);
-  const discoverAnimal = useGameStore((s) => s.discoverAnimal);
-
-  const setTab = useGameStore((s) => s.setTab);
+  const lastViewedAnimalId = useGameStore((s) => s.lastViewedAnimalId);
   const startQuiz = useGameStore((s) => s.startQuiz);
+  const dailyChallengeCompleted = useGameStore((s) => s.dailyChallengeCompleted);
+  const completeDailyChallenge = useGameStore((s) => s.completeDailyChallenge);
+  const addXP = useGameStore((s) => s.addXP);
+  const setTab = useGameStore((s) => s.setTab);
+
   const [dailyAnimal] = useState(() => {
     const today = new Date().toDateString();
     const hash = today.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
@@ -27,9 +31,23 @@ export function HomeScreen() {
   const level = getLevel();
   const progress = getCollectionProgress();
 
-  useEffect(() => {
-    discoverAnimal(dailyAnimal.id);
-  }, []);
+  const continueAnimal = lastViewedAnimalId
+    ? animals.find((a) => a.id === lastViewedAnimalId)
+    : null;
+
+  const handleDailyChallenge = () => {
+    if (dailyChallengeCompleted) return;
+    completeDailyChallenge();
+    addXP(10);
+    setTimeout(() => {
+      showToastXP(10, 'Misi harian selesai!');
+    }, 100);
+    startQuiz(dailyAnimal.id);
+  };
+
+  const viewAnimal = (animalId: string) => {
+    window.dispatchEvent(new CustomEvent('view-animal', { detail: { animalId } }));
+  };
 
   return (
     <div className="screen-container bg-[var(--cream)]">
@@ -61,48 +79,74 @@ export function HomeScreen() {
               </div>
             </div>
             <button
-              onClick={() => {
-                setTab('explore');
-              }}
+              onClick={() => viewAnimal(dailyAnimal.id)}
               className="mt-3 w-full crayon-btn bg-[var(--orange)] text-white text-sm py-2.5"
             >
               Kenalan Yuk! →
             </button>
           </div>
 
-          {/* Continue learning */}
-          <div className="animate-fade-in-up animate-stagger-1">
-            <h3 className="font-display text-sm font-bold mb-2">📖 Lanjutkan Belajar</h3>
-            <div className="crayon-card p-3 flex items-center gap-3">
-              <div className="w-[46px] h-[46px] rounded-xl bg-[var(--blue-pale)] flex items-center justify-center text-2xl">
-                🐬
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-bold text-sm">Lumba-lumba</div>
-                <div className="progress-track mt-1 h-[9px]">
-                  <div className="progress-fill" style={{ width: '60%', background: 'var(--blue)' }} />
+          {/* Continue learning - berdasarkan riwayat */}
+          {continueAnimal && (
+            <div className="animate-fade-in-up animate-stagger-1">
+              <h3 className="font-display text-sm font-bold mb-2">📖 Lanjutkan Belajar</h3>
+              <button
+                onClick={() => viewAnimal(continueAnimal.id)}
+                className="w-full crayon-card p-3 flex items-center gap-3"
+              >
+                <div
+                  className="w-[46px] h-[46px] rounded-xl flex items-center justify-center text-2xl"
+                  style={{ background: continueAnimal.color }}
+                >
+                  {continueAnimal.emoji}
                 </div>
-              </div>
-              <div className="text-lg">›</div>
+                <div className="flex-1 min-w-0 text-left">
+                  <div className="font-bold text-sm">{continueAnimal.name}</div>
+                  <div className="progress-track mt-1 h-[9px]">
+                    <div
+                      className="progress-fill"
+                      style={{
+                        width: `${(continueAnimal.funFacts.length / 5) * 100}%`,
+                        background: 'var(--blue)',
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="text-lg">›</div>
+              </button>
             </div>
-          </div>
+          )}
 
           {/* Daily Challenge */}
           <div className="animate-fade-in-up animate-stagger-2">
             <h3 className="font-display text-sm font-bold mb-2">⭐ Misi Harian</h3>
             <button
-              onClick={() => {
-                const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
-                startQuiz(randomAnimal.id);
-              }}
-              className="w-full crayon-card p-3.5 bg-[var(--orange-pale)] flex items-center gap-3"
+              onClick={handleDailyChallenge}
+              disabled={dailyChallengeCompleted}
+              className={`w-full crayon-card p-3.5 flex items-center gap-3 ${
+                dailyChallengeCompleted
+                  ? 'bg-[var(--green-pale)] opacity-60'
+                  : 'bg-[var(--orange-pale)]'
+              }`}
             >
-              <div className="text-3xl">🎯</div>
-              <div className="flex-1 text-left">
-                <div className="font-bold text-xs text-[var(--orange-deep)]">Kuis Hari Ini</div>
-                <div className="text-[11px] font-semibold text-[var(--ink-soft)]">+10 XP menanti kamu!</div>
-              </div>
-              <span className="sticker-badge">BARU</span>
+              {dailyChallengeCompleted ? (
+                <>
+                  <div className="text-3xl">✅</div>
+                  <div className="flex-1 text-left">
+                    <div className="font-bold text-xs text-[var(--green-deep)]">Misi Hari Ini Selesai!</div>
+                    <div className="text-[11px] font-semibold text-[var(--ink-soft)]">Kembali besok untuk misi baru</div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="text-3xl">🎯</div>
+                  <div className="flex-1 text-left">
+                    <div className="font-bold text-xs text-[var(--orange-deep)]">Kuis Harian — {dailyAnimal.name}</div>
+                    <div className="text-[11px] font-semibold text-[var(--ink-soft)]">+10 XP menanti kamu!</div>
+                  </div>
+                  <span className="sticker-badge">BARU</span>
+                </>
+              )}
             </button>
           </div>
 

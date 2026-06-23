@@ -7,7 +7,7 @@ import { HomeScreen } from '@/components/HomeScreen';
 import { ExploreScreen } from '@/components/ExploreScreen';
 import { CollectionScreen } from '@/components/CollectionScreen';
 import { ProfileScreen } from '@/components/ProfileScreen';
-import { GameScreen } from '@/components/GameScreen';
+import { GamesHub } from '@/components/GamesHub';
 import { AnimalDetailScreen } from '@/components/AnimalDetailScreen';
 import { QuizScreen } from '@/components/QuizScreen';
 import { ToastContainer } from '@/components/ToastNotification';
@@ -46,7 +46,7 @@ const Index = () => {
       case 'explore':
         return <ExploreScreen />;
       case 'games':
-        return <GameScreen />;
+        return <GamesHub />;
       case 'collection':
         return <CollectionScreen />;
       case 'profile':

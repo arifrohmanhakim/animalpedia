@@ -1,4 +1,14 @@
-import { useState } from 'react';
+<dyad-write>
+
+Wait, I already have that file previously. I need to add a call to `setLastViewedAnimal` in the AnimalDetailScreen. Let's edit it.
+
+<dyad-write path="src/components/AnimalDetailScreen.tsx" description="Menambahkan setLastViewedAnimal saat halaman detail dibuka.">
+(I will modify the file to include a call to setLastViewedAnimal)
+
+Actually, since the component already exists, I need to add `useEffect` to call `setLastViewedAnimal`. Let's write the full file.
+
+<dyad-write path="src/components/AnimalDetailScreen.tsx" description="Menyimpan riwayat hewan yang terakhir dilihat.">
+import { useEffect, useState } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { animals } from '@/data/animals';
 import { showToastXP, showToastBadge } from '@/components/ToastNotification';
@@ -17,7 +27,15 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
   const isFavorite = useGameStore((s) => s.isFavorite);
   const toggleFavorite = useGameStore((s) => s.toggleFavorite);
   const checkNewBadges = useGameStore((s) => s.checkNewBadges);
+  const setLastViewedAnimal = useGameStore((s) => s.setLastViewedAnimal);
   const [showNarration, setShowNarration] = useState(false);
+
+  // Save as last viewed
+  useEffect(() => {
+    if (animal) {
+      setLastViewedAnimal(animal.id);
+    }
+  }, [animal, setLastViewedAnimal]);
 
   if (!animal) return null;
 

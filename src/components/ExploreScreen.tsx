@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { animals, categories } from '@/data/animals';
+import { playAnimalSound } from '@/lib/audio';
 
 export function ExploreScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('semua');
+  const [soundPlayingId, setSoundPlayingId] = useState<string | null>(null);
   const isDiscovered = useGameStore((s) => s.isDiscovered);
   const discoverAnimal = useGameStore((s) => s.discoverAnimal);
-  const startQuiz = useGameStore((s) => s.startQuiz);
-  const setTab = useGameStore((s) => s.setTab);
+  const setLastViewedAnimal = useGameStore((s) => s.setLastViewedAnimal);
 
   const filteredAnimals = animals.filter((animal) => {
     const matchesCategory = activeCategory === 'semua' || animal.category === activeCategory;
@@ -20,9 +21,18 @@ export function ExploreScreen() {
 
   const handleAnimalClick = (animalId: string) => {
     discoverAnimal(animalId);
-    setTab('home'); // We'll use the setAnimalDetail action instead
-    // For now, we set it to trigger the detail view
+    setLastViewedAnimal(animalId);
     window.dispatchEvent(new CustomEvent('view-animal', { detail: { animalId } }));
+  };
+
+  const handlePlaySound = (e: React.MouseEvent, animalId: string) => {
+    e.stopPropagation();
+    const animal = animals.find((a) => a.id === animalId);
+    if (!animal) return;
+    if (soundPlayingId) return;
+    setSoundPlayingId(animalId);
+    playAnimalSound(animal);
+    setTimeout(() => setSoundPlayingId(null), 1500);
   };
 
   return (
@@ -82,8 +92,16 @@ export function ExploreScreen() {
                   opacity: 0,
                 }}
               >
+                <div className="flex justify-end -mt-1 -mr-1">
+                  <button
+                    onClick={(e) => handlePlaySound(e, animal.id)}
+                    className="w-[26px] h-[26px] rounded-full bg-[var(--paper)] border-2 border-[var(--ink)] flex items-center justify-center text-xs shadow-[0_2px_0_var(--ink)] active:translate-y-[1px] active:shadow-none"
+                  >
+                    {soundPlayingId === animal.id ? '🔊' : '🔈'}
+                  </button>
+                </div>
                 <div
-                  className={`text-4xl ${!discovered ? 'grayscale' : ''}`}
+                  className={`text-4xl -mt-2 ${!discovered ? 'grayscale' : ''}`}
                 >
                   {discovered ? animal.emoji : '❓'}
                 </div>

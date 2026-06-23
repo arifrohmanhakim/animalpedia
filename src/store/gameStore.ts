@@ -35,6 +35,16 @@ interface GameState {
   quizInProgress: boolean;
   currentQuizAnimalId: string | null;
 
+  // Continue learning
+  lastViewedAnimalId: string | null;
+
+  // Games hub
+  activeGame: string | null; // null = menu, 'sound', 'memory', etc.
+
+  // Daily challenge
+  dailyChallengeDate: string;
+  dailyChallengeCompleted: boolean;
+
   // Actions
   finishSplash: () => void;
   completeOnboarding: (data: {
@@ -46,12 +56,15 @@ interface GameState {
   setTab: (tab: string) => void;
   discoverAnimal: (animalId: string) => void;
   toggleFavorite: (animalId: string) => void;
+  setLastViewedAnimal: (animalId: string) => void;
   addXP: (amount: number) => void;
   recordCorrectQuiz: () => void;
   startQuiz: (animalId: string) => void;
   endQuiz: () => void;
   checkBadges: () => void;
   checkNewBadges: () => string[];
+  completeDailyChallenge: () => void;
+  setActiveGame: (game: string | null) => void;
   getLevel: () => { level: number; title: string; xpForNext: number; progress: number };
   getAnimals: () => typeof allAnimals;
   isDiscovered: (animalId: string) => boolean;
@@ -86,6 +99,9 @@ const saveState = (state: Partial<GameState>) => {
       lastLoginDate: state.lastLoginDate,
       dailyStreak: state.dailyStreak,
       badges: state.badges,
+      lastViewedAnimalId: state.lastViewedAnimalId,
+      dailyChallengeDate: state.dailyChallengeDate,
+      dailyChallengeCompleted: state.dailyChallengeCompleted,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
   } catch {}
@@ -129,6 +145,12 @@ const getLevelFromXP = (xp: number) => {
 
 const savedState = loadState();
 
+const today = new Date().toDateString();
+const dailyChallengeCompleted =
+  savedState?.dailyChallengeDate === today
+    ? savedState?.dailyChallengeCompleted ?? false
+    : false;
+
 export const useGameStore = create<GameState>((set, get) => ({
   showSplash: true,
   onboardingComplete: savedState?.onboardingComplete ?? false,
@@ -150,21 +172,28 @@ export const useGameStore = create<GameState>((set, get) => ({
   quizInProgress: false,
   currentQuizAnimalId: null,
 
+  lastViewedAnimalId: savedState?.lastViewedAnimalId ?? null,
+
+  activeGame: null,
+
+  dailyChallengeDate: today,
+  dailyChallengeCompleted,
+
   finishSplash: () => set({ showSplash: false }),
 
   completeOnboarding: (data) => {
-    const today = new Date().toDateString();
+    const todayStr = new Date().toDateString();
     const newState = {
       onboardingComplete: true,
       playerName: data.playerName,
       selectedCharacter: data.selectedCharacter,
       ageRange: data.ageRange,
       favoriteCategories: data.favoriteCategories,
-      lastLoginDate: today,
+      lastLoginDate: todayStr,
       dailyStreak: 1,
+      lastViewedAnimalId: null as string | null,
     };
     set(newState);
-    // Save immediately
     saveState({ ...get(), ...newState });
   },
 
@@ -199,6 +228,12 @@ export const useGameStore = create<GameState>((set, get) => ({
     saveState({ ...get(), ...newState });
   },
 
+  setLastViewedAnimal: (animalId) => {
+    const newState = { lastViewedAnimalId: animalId };
+    set(newState);
+    saveState({ ...get(), ...newState });
+  },
+
   addXP: (amount) => {
     const state = get();
     const newXP = state.xp + amount;
@@ -219,6 +254,18 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   startQuiz: (animalId) => set({ quizInProgress: true, currentQuizAnimalId: animalId }),
   endQuiz: () => set({ quizInProgress: false, currentQuizAnimalId: null }),
+
+  completeDailyChallenge: () => {
+    const todayStr = new Date().toDateString();
+    const newState = {
+      dailyChallengeDate: todayStr,
+      dailyChallengeCompleted: true,
+    };
+    set(newState);
+    saveState({ ...get(), ...newState });
+  },
+
+  setActiveGame: (game) => set({ activeGame: game }),
 
   checkBadges: () => {
     const state = get();
