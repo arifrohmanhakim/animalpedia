@@ -1,7 +1,6 @@
 import { create } from 'zustand';
-import { animals as allAnimals, families } from '@/data/animals';
-import { badges as badgeList } from '@/data/badges';
-// … rest stays exactly the same from here on ↓
+import { animals as allAnimals, families } from '../data/animals';
+import { badges as badgeList } from '../data/badges';
 
 interface Badge {
   id: string;
@@ -178,7 +177,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   quizCorrectCount: savedState?.quizCorrectCount ?? 0,
   lastLoginDate: initialLastLoginDate,
   dailyStreak: initialDailyStreak,
-  badges: savedState?.badges ?? badgeList.map((b) => ({ ...b })),
+  badges: savedState?.badges ?? badgeList.map((b) => ({ ...b, unlocked: false })),
 
   quizInProgress: false,
   currentQuizAnimalId: null,
