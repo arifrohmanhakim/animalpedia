@@ -4,7 +4,7 @@ export interface Animal {
   englishName: string;
   scientificName: string;
   emoji: string;
-  illustrationSvg: string;
+  illustrationSvg?: string;
   category: string;
   habitat: string;
   habitatEmoji: string;

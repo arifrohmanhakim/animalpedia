@@ -103,7 +103,14 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
             </button>
           </div>
           <div className="text-center mt-1">
-            <div className="text-[84px] leading-none animate-float">{animal.emoji}</div>
+            {animal.illustrationSvg ? (
+              <div
+                className="w-[220px] h-[220px] mx-auto animate-float"
+                dangerouslySetInnerHTML={{ __html: animal.illustrationSvg }}
+              />
+            ) : (
+              <div className="text-[84px] leading-none animate-float">{animal.emoji}</div>
+            )}
             <span
               className="sticker-badge inline-block -mt-1"
               style={{
