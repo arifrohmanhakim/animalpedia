@@ -23,6 +23,8 @@ export const laba_laba: Animal = {
     'Laba-laba betina sering lebih besar dari jantan.',
     'Jaring laba-laba bisa sangat elastis — bisa meregang 3 kali lipat!',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/7rOvmN-qfaA',
+  videoUrl: 'https://www.youtube.com/watch?v=7rOvmN-qfaA',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh benua kecuali Antartika',
 };

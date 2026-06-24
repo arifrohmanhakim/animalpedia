@@ -23,8 +23,8 @@ export const jerapah: Animal = {
       'Lidah jerapah panjangnya mencapai 50 cm dan berwarna ungu!',
     ],
     conservationStatus: 'rentan',
-    videoEmbedUrl: 'https://www.youtube.com/embed/GFLRqc5n3Oo',
-    videoUrl: 'https://www.youtube.com/watch?v=GFLRqc5n3Oo',
+    videoEmbedUrl: 'https://www.youtube.com/embed/P_ckAbOr0r4',
+    videoUrl: 'https://www.youtube.com/watch?v=P_ckAbOr0r4',
     distribution: ['Afrika Sub-Sahara'],
     distributionCountries: 'Kenya, Tanzania, Afrika Selatan, Namibia, Botswana',
   };

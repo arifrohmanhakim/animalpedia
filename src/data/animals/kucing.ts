@@ -23,6 +23,8 @@ export const kucing: Animal = {
     'Kucing bisa berdengkur (purring) saat senang atau sakit.',
     'Seekor kucing betina bisa memiliki hingga 100 anak seumur hidup.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/pX3V9hoX1eM',
+  videoUrl: 'https://www.youtube.com/watch?v=pX3V9hoX1eM',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh dunia sebagai hewan peliharaan',
 };

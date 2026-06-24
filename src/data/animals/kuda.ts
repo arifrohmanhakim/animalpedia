@@ -23,6 +23,8 @@ export const kuda: Animal = {
     'Kuda menggunakan telinganya untuk menunjukkan perasaan.',
     'Kuda memiliki memori yang sangat kuat dan bisa mengingat orang.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/femB_hD1y1g',
+  videoUrl: 'https://www.youtube.com/watch?v=femB_hD1y1g',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh dunia sebagai hewan ternak dan olahraga',
 };

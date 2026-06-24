@@ -23,6 +23,8 @@ export const tikus: Animal = {
     'Gigi tikus terus tumbuh — mereka harus menggerogoti benda keras.',
     'Tikus bisa bertahan tanpa air lebih lama dari unta!',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/Degcr3MO8Wc',
+  videoUrl: 'https://www.youtube.com/watch?v=Degcr3MO8Wc',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh benua kecuali Antartika',
 };

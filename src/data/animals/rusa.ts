@@ -23,6 +23,8 @@ export const rusa: Animal = {
     'Rusa bisa melompat setinggi 2,5 meter.',
     'Tanduk rusa tumbuh hingga 2,5 cm per hari!',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/5Q_YwoZRxPs',
+  videoUrl: 'https://www.youtube.com/watch?v=5Q_YwoZRxPs',
   distribution: ['Amerika Utara', 'Eropa', 'Asia'],
   distributionCountries: 'Amerika Utara, Eropa, Rusia, Jepang, Asia Tenggara',
 };

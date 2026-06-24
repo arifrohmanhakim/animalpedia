@@ -23,6 +23,8 @@ export const serigala: Animal = {
     'Serigala makan hingga 9 kg daging dalam sekali makan.',
     'Anak serigala lahir buta dan tuli, butuh 2 minggu untuk melihat.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/VYKsI5ILiaQ',
+  videoUrl: 'https://www.youtube.com/watch?v=VYKsI5ILiaQ',
   distribution: ['Amerika Utara', 'Eropa', 'Asia'],
   distributionCountries: 'Kanada, Rusia, Alaska, Skandinavia, Mongolia',
 };

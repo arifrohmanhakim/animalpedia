@@ -23,6 +23,8 @@ export const kelelawar: Animal = {
     'Kelelawar tidur dengan kepala di bawah (bergantung).',
     'Kelelawar membantu penyerbukan bunga dan penyebaran biji.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/NBCODnTUOrY',
+  videoUrl: 'https://www.youtube.com/watch?v=NBCODnTUOrY',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh benua kecuali Antartika',
 };

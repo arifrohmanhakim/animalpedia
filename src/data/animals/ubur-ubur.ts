@@ -23,6 +23,8 @@ export const ubur_ubur: Animal = {
     'Tentakel ubur-ubur bisa mencapai panjang 30 meter.',
     'Ubur-ubur kotak adalah yang paling berbisa di dunia.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/3nMNERxNA4I',
+  videoUrl: 'https://www.youtube.com/watch?v=3nMNERxNA4I',
   distribution: ['Semua Lautan'],
   distributionCountries: 'Seluruh samudra di dunia',
 };

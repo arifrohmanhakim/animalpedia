@@ -23,6 +23,8 @@ export const cendrawasih: Animal = {
     'Ada 43 spesies cendrawasih yang dikenal.',
     'Cendrawasih disebut "bird of paradise" oleh penjelajah Eropa.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/pMI6xuZQw-E',
+  videoUrl: 'https://www.youtube.com/watch?v=pMI6xuZQw-E',
   distribution: ['Asia Tenggara', 'Australia & Oseania'],
   distributionCountries: 'Indonesia (Papua), Papua Nugini, Australia Timur',
 };

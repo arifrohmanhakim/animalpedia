@@ -23,6 +23,8 @@ export const gorila: Animal = {
     'Gorila bisa menggunakan alat sederhana.',
     'Bayi gorila menunggangi punggung ibunya hingga usia 3 tahun.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/rHhSCO5-3Pg',
+  videoUrl: 'https://www.youtube.com/watch?v=rHhSCO5-3Pg',
   distribution: ['Afrika Sub-Sahara'],
   distributionCountries: 'Uganda, Rwanda, Republik Demokratik Kongo',
 };

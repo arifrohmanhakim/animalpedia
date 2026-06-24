@@ -23,6 +23,8 @@ export const unta: Animal = {
     'Unta bisa menutup lubang hidungnya saat badai pasir.',
     'Unta bisa bertahan tanpa air hingga 2 minggu.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/sq9LwzMLFA8',
+  videoUrl: 'https://www.youtube.com/watch?v=sq9LwzMLFA8',
   distribution: ['Afrika Utara', 'Asia Barat', 'Asia Tengah'],
   distributionCountries: 'Arab Saudi, Mesir, Maroko, India, Australia (introduksi)',
 };

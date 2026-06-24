@@ -23,6 +23,8 @@ export const paus_pembunuh: Animal = {
     'Orca hidup dalam keluarga yang dipimpin oleh betina.',
     'Orca bisa melompat hingga 5 meter di atas permukaan air!',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/dciLg3Zm1hI',
+  videoUrl: 'https://www.youtube.com/watch?v=dciLg3Zm1hI',
   distribution: ['Semua Lautan'],
   distributionCountries: 'Seluruh samudra di dunia, terutama perairan dingin',
 };

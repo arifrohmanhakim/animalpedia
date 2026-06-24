@@ -23,6 +23,8 @@ export const singa_laut: Animal = {
     'Kumis singa laut membantu mendeteksi getaran di air.',
     'Singa laut bisa berlari di darat lebih cepat dari manusia!',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/5-TkUOvuuNE',
+  videoUrl: 'https://www.youtube.com/watch?v=5-TkUOvuuNE',
   distribution: ['Amerika Utara', 'Amerika Selatan', 'Australia & Oseania'],
   distributionCountries: 'California, Galapagos, Australia, Jepang, Chili',
 };

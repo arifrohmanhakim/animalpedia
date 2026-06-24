@@ -23,6 +23,8 @@ export const kepiting: Animal = {
     'Kepiting bernapas dengan insang seperti ikan.',
     'Kepiting kelapa adalah kepiting darat terbesar — beratnya bisa 4 kg!',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/xB74swq2LlI',
+  videoUrl: 'https://www.youtube.com/watch?v=xB74swq2LlI',
   distribution: ['Semua Lautan'],
   distributionCountries: 'Seluruh perairan di dunia',
 };

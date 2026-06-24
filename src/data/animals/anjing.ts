@@ -23,6 +23,8 @@ export const anjing: Animal = {
     'Ekor anjing yang bergoyang ke kanan menandakan senang.',
     'Anjing jenis Chihuahua adalah yang terkecil di dunia.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/zcM6xhuoQ9g',
+  videoUrl: 'https://www.youtube.com/watch?v=zcM6xhuoQ9g',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh dunia sebagai hewan peliharaan',
 };

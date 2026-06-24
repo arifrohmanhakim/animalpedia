@@ -23,6 +23,8 @@ export const domba: Animal = {
     'Ekornya gemuk karena menyimpan cadangan lemak.',
     'Ada lebih dari 1.000 jenis domba di dunia.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/5xLm8MPoPkI',
+  videoUrl: 'https://www.youtube.com/watch?v=5xLm8MPoPkI',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh dunia sebagai hewan ternak',
 };

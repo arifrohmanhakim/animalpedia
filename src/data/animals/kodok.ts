@@ -23,6 +23,8 @@ export const kodok: Animal = {
     'Kodok membantu petani dengan memakan serangga hama.',
     'Kodok berhibernasi di musim dingin dengan menggali ke dalam tanah.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/42GAn4v5MgE',
+  videoUrl: 'https://www.youtube.com/watch?v=42GAn4v5MgE',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh benua kecuali Antartika',
 };

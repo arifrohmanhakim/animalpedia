@@ -23,6 +23,8 @@ export const badak: Animal = {
     'Badak memiliki penglihatan yang buruk tapi pendengaran yang tajam.',
     'Bayi badak bisa berdiri 1 jam setelah lahir.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/ST_83Hkrbk4',
+  videoUrl: 'https://www.youtube.com/watch?v=ST_83Hkrbk4',
   distribution: ['Afrika Sub-Sahara', 'Asia Selatan', 'Asia Tenggara'],
   distributionCountries: 'Afrika Selatan, Namibia, India, Nepal, Indonesia (Jawa)',
 };

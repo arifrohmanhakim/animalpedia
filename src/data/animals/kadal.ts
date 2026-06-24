@@ -23,6 +23,8 @@ export const kadal: Animal = {
     'Kadal menggunakan lidahnya untuk mencium bau.',
     'Ada lebih dari 6.000 spesies kadal di dunia.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/jI6aFbBUqkY',
+  videoUrl: 'https://www.youtube.com/watch?v=jI6aFbBUqkY',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh benua kecuali Antartika',
 };

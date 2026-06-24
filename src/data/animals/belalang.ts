@@ -23,6 +23,8 @@ export const belalang: Animal = {
     'Belalang bisa berubah warna untuk kamuflase.',
     'Sekelompok belalang bisa menghancurkan ladang pertanian!',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/J1jHzl0LHII',
+  videoUrl: 'https://www.youtube.com/watch?v=J1jHzl0LHII',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh benua kecuali Antartika',
 };

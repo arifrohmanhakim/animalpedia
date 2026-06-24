@@ -23,6 +23,8 @@ export const elang_laut: Animal = {
     'Elang laut adalah simbol nasional Amerika Serikat.',
     'Mereka bisa terbang hingga 50 km/jam.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/Og0OKvMmnAc',
+  videoUrl: 'https://www.youtube.com/watch?v=Og0OKvMmnAc',
   distribution: ['Amerika Utara', 'Eropa', 'Asia', 'Australia & Oseania'],
   distributionCountries: 'Amerika Serikat, Kanada, Rusia, Australia, Jepang',
 };

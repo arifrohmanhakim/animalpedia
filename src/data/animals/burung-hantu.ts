@@ -23,6 +23,8 @@ export const burung_hantu: Animal = {
     'Burung hantu bisa melihat mangsa dari jarak 500 meter.',
     'Ada lebih dari 200 spesies burung hantu di dunia.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/ifXMpuNk9RA',
+  videoUrl: 'https://www.youtube.com/watch?v=ifXMpuNk9RA',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh benua kecuali Antartika',
 };

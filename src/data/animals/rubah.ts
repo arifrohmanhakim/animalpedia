@@ -23,6 +23,8 @@ export const rubah: Animal = {
     'Rubah hidup menyendiri, tidak berkelompok seperti serigala.',
     'Rubah bisa melompat setinggi 2 meter untuk menangkap mangsa.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/k2kiyWu_XNc',
+  videoUrl: 'https://www.youtube.com/watch?v=k2kiyWu_XNc',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Amerika Utara, Eropa, Asia, Australia, Afrika Utara',
 };

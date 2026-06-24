@@ -23,6 +23,8 @@ export const macan_tutul: Animal = {
     'Mereka perenang yang sangat baik.',
     'Macan tutul lebih suka berburu di malam hari.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/vPv2lFYP35Y',
+  videoUrl: 'https://www.youtube.com/watch?v=vPv2lFYP35Y',
   distribution: ['Afrika Sub-Sahara', 'Asia Selatan', 'Asia Timur'],
   distributionCountries: 'Afrika, India, Sri Lanka, China, Asia Tenggara',
 };

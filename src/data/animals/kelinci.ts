@@ -23,6 +23,8 @@ export const kelinci: Animal = {
     'Kelinci bisa tidur dengan mata terbuka.',
     'Kelinci betina hamil hanya selama 28–31 hari.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/rH3oQq4uDgo',
+  videoUrl: 'https://www.youtube.com/watch?v=rH3oQq4uDgo',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh benua kecuali Antartika',
 };

@@ -23,6 +23,8 @@ export const kumbang: Animal = {
     'Sayap keras kumbang disebut elytra.',
     'Beberapa kumbang bisa mengeluarkan zat kimia panas untuk melindungi diri.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/veY5fyt66cg',
+  videoUrl: 'https://www.youtube.com/watch?v=veY5fyt66cg',
   distribution: ['Di Seluruh Dunia'],
   distributionCountries: 'Seluruh benua kecuali Antartika',
 };

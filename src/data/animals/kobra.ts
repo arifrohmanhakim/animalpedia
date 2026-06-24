@@ -23,6 +23,8 @@ export const kobra: Animal = {
     'Kobra raja adalah ular berbisa terpanjang di dunia — hingga 5,5 meter.',
     'Bisa kobra bisa melumpuhkan gajah dalam beberapa jam.',
   ],
+  videoEmbedUrl: 'https://www.youtube.com/embed/ImUgAzHSyIc',
+  videoUrl: 'https://www.youtube.com/watch?v=ImUgAzHSyIc',
   distribution: ['Asia Selatan', 'Asia Tenggara', 'Afrika Sub-Sahara'],
   distributionCountries: 'India, Indonesia, Thailand, Afrika Selatan, Filipina',
 };
