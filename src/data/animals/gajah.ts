@@ -1,12 +1,12 @@
-import type { Animal } from './types';
+import type { Animal } from "./types";
 
 export const gajah: Animal = {
-    id: 'gajah',
-    name: 'Gajah',
-    englishName: 'Elephant',
-    scientificName: 'Loxodonta africana',
-    emoji: '🐘',
-    illustrationSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  id: "gajah",
+  name: "Gajah",
+  englishName: "Elephant",
+  scientificName: "Loxodonta africana",
+  emoji: "🐘",
+  illustrationSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <g stroke-linejoin="round" stroke-linecap="round">
     <!-- Back Left Leg -->
     <path d="M 165 385 C 165 375, 180 370, 195 370 L 205 370 C 220 370, 220 385, 220 400 L 220 435 C 220 450, 205 455, 195 455 C 180 455, 165 450, 165 435 Z" fill="#A0A0A0" stroke="#5B3E2B" stroke-width="6"/>
@@ -87,25 +87,29 @@ export const gajah: Animal = {
     <ellipse cx="302" cy="460" rx="5" ry="4" fill="#D4D4D4" stroke="#5B3E2B" stroke-width="3"/>
   </g>
 </svg>`,
-    category: 'mamalia',
-    habitat: 'Savana dan Hutan',
-    habitatEmoji: '🌳',
-    food: 'Tumbuhan (herbivora)',
-    foodEmoji: '🌿',
-    lifespan: '60–70 tahun',
-    weight: '3.000–6.000 kg',
-    description: 'Gajah adalah hewan darat terbesar di dunia! Mereka sangat cerdas, memiliki ingatan yang kuat, dan hidup dalam keluarga yang dipimpin oleh gajah betina tertua.',
-    color: '#B8B8B8',
-    funFacts: [
-      'Belalai gajah memiliki sekitar 100.000 otot dan bisa menampung 7,5 liter air!',
-      'Gajah bisa berkomunikasi melalui getaran tanah dari jarak jauh.',
-      'Anak gajah sering menghisap belalainya sendiri untuk rasa nyaman, seperti bayi menghisap jempol.',
-      'Gajah mandi lumpur untuk melindungi kulit dari sinar matahari dan gigitan serangga.',
-      'Gajah dewasa bisa makan hingga 136 kg makanan dalam sehari!',
-    ],
-    conservationStatus: 'terancam',
-    videoEmbedUrl: 'https://www.youtube.com/embed/Fk3VdpuFx0Q',
-    videoUrl: 'https://www.youtube.com/watch?v=Fk3VdpuFx0Q',
-    distribution: ['Afrika Sub-Sahara', 'Asia Selatan', 'Asia Tenggara'],
-    distributionCountries: 'Afrika, India, Thailand, Sri Lanka, Indonesia (Sumatra)',
-  };
+  category: "mamalia",
+  habitat: "Savana dan Hutan",
+  habitatEmoji: "🌳",
+  food: "Tumbuhan (herbivora)",
+  foodEmoji: "🌿",
+  lifespan: "60–70 tahun",
+  weight: "3.000–6.000 kg",
+  description:
+    "Gajah adalah hewan darat terbesar di dunia! Mereka sangat cerdas, memiliki ingatan yang kuat, dan hidup dalam keluarga yang dipimpin oleh gajah betina tertua.",
+  color: "#B8B8B8",
+  imageUrl:
+    "https://png.pngtree.com/png-vector/20250601/ourmid/pngtree-illustration-of-a-gray-african-elephant-vector-png-image_16447719.png",
+  funFacts: [
+    "Belalai gajah memiliki sekitar 100.000 otot dan bisa menampung 7,5 liter air!",
+    "Gajah bisa berkomunikasi melalui getaran tanah dari jarak jauh.",
+    "Anak gajah sering menghisap belalainya sendiri untuk rasa nyaman, seperti bayi menghisap jempol.",
+    "Gajah mandi lumpur untuk melindungi kulit dari sinar matahari dan gigitan serangga.",
+    "Gajah dewasa bisa makan hingga 136 kg makanan dalam sehari!",
+  ],
+  conservationStatus: "terancam",
+  videoEmbedUrl: "https://www.youtube.com/embed/Fk3VdpuFx0Q",
+  videoUrl: "https://www.youtube.com/watch?v=Fk3VdpuFx0Q",
+  distribution: ["Afrika Sub-Sahara", "Asia Selatan", "Asia Tenggara"],
+  distributionCountries:
+    "Afrika, India, Thailand, Sri Lanka, Indonesia (Sumatra)",
+};

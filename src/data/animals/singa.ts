@@ -58,6 +58,7 @@ export const singa: Animal = {
     "Singa adalah raja hutan yang tinggal secara berkelompok. Singa jantan memiliki surai tebal yang indah. Singa betina lebih ahli berburu untuk kelompoknya.",
   color: "#F5D76E",
   soundUrl: "/sounds/singa.mp3",
+  imageUrl: "https://img.icons8.com/?size=160&id=zHfPqyoBsDs8&format=png",
   funFacts: [
     "Singa bisa tidur hingga 20 jam sehari!",
     "Auman singa bisa terdengar hingga 8 km jauhnya.",

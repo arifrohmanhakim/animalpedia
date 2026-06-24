@@ -103,7 +103,14 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
             </button>
           </div>
           <div className="text-center mt-1">
-            {animal.illustrationSvg ? (
+            {animal.imageUrl ? (
+              <img
+                src={animal.imageUrl}
+                alt={animal.name}
+                className="w-[160px] h-[160px] mx-auto object-contain animate-float"
+                loading="lazy"
+              />
+            ) : animal.illustrationSvg ? (
               <div
                 className="w-[220px] h-[220px] mx-auto animate-float"
                 dangerouslySetInnerHTML={{ __html: animal.illustrationSvg }}

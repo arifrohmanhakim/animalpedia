@@ -21,6 +21,7 @@ export interface Animal {
   distribution: string[];
   distributionCountries: string;
   soundUrl?: string;
+  imageUrl?: string;
 }
 
 export interface FamilyMember {
