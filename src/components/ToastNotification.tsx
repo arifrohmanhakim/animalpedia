@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { badges as badgeData } from '@/data/animals';
+import { badges as badgeData } from '@/data/badges';
 
 type ToastType = 'xp' | 'badge' | 'info';
 

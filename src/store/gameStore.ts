@@ -1,5 +1,7 @@
 import { create } from 'zustand';
-import { animals as allAnimals, badges as badgeList, families } from '@/data/animals';
+import { animals as allAnimals, families } from '@/data/animals';
+import { badges as badgeList } from '@/data/badges';
+// … rest stays exactly the same from here on ↓
 
 interface Badge {
   id: string;
