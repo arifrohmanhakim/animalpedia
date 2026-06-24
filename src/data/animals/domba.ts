@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const domba: Animal = {
+    id: 'domba',
+  name: 'Domba',
+  englishName: 'Sheep',
+  scientificName: 'Ovis aries',
+  emoji: '🐑',
+    category: 'mamalia',
+  habitat: 'Padang Rumput',
+  habitatEmoji: '🌾',
+  food: 'Rumput (herbivora)',
+  foodEmoji: '🌿',
+    lifespan: '10–12 tahun',
+  weight: '45–100 kg',
+  color: '#F5F0E1',
+  conservationStatus: 'aman',
+  description: 'Domba adalah hewan ternak yang terkenal dengan bulu wolnya yang tebal. Mereka hidup berkelompok dan sangat bergantung pada penglihatan dan pendengaran.',
+  funFacts: [
+    'Domba memiliki pupil mata persegi panjang!',
+    'Wol domba bisa tumbuh hingga 10 cm per tahun.',
+    'Domba bisa mengenali wajah hingga 50 domba lain.',
+    'Ekornya gemuk karena menyimpan cadangan lemak.',
+    'Ada lebih dari 1.000 jenis domba di dunia.',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh dunia sebagai hewan ternak',
+};

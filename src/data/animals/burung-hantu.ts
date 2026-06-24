@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const burung_hantu: Animal = {
+    id: 'burung-hantu',
+  name: 'Burung Hantu',
+  englishName: 'Owl',
+  scientificName: 'Strigiformes',
+  emoji: '🦉',
+    category: 'burung',
+  habitat: 'Hutan dan Padang Rumput',
+  habitatEmoji: '🌲',
+  food: 'Tikus dan serangga (karnivora)',
+  foodEmoji: '🐭',
+    lifespan: '10–25 tahun',
+  weight: '0,1–4 kg',
+  color: '#8B6914',
+  conservationStatus: 'aman',
+  description: 'Burung hantu adalah burung nokturnal dengan mata besar menghadap ke depan. Kepalanya bisa memutar hingga 270 derajat untuk mencari mangsa.',
+  funFacts: [
+    'Kepala burung hantu bisa memutar 270 derajat!',
+    'Mata burung hantu tidak bisa bergerak — mereka memutar seluruh kepala.',
+    'Burung hantu bisa terbang tanpa suara berkat bulu khusus.',
+    'Burung hantu bisa melihat mangsa dari jarak 500 meter.',
+    'Ada lebih dari 200 spesies burung hantu di dunia.',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh benua kecuali Antartika',
+};

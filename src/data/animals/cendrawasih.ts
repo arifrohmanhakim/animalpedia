@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const cendrawasih: Animal = {
+    id: 'cendrawasih',
+  name: 'Cendrawasih',
+  englishName: 'Bird of Paradise',
+  scientificName: 'Paradisaeidae',
+  emoji: '🪶',
+    category: 'burung',
+  habitat: 'Hutan Hujan Tropis',
+  habitatEmoji: '🌴',
+  food: 'Buah-buahan dan serangga (omnivora)',
+  foodEmoji: '🍎',
+    lifespan: '5–30 tahun',
+  weight: '0,1–0,5 kg',
+  color: '#FF6B35',
+  conservationStatus: 'aman',
+  description: 'Cendrawasih adalah burung tercantik di dunia dengan bulu yang indah dan berwarna-warni. Mereka hanya ditemukan di Papua dan Australia.',
+  funFacts: [
+    'Cendrawasih jantan memiliki tarian kawin yang rumit dan indah!',
+    'Bulu cendrawasih yang indah digunakan untuk menarik betina.',
+    'Cendrawasih hanya ditemukan di Papua, Indonesia dan Australia.',
+    'Ada 43 spesies cendrawasih yang dikenal.',
+    'Cendrawasih disebut "bird of paradise" oleh penjelajah Eropa.',
+  ],
+  distribution: ['Asia Tenggara', 'Australia & Oseania'],
+  distributionCountries: 'Indonesia (Papua), Papua Nugini, Australia Timur',
+};

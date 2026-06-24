@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const rubah: Animal = {
+    id: 'rubah',
+  name: 'Rubah',
+  englishName: 'Fox',
+  scientificName: 'Vulpes vulpes',
+  emoji: '🦊',
+    category: 'mamalia',
+  habitat: 'Hutan dan Padang Rumput',
+  habitatEmoji: '🌲',
+  food: 'Daging dan buah (omnivora)',
+  foodEmoji: '🐭',
+    lifespan: '3–6 tahun',
+  weight: '5–10 kg',
+  color: '#E67E22',
+  conservationStatus: 'aman',
+  description: 'Rubah adalah hewan cerdik yang terkenal karena kelicikannya dalam dongeng. Mereka memiliki telinga runcing dan ekor lebat yang indah.',
+  funFacts: [
+    'Rubah bisa mendengar suara jarum jam dari 30 meter!',
+    'Ekor rubah digunakan untuk menjaga keseimbangan dan kehangatan.',
+    'Rubah bisa berlari hingga 50 km/jam.',
+    'Rubah hidup menyendiri, tidak berkelompok seperti serigala.',
+    'Rubah bisa melompat setinggi 2 meter untuk menangkap mangsa.',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Amerika Utara, Eropa, Asia, Australia, Afrika Utara',
+};

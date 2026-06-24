@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const laba_laba: Animal = {
+    id: 'laba-laba',
+  name: 'Laba-laba',
+  englishName: 'Spider',
+  scientificName: 'Araneae',
+  emoji: '🕷️',
+    category: 'serangga',
+  habitat: 'Taman dan Rumah',
+  habitatEmoji: '🏠',
+  food: 'Serangga (karnivora)',
+  foodEmoji: '🪰',
+    lifespan: '1–5 tahun',
+  weight: '0,1–100 gram',
+  color: '#4A4A4A',
+  conservationStatus: 'aman',
+  description: 'Laba-laba adalah pembuat jaring ulung yang menenun jaring sutra dari tubuhnya. Mereka membantu mengendalikan populasi serangga di sekitar kita.',
+  funFacts: [
+    'Sutra laba-laba lebih kuat dari baja dengan ketebalan yang sama!',
+    'Beberapa laba-laba bisa berjalan di atas air.',
+    'Laba-laba memiliki 8 kaki dan 6–8 mata.',
+    'Laba-laba betina sering lebih besar dari jantan.',
+    'Jaring laba-laba bisa sangat elastis — bisa meregang 3 kali lipat!',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh benua kecuali Antartika',
+};

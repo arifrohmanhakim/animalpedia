@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const ubur_ubur: Animal = {
+    id: 'ubur-ubur',
+  name: 'Ubur-ubur',
+  englishName: 'Jellyfish',
+  scientificName: 'Scyphozoa',
+  emoji: '🪼',
+    category: 'laut',
+  habitat: 'Lautan Terbuka',
+  habitatEmoji: '🌊',
+  food: 'Plankton dan ikan kecil (karnivora)',
+  foodEmoji: '🦐',
+    lifespan: '3–12 bulan',
+  weight: '0,01–200 kg',
+  color: '#AF7AC5',
+  conservationStatus: 'aman',
+  description: 'Ubur-ubur adalah hewan laut transparan yang melayang terbawa arus. Tubuhnya yang seperti payung dan tentakelnya yang bisa menyengat sangat ikonik.',
+  funFacts: [
+    'Ubur-ubur tidak memiliki otak, jantung, atau darah!',
+    'Ubur-ubur sudah ada sejak 600 juta tahun yang lalu.',
+    'Beberapa ubur-ubur bisa hidup abadi — mereka bisa kembali ke bentuk muda!',
+    'Tentakel ubur-ubur bisa mencapai panjang 30 meter.',
+    'Ubur-ubur kotak adalah yang paling berbisa di dunia.',
+  ],
+  distribution: ['Semua Lautan'],
+  distributionCountries: 'Seluruh samudra di dunia',
+};

@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const kucing: Animal = {
+    id: 'kucing',
+  name: 'Kucing',
+  englishName: 'Cat',
+  scientificName: 'Felis catus',
+  emoji: '🐱',
+    category: 'mamalia',
+  habitat: 'Rumah dan Pemukiman',
+  habitatEmoji: '🏠',
+  food: 'Daging dan ikan (karnivora)',
+  foodEmoji: '🐟',
+    lifespan: '12–18 tahun',
+  weight: '3–6 kg',
+  color: '#FF9F43',
+  conservationStatus: 'aman',
+  description: 'Kucing adalah hewan peliharaan yang sangat populer di seluruh dunia. Mereka dikenal lincah, mandiri, dan suka membersihkan diri.',
+  funFacts: [
+    'Kucing bisa tidur hingga 16 jam sehari!',
+    'Kucing memiliki 32 otot di setiap telinganya.',
+    'Kumis kucing membantunya mengukur celah sempit.',
+    'Kucing bisa berdengkur (purring) saat senang atau sakit.',
+    'Seekor kucing betina bisa memiliki hingga 100 anak seumur hidup.',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh dunia sebagai hewan peliharaan',
+};

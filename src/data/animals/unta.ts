@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const unta: Animal = {
+    id: 'unta',
+  name: 'Unta',
+  englishName: 'Camel',
+  scientificName: 'Camelus dromedarius',
+  emoji: '🐪',
+    category: 'mamalia',
+  habitat: 'Gurun Pasir',
+  habitatEmoji: '🏜️',
+  food: 'Rumput gurun (herbivora)',
+  foodEmoji: '🌵',
+    lifespan: '40–50 tahun',
+  weight: '400–600 kg',
+  color: '#C2A67A',
+  conservationStatus: 'aman',
+  description: 'Unta adalah "kapal gurun" yang bisa bertahan hidup di padang pasir yang kering dan panas. Punuknya menyimpan lemak, bukan air!',
+  funFacts: [
+    'Punuk unta menyimpan lemak, bukan air!',
+    'Unta bisa minum 100 liter air dalam 10 menit.',
+    'Bulu mata unta melindungi matanya dari pasir.',
+    'Unta bisa menutup lubang hidungnya saat badai pasir.',
+    'Unta bisa bertahan tanpa air hingga 2 minggu.',
+  ],
+  distribution: ['Afrika Utara', 'Asia Barat', 'Asia Tengah'],
+  distributionCountries: 'Arab Saudi, Mesir, Maroko, India, Australia (introduksi)',
+};

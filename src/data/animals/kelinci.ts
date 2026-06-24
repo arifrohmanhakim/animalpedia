@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const kelinci: Animal = {
+    id: 'kelinci',
+  name: 'Kelinci',
+  englishName: 'Rabbit',
+  scientificName: 'Oryctolagus cuniculus',
+  emoji: '🐰',
+    category: 'mamalia',
+  habitat: 'Padang Rumput dan Hutan',
+  habitatEmoji: '🌿',
+  food: 'Sayuran dan rumput (herbivora)',
+  foodEmoji: '🥕',
+    lifespan: '8–12 tahun',
+  weight: '1–4 kg',
+  color: '#F5E6D3',
+  conservationStatus: 'aman',
+  description: 'Kelinci adalah mamalia kecil bertelinga panjang yang lucu dan lincah. Kaki belakang mereka yang kuat memungkinkan mereka melompat tinggi dan berlari cepat.',
+  funFacts: [
+    'Gigi kelinci terus tumbuh sepanjang hidupnya!',
+    'Kelinci bisa melompat hingga 1 meter tingginya.',
+    'Kelinci memutar telinganya untuk mendeteksi suara dari berbagai arah.',
+    'Kelinci bisa tidur dengan mata terbuka.',
+    'Kelinci betina hamil hanya selama 28–31 hari.',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh benua kecuali Antartika',
+};

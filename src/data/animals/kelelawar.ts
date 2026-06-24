@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const kelelawar: Animal = {
+    id: 'kelelawar',
+  name: 'Kelelawar',
+  englishName: 'Bat',
+  scientificName: 'Chiroptera',
+  emoji: '🦇',
+    category: 'mamalia',
+  habitat: 'Gua dan Pohon',
+  habitatEmoji: '🕸️',
+  food: 'Serangga dan buah (omnivora)',
+  foodEmoji: '🦟',
+    lifespan: '10–30 tahun',
+  weight: '2–900 gram',
+  color: '#4A4A4A',
+  conservationStatus: 'aman',
+  description: 'Kelelawar adalah satu-satunya mamalia yang bisa terbang. Mereka menggunakan ekolokasi — gelombang suara — untuk bernavigasi dan mencari mangsa di kegelapan.',
+  funFacts: [
+    'Kelelawar menggunakan ekolokasi untuk "melihat" di kegelapan!',
+    'Kelelawar bisa memakan hingga 1.000 nyamuk per jam.',
+    'Ada lebih dari 1.400 spesies kelelawar di dunia.',
+    'Kelelawar tidur dengan kepala di bawah (bergantung).',
+    'Kelelawar membantu penyerbukan bunga dan penyebaran biji.',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh benua kecuali Antartika',
+};

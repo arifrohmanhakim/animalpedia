@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const kadal: Animal = {
+    id: 'kadal',
+  name: 'Kadal',
+  englishName: 'Lizard',
+  scientificName: 'Lacertilia',
+  emoji: '🦎',
+    category: 'reptil',
+  habitat: 'Tembok dan Batuan',
+  habitatEmoji: '🧱',
+  food: 'Serangga (karnivora)',
+  foodEmoji: '🪰',
+    lifespan: '5–15 tahun',
+  weight: '5–500 gram',
+  color: '#7DCEA0',
+  conservationStatus: 'aman',
+  description: 'Kadal adalah reptil kecil yang bisa ditemukan di hampir setiap sudut rumah. Mereka adalah pemburu serangga yang ulung dan bisa memutuskan ekornya.',
+  funFacts: [
+    'Kadal bisa memutuskan ekornya untuk melarikan diri!',
+    'Beberapa kadal bisa berubah warna seperti bunglon.',
+    'Kadal memanaskan tubuhnya dengan berjemur di bawah sinar matahari.',
+    'Kadal menggunakan lidahnya untuk mencium bau.',
+    'Ada lebih dari 6.000 spesies kadal di dunia.',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh benua kecuali Antartika',
+};

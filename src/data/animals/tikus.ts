@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const tikus: Animal = {
+    id: 'tikus',
+  name: 'Tikus',
+  englishName: 'Mouse',
+  scientificName: 'Mus musculus',
+  emoji: '🐭',
+    category: 'mamalia',
+  habitat: 'Rumah dan Ladang',
+  habitatEmoji: '🏠',
+  food: 'Biji-bijian dan buah (omnivora)',
+  foodEmoji: '🧀',
+    lifespan: '1–3 tahun',
+  weight: '10–30 gram',
+  color: '#A0A0A0',
+  conservationStatus: 'aman',
+  description: 'Tikus adalah mamalia kecil yang sangat adaptif dan bisa ditemukan di hampir seluruh dunia. Mereka berkembang biak dengan cepat dan memiliki indra penciuman yang tajam.',
+  funFacts: [
+    'Tikus bisa masuk melalui celah sekecil 6 mm!',
+    'Ekor tikus digunakan untuk menjaga keseimbangan.',
+    'Tikus bisa berkembang biak mulai usia 6 minggu.',
+    'Gigi tikus terus tumbuh — mereka harus menggerogoti benda keras.',
+    'Tikus bisa bertahan tanpa air lebih lama dari unta!',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh benua kecuali Antartika',
+};

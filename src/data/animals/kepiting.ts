@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const kepiting: Animal = {
+    id: 'kepiting',
+  name: 'Kepiting',
+  englishName: 'Crab',
+  scientificName: 'Brachyura',
+  emoji: '🦀',
+    category: 'laut',
+  habitat: 'Pantai dan Dasar Laut',
+  habitatEmoji: '🏖️',
+  food: 'Makanan sisa dan hewan kecil (omnivora)',
+  foodEmoji: '🦐',
+    lifespan: '1–8 tahun',
+  weight: '0,1–5 kg',
+  color: '#E74C3C',
+  conservationStatus: 'aman',
+  description: 'Kepiting adalah krustasea berjalan menyamping dengan capit yang kuat. Mereka bisa ditemukan di pantai berpasir dan dasar lautan di seluruh dunia.',
+  funFacts: [
+    'Kepiting berjalan menyamping, bukan maju!',
+    'Kepiting bisa menumbuhkan kembali capit yang putus.',
+    'Ada lebih dari 6.800 spesies kepiting di dunia.',
+    'Kepiting bernapas dengan insang seperti ikan.',
+    'Kepiting kelapa adalah kepiting darat terbesar — beratnya bisa 4 kg!',
+  ],
+  distribution: ['Semua Lautan'],
+  distributionCountries: 'Seluruh perairan di dunia',
+};

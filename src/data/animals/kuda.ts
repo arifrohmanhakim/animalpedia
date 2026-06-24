@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const kuda: Animal = {
+    id: 'kuda',
+  name: 'Kuda',
+  englishName: 'Horse',
+  scientificName: 'Equus ferus caballus',
+  emoji: '🐴',
+    category: 'mamalia',
+  habitat: 'Padang Rumput',
+  habitatEmoji: '🌾',
+  food: 'Rumput dan jerami (herbivora)',
+  foodEmoji: '🌿',
+    lifespan: '25–30 tahun',
+  weight: '380–1.000 kg',
+  color: '#8B6F47',
+  conservationStatus: 'aman',
+  description: 'Kuda adalah hewan besar yang kuat dan telah lama menjadi teman manusia untuk transportasi dan olahraga. Mereka bisa berlari sangat cepat dan memiliki penglihatan yang luas.',
+  funFacts: [
+    'Kuda bisa tidur berdiri atau berbaring!',
+    'Kuda memiliki penglihatan hampir 360 derajat.',
+    'Kuda bisa berlari beberapa jam setelah lahir.',
+    'Kuda menggunakan telinganya untuk menunjukkan perasaan.',
+    'Kuda memiliki memori yang sangat kuat dan bisa mengingat orang.',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh dunia sebagai hewan ternak dan olahraga',
+};

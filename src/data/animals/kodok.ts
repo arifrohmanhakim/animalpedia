@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const kodok: Animal = {
+    id: 'kodok',
+  name: 'Kodok',
+  englishName: 'Toad',
+  scientificName: 'Bufonidae',
+  emoji: '🐸',
+    category: 'amfibi',
+  habitat: 'Taman dan Hutan Lembab',
+  habitatEmoji: '🌿',
+  food: 'Serangga dan cacing (karnivora)',
+  foodEmoji: '🪰',
+    lifespan: '10–40 tahun',
+  weight: '10–200 gram',
+  color: '#6B8E23',
+  conservationStatus: 'aman',
+  description: 'Kodok adalah amfibi berkulit kasar dan berbintil yang berbeda dari katak. Mereka lebih suka di darat dan memiliki kelenjar racun di belakang matanya.',
+  funFacts: [
+    'Kodok tidak melompat sejauh katak — mereka lebih suka berjalan!',
+    'Kodok bisa hidup hingga 40 tahun di penangkaran.',
+    'Kulit kodok memiliki kelenjar yang mengeluarkan racun ringan.',
+    'Kodok membantu petani dengan memakan serangga hama.',
+    'Kodok berhibernasi di musim dingin dengan menggali ke dalam tanah.',
+  ],
+  distribution: ['Di Seluruh Dunia'],
+  distributionCountries: 'Seluruh benua kecuali Antartika',
+};

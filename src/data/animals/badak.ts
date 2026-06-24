@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const badak: Animal = {
+    id: 'badak',
+  name: 'Badak',
+  englishName: 'Rhinoceros',
+  scientificName: 'Rhinocerotidae',
+  emoji: '🦏',
+    category: 'mamalia',
+  habitat: 'Savana dan Hutan Tropis',
+  habitatEmoji: '🌳',
+  food: 'Rumput dan dedaunan (herbivora)',
+  foodEmoji: '🌿',
+    lifespan: '35–50 tahun',
+  weight: '800–2.500 kg',
+  color: '#7F8C8D',
+  conservationStatus: 'terancam',
+  description: 'Badak adalah hewan darat terbesar kedua setelah gajah. Mereka memiliki kulit tebal dan satu atau dua cula di hidungnya yang terbuat dari keratin.',
+  funFacts: [
+    'Cula badak terbuat dari keratin — sama seperti kuku manusia!',
+    'Badak bisa berlari hingga 50 km/jam meski tubuhnya besar.',
+    'Kulit badak setebal 2 cm!',
+    'Badak memiliki penglihatan yang buruk tapi pendengaran yang tajam.',
+    'Bayi badak bisa berdiri 1 jam setelah lahir.',
+  ],
+  distribution: ['Afrika Sub-Sahara', 'Asia Selatan', 'Asia Tenggara'],
+  distributionCountries: 'Afrika Selatan, Namibia, India, Nepal, Indonesia (Jawa)',
+};

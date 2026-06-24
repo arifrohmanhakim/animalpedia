@@ -1,0 +1,28 @@
+import type { Animal } from './types';
+
+export const singa_laut: Animal = {
+    id: 'singa-laut',
+  name: 'Singa Laut',
+  englishName: 'Sea Lion',
+  scientificName: 'Otariidae',
+  emoji: '🦭',
+    category: 'laut',
+  habitat: 'Pantai Berbatu',
+  habitatEmoji: '🪨',
+  food: 'Ikan dan cumi-cumi (karnivora)',
+  foodEmoji: '🐟',
+    lifespan: '20–30 tahun',
+  weight: '100–350 kg',
+  color: '#8B7355',
+  conservationStatus: 'aman',
+  description: 'Singa laut adalah mamalia laut yang lincah dan cerdas. Mereka sering terlihat berjemur di pantai berbatu dan merupakan perenang dan penyelam ulung.',
+  funFacts: [
+    'Singa laut bisa menahan napas hingga 20 menit!',
+    'Mereka bisa menyelam hingga 300 meter mencari makanan.',
+    'Singa laut memiliki telinga luar yang terlihat.',
+    'Kumis singa laut membantu mendeteksi getaran di air.',
+    'Singa laut bisa berlari di darat lebih cepat dari manusia!',
+  ],
+  distribution: ['Amerika Utara', 'Amerika Selatan', 'Australia & Oseania'],
+  distributionCountries: 'California, Galapagos, Australia, Jepang, Chili',
+};

@@ -44,6 +44,34 @@ import { kunang_kunang } from './kunang-kunang';
 import { salamander } from './salamander';
 import { axolotl } from './axolotl';
 import { kambing_gunung } from './kambing-gunung';
+import { zebra } from './zebra';
+import { kucing } from './kucing';
+import { anjing } from './anjing';
+import { kelinci } from './kelinci';
+import { kuda } from './kuda';
+import { domba } from './domba';
+import { rubah } from './rubah';
+import { rusa } from './rusa';
+import { unta } from './unta';
+import { badak } from './badak';
+import { gorila } from './gorila';
+import { macan_tutul } from './macan-tutul';
+import { serigala } from './serigala';
+import { tikus } from './tikus';
+import { kelelawar } from './kelelawar';
+import { burung_hantu } from './burung-hantu';
+import { cendrawasih } from './cendrawasih';
+import { elang_laut } from './elang-laut';
+import { kobra } from './kobra';
+import { kadal } from './kadal';
+import { kepiting } from './kepiting';
+import { ubur_ubur } from './ubur-ubur';
+import { paus_pembunuh } from './paus-pembunuh';
+import { singa_laut } from './singa-laut';
+import { belalang } from './belalang';
+import { kumbang } from './kumbang';
+import { laba_laba } from './laba-laba';
+import { kodok } from './kodok';
 
 export const animalsList: Animal[] = [
   singa, gajah, harimau, jerapah, panda,
@@ -54,7 +82,14 @@ export const animalsList: Animal[] = [
   tokek, penyu, ikan_badut, merak, bintang_laut,
   semut, kuda_laut, capung, flamingo, iguana,
   angsa, kura_kura, bunglon, kunang_kunang,
-  salamander, axolotl, kambing_gunung,
+  salamander, axolotl, kambing_gunung, zebra,
+  kucing, anjing, kelinci, kuda, domba,
+  rubah, rusa, unta, badak, gorila,
+  macan_tutul, serigala, tikus, kelelawar,
+  burung_hantu, cendrawasih, elang_laut,
+  kobra, kadal, kepiting, ubur_ubur,
+  paus_pembunuh, singa_laut,
+  belalang, kumbang, laba_laba, kodok,
 ];
 
 export { families, findFamilyForAnimal } from './families';

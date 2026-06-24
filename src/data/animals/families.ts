@@ -9,7 +9,7 @@ export const families: FamilyGroup[] = [
     members: [
       { animalId: 'singa', name: 'Singa', emoji: '🦁', exists: true },
       { animalId: 'harimau', name: 'Harimau', emoji: '🐅', exists: true },
-      { animalId: 'macan-tutul', name: 'Macan Tutul', emoji: '🐆', exists: false },
+      { animalId: 'macan-tutul', name: 'Macan Tutul', emoji: '🐆', exists: true },
       { animalId: 'jaguar', name: 'Jaguar', emoji: '🐆', exists: false },
     ],
   },
@@ -30,7 +30,7 @@ export const families: FamilyGroup[] = [
     emoji: '🐒',
     members: [
       { animalId: 'monyet', name: 'Monyet', emoji: '🐒', exists: true },
-      { animalId: 'gorila', name: 'Gorila', emoji: '🦍', exists: false },
+      { animalId: 'gorila', name: 'Gorila', emoji: '🦍', exists: true },
       { animalId: 'orangutan', name: 'Orangutan', emoji: '🦧', exists: false },
     ],
   },
@@ -49,7 +49,37 @@ export const families: FamilyGroup[] = [
     emoji: '🦅',
     members: [
       { animalId: 'elang', name: 'Elang', emoji: '🦅', exists: true },
-      { animalId: 'elang-laut', name: 'Elang Laut', emoji: '🦅', exists: false },
+      { animalId: 'elang-laut', name: 'Elang Laut', emoji: '🦅', exists: true },
+    ],
+  },
+  {
+    id: 'canines',
+    name: 'Keluarga Anjing',
+    emoji: '🐺',
+    members: [
+      { animalId: 'anjing', name: 'Anjing', emoji: '🐶', exists: true },
+      { animalId: 'serigala', name: 'Serigala', emoji: '🐺', exists: true },
+      { animalId: 'rubah', name: 'Rubah', emoji: '🦊', exists: true },
+    ],
+  },
+  {
+    id: 'pets',
+    name: 'Hewan Peliharaan',
+    emoji: '🐱',
+    members: [
+      { animalId: 'kucing', name: 'Kucing', emoji: '🐱', exists: true },
+      { animalId: 'anjing', name: 'Anjing', emoji: '🐶', exists: true },
+      { animalId: 'kelinci', name: 'Kelinci', emoji: '🐰', exists: true },
+    ],
+  },
+  {
+    id: 'nocturnal',
+    name: 'Hewan Malam',
+    emoji: '🦉',
+    members: [
+      { animalId: 'burung-hantu', name: 'Burung Hantu', emoji: '🦉', exists: true },
+      { animalId: 'kelelawar', name: 'Kelelawar', emoji: '🦇', exists: true },
+      { animalId: 'kunang-kunang', name: 'Kunang-kunang', emoji: '✨', exists: true },
     ],
   },
   {
