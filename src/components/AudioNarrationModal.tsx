@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
-import { speakText } from '@/lib/audio';
+import { useState, useEffect } from 'react';
 import { Animal } from '@/data/animals';
 
 interface Props {
@@ -8,8 +7,8 @@ interface Props {
 }
 
 export function AudioNarrationModal({ animal, onClose }: Props) {
-  const [isSpeaking, setIsSpeaking] = useState(true);
   const [currentLine, setCurrentLine] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
 
   const lines = [
     `Halo, aku ${animal.name}! Senang berkenalan denganmu!`,
@@ -18,27 +17,19 @@ export function AudioNarrationModal({ animal, onClose }: Props) {
     `Sekian dulu cerita tentang aku, ${animal.name}. Sampai jumpa lagi!`,
   ];
 
-  const startNarration = useCallback(() => {
-    const fullText = lines.join('. ');
-    setIsSpeaking(true);
-    speakText(fullText, () => {
-      setIsSpeaking(false);
-    });
-
-    // Animate through lines
-    lines.forEach((_, i) => {
-      setTimeout(() => {
-        setCurrentLine(i);
-      }, i * 4000);
-    });
-  }, []);
-
   useEffect(() => {
-    startNarration();
-    return () => {
-      window.speechSynthesis.cancel();
-    };
-  }, [startNarration]);
+    if (currentLine < lines.length - 1) {
+      const timer = setTimeout(() => setCurrentLine((i) => i + 1), 4000);
+      return () => clearTimeout(timer);
+    } else {
+      const timer = setTimeout(() => setIsFinished(true), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [currentLine, lines.length]);
+
+  const handleClose = () => {
+    onClose();
+  };
 
   return (
     <div className="absolute inset-0 z-40 flex items-center justify-center bg-black/40">
@@ -55,19 +46,17 @@ export function AudioNarrationModal({ animal, onClose }: Props) {
 
           {/* Speech bubble */}
           <div className="mt-4 crayon-card p-4 bg-[var(--blue-pale)] min-h-[100px] flex items-center justify-center">
-            <p className="text-xs font-semibold leading-relaxed animate-fade-in-up">
+            <p className="text-xs font-semibold leading-relaxed animate-fade-in-up" key={currentLine}>
               {lines[currentLine] || lines[0]}
             </p>
           </div>
 
-          {/* Audio indicator */}
+          {/* Progress indicator */}
           <div className="flex justify-center gap-1.5 mt-4">
-            {isSpeaking ? (
-              <>
-                <div className="w-2 h-2 rounded-full bg-[var(--green)] animate-bounce" style={{ animationDelay: '0ms' }} />
-                <div className="w-2 h-2 rounded-full bg-[var(--green)] animate-bounce" style={{ animationDelay: '150ms' }} />
-                <div className="w-2 h-2 rounded-full bg-[var(--green)] animate-bounce" style={{ animationDelay: '300ms' }} />
-              </>
+            {!isFinished ? (
+              <span className="text-[10px] font-bold text-[var(--ink-soft)]">
+                {currentLine + 1} / {lines.length}
+              </span>
             ) : (
               <span className="text-xs font-semibold text-[var(--ink-soft)]">Selesai ✅</span>
             )}
@@ -75,24 +64,11 @@ export function AudioNarrationModal({ animal, onClose }: Props) {
 
           {/* Controls */}
           <div className="flex gap-2 mt-4">
-            {!isSpeaking && (
-              <button
-                onClick={startNarration}
-                className="flex-1 crayon-btn bg-[var(--green)] text-white text-sm py-2.5"
-              >
-                🔄 Ulangi
-              </button>
-            )}
             <button
-              onClick={() => {
-                window.speechSynthesis.cancel();
-                onClose();
-              }}
-              className={`crayon-btn bg-[var(--orange)] text-white text-sm py-2.5 ${
-                isSpeaking ? 'flex-1' : 'flex-1'
-              }`}
+              onClick={handleClose}
+              className="flex-1 crayon-btn bg-[var(--orange)] text-white text-sm py-2.5"
             >
-              {isSpeaking ? '⏹ Berhenti' : '✕ Tutup'}
+              ✕ Tutup
             </button>
           </div>
         </div>

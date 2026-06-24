@@ -931,19 +931,24 @@ export function speakText(text: string, onEnd?: () => void) {
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'id-ID';
-  utterance.rate = 0.9; // Slower for kids
-  utterance.pitch = 1.2; // Slightly higher pitch (friendlier)
+  utterance.rate = 0.85; // Slower for kids
+  utterance.pitch = 1.15; // Slightly higher pitch (friendlier)
   utterance.volume = 1;
 
-  // Try to find a female Indonesian voice
-  const voices = window.speechSynthesis.getVoices();
-  const preferredVoice = voices.find(
-    (v) => v.lang.startsWith('id') && v.name.includes('Female')
-  ) || voices.find((v) => v.lang.startsWith('id'))
-  || voices.find((v) => v.name.includes('Google'));
+  // Cari voice Bahasa Indonesia — tunggu voices dimuat kalau perlu
+  const assignVoice = () => {
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(
+      (v) => v.lang.startsWith('id') && v.name.includes('Female')
+    ) || voices.find((v) => v.lang.startsWith('id'))
+    || voices.find((v) => v.name.includes('Google'));
+    if (preferred) utterance.voice = preferred;
+  };
 
-  if (preferredVoice) {
-    utterance.voice = preferredVoice;
+  if (window.speechSynthesis.getVoices().length === 0) {
+    window.speechSynthesis.addEventListener('voiceschanged', assignVoice, { once: true });
+  } else {
+    assignVoice();
   }
 
   if (onEnd) {
