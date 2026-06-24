@@ -1,13 +1,18 @@
 /**
  * Sistem Audio Animalpedia Kids
- * Menggunakan Web Audio API untuk efek suara hewan
- * dan Speech Synthesis untuk narasi AI
+ * - Suara asli hewan dari URL (jika ada soundUrl)
+ * - Fallback ke Web Audio API synthesizer
+ * - Speech Synthesis untuk narasi AI
  */
+
+export interface SoundPlayback {
+  stop: () => void;
+}
 
 let audioContext: AudioContext | null = null;
 
 function getAudioContext(): AudioContext {
-  if (!audioContext) {
+  if (!audioContext || audioContext.state === 'closed') {
     audioContext = new AudioContext();
   }
   if (audioContext.state === 'suspended') {
@@ -17,43 +22,142 @@ function getAudioContext(): AudioContext {
 }
 
 /**
- * Memainkan suara hewan berdasarkan karakteristik fisiknya.
- * Menggunakan synthesizer sederhana (oscillator + noise).
+ * Memainkan suara hewan.
+ * - Jika animal.soundUrl tersedia: mainkan dari URL (loading bisa dideteksi)
+ * - Jika tidak: fallback ke synthesizer (instant)
+ * Mengembalikan SoundPlayback untuk stop/cleanup.
  */
-export function playAnimalSound(animal: {
-  name: string;
-  category: string;
-  id: string;
-}) {
+export function playAnimalSound(
+  animal: {
+    name: string;
+    category: string;
+    id: string;
+    soundUrl?: string;
+  },
+  callbacks?: {
+    onLoad?: () => void;  // disebut saat audio siap diputar
+    onEnd?: () => void;   // disebut saat audio selesai
+  }
+): SoundPlayback {
   try {
-    const ctx = getAudioContext();
-    const now = ctx.currentTime;
-
-    switch (animal.category) {
-      case 'mamalia':
-        playMammalSound(ctx, animal.id);
-        break;
-      case 'burung':
-        playBirdSound(ctx, animal.id);
-        break;
-      case 'reptil':
-        playReptileSound(ctx, animal.id);
-        break;
-      case 'laut':
-        playWaterSound(ctx, animal.id);
-        break;
-      case 'serangga':
-        playInsectSound(ctx, animal.id);
-        break;
-      case 'amfibi':
-        playAmphibianSound(ctx, animal.id);
-        break;
-      default:
-        playMammalSound(ctx, animal.id);
+    if (animal.soundUrl) {
+      return playSoundFromUrl(animal.soundUrl, callbacks);
     }
+    return playSynthesizedSound(animal, callbacks);
   } catch (e) {
     console.warn('Audio playback failed:', e);
+    callbacks?.onLoad?.();
+    callbacks?.onEnd?.();
+    return { stop: () => {} };
   }
+}
+
+function playSoundFromUrl(
+  url: string,
+  callbacks?: { onLoad?: () => void; onEnd?: () => void }
+): SoundPlayback {
+  const audio = new Audio(url);
+  audio.volume = 0.6;
+
+  let started = false;
+  let stopped = false;
+
+  const fireLoad = () => {
+    if (started || stopped) return;
+    started = true;
+    callbacks?.onLoad?.();
+  };
+
+  const fireEnd = () => {
+    if (stopped) return;
+    stopped = true;
+    callbacks?.onEnd?.();
+  };
+
+  audio.addEventListener('canplaythrough', () => {
+    // File sudah siap — play jika belum mulai
+    if (!started && !stopped) {
+      audio.play().then(fireLoad).catch(fireEnd);
+    }
+  }, { once: true });
+
+  audio.addEventListener('error', () => {
+    fireLoad();
+    fireEnd();
+  }, { once: true });
+
+  audio.addEventListener('ended', () => fireEnd(), { once: true });
+
+  // Coba play langsung (dalam user gesture context)
+  // Kalau file belum di-load, promise reject → canplaythrough akan retry
+  audio.play().then(fireLoad).catch(() => {
+    // File belum siap — jangan firing callback di sini
+    // canplaythrough atau error yang akan handle
+    // Tapi kalau file ternyata sudah readyState cukup, play tetap gagal (autoplay policy)
+    if (audio.readyState >= 3 && !started && !stopped) {
+      // Autoplay blocked
+      fireLoad();
+      fireEnd();
+    }
+  });
+
+  return {
+    stop: () => {
+      stopped = true;
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  };
+}
+
+function playSynthesizedSound(
+  animal: { name: string; category: string; id: string },
+  callbacks?: { onLoad?: () => void; onEnd?: () => void }
+): SoundPlayback {
+  const ctx = getAudioContext();
+
+  // Synthesizer instant — langsung siap
+  callbacks?.onLoad?.();
+
+  // Estimasi durasi per kategori (untuk onEnd)
+  const estimatedDuration: Record<string, number> = {
+    mamalia: 1.5,
+    burung: 0.8,
+    reptil: 1.0,
+    laut: 3.0,
+    serangga: 0.8,
+    amfibi: 1.2,
+  };
+  const duration = estimatedDuration[animal.category] ?? 1.0;
+  const timer = setTimeout(() => callbacks?.onEnd?.(), duration * 1000);
+
+  try {
+    switch (animal.category) {
+      case 'mamalia': playMammalSound(ctx, animal.id); break;
+      case 'burung': playBirdSound(ctx, animal.id); break;
+      case 'reptil': playReptileSound(ctx, animal.id); break;
+      case 'laut': playWaterSound(ctx, animal.id); break;
+      case 'serangga': playInsectSound(ctx, animal.id); break;
+      case 'amfibi': playAmphibianSound(ctx, animal.id); break;
+      default: playMammalSound(ctx, animal.id);
+    }
+  } catch (e) {
+    console.warn('Synthesized audio failed:', e);
+    clearTimeout(timer);
+    callbacks?.onEnd?.();
+    return { stop: () => {} };
+  }
+
+  return {
+    stop: () => {
+      clearTimeout(timer);
+      // Tutup AudioContext — semua suara mati, next play bikin baru
+      if (audioContext) {
+        audioContext.close();
+        audioContext = null;
+      }
+    }
+  };
 }
 
 function playMammalSound(ctx: AudioContext, id: string) {

@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { playAnimalSound, speakAnimalDescription } from '@/lib/audio';
-import { Animal } from '@/data/animals';
+import { useState, useRef, useEffect } from 'react';
+import { playAnimalSound, speakAnimalDescription, type SoundPlayback } from '@/lib/audio';
+import type { Animal } from '@/data/animals';
 
 interface Props {
   animal: Animal;
@@ -8,9 +8,17 @@ interface Props {
   size?: 'sm' | 'md' | 'lg';
 }
 
+type ButtonState = 'idle' | 'loading' | 'playing';
+
 export function AudioPlayer({ animal, variant = 'sound', size = 'md' }: Props) {
-  const [playing, setPlaying] = useState(false);
+  const [soundState, setSoundState] = useState<ButtonState>('idle');
   const [speaking, setSpeaking] = useState(false);
+  const soundRef = useRef<SoundPlayback | null>(null);
+
+  // Cleanup saat unmount
+  useEffect(() => {
+    return () => soundRef.current?.stop();
+  }, []);
 
   const sizeClasses = {
     sm: 'w-[36px] h-[36px] text-sm',
@@ -19,19 +27,43 @@ export function AudioPlayer({ animal, variant = 'sound', size = 'md' }: Props) {
   };
 
   const handleSound = () => {
-    if (playing) return;
-    setPlaying(true);
-    playAnimalSound(animal);
-    setTimeout(() => setPlaying(false), 1500);
+    if (soundState === 'loading') return;
+
+    // Toggle: stop jika sedang playing
+    if (soundState === 'playing' && soundRef.current) {
+      soundRef.current.stop();
+      soundRef.current = null;
+      setSoundState('idle');
+      return;
+    }
+
+    setSoundState('loading');
+    soundRef.current = playAnimalSound(animal, {
+      onLoad: () => setSoundState('playing'),
+      onEnd: () => {
+        setSoundState('idle');
+        soundRef.current = null;
+      },
+    });
   };
 
   const handleNarration = () => {
     if (speaking) return;
     setSpeaking(true);
     speakAnimalDescription(animal);
-    // Estimate narration duration
     setTimeout(() => setSpeaking(false), 15000);
   };
+
+  const soundIcon = () => {
+    switch (soundState) {
+      case 'loading': return '⏳';
+      case 'playing': return '⏸';
+      default: return '🔈';
+    }
+  };
+
+  const soundDisabled = soundState === 'loading';
+  const soundExtraClass = soundState === 'playing' ? 'opacity-70 ring-2 ring-white' : '';
 
   if (variant === 'narration') {
     return (
@@ -52,12 +84,10 @@ export function AudioPlayer({ animal, variant = 'sound', size = 'md' }: Props) {
       <div className="flex gap-2">
         <button
           onClick={handleSound}
-          disabled={playing}
-          className={`${sizeClasses[size]} rounded-full bg-[var(--green)] border-[3px] border-[var(--ink)] flex items-center justify-center shadow-[0_3px_0_var(--ink)] text-white flex-shrink-0 transition-all active:translate-y-[2px] active:shadow-[0_1px_0_var(--ink)] ${
-            playing ? 'opacity-70' : ''
-          }`}
+          disabled={soundDisabled}
+          className={`${sizeClasses[size]} rounded-full bg-[var(--green)] border-[3px] border-[var(--ink)] flex items-center justify-center shadow-[0_3px_0_var(--ink)] text-white flex-shrink-0 transition-all active:translate-y-[2px] active:shadow-[0_1px_0_var(--ink)] ${soundExtraClass}`}
         >
-          {playing ? '🔊' : '🔈'}
+          {soundIcon()}
         </button>
         <button
           onClick={handleNarration}
@@ -76,12 +106,10 @@ export function AudioPlayer({ animal, variant = 'sound', size = 'md' }: Props) {
   return (
     <button
       onClick={handleSound}
-      disabled={playing}
-      className={`${sizeClasses[size]} rounded-full bg-[var(--green)] border-[3px] border-[var(--ink)] flex items-center justify-center shadow-[0_3px_0_var(--ink)] text-white flex-shrink-0 transition-all active:translate-y-[2px] active:shadow-[0_1px_0_var(--ink)] ${
-        playing ? 'opacity-70' : ''
-      }`}
+      disabled={soundDisabled}
+      className={`${sizeClasses[size]} rounded-full bg-[var(--green)] border-[3px] border-[var(--ink)] flex items-center justify-center shadow-[0_3px_0_var(--ink)] text-white flex-shrink-0 transition-all active:translate-y-[2px] active:shadow-[0_1px_0_var(--ink)] ${soundExtraClass}`}
     >
-      {playing ? '🔊' : '🔈'}
+      {soundIcon()}
     </button>
   );
 }

@@ -20,6 +20,7 @@ export interface Animal {
   videoUrl: string;
   distribution: string[];
   distributionCountries: string;
+  soundUrl?: string;
 }
 
 export interface FamilyMember {
