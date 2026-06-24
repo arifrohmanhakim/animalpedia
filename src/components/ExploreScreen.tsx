@@ -151,9 +151,9 @@ export function ExploreScreen() {
   const discoverAnimal = useGameStore((s) => s.discoverAnimal);
   const setLastViewedAnimal = useGameStore((s) => s.setLastViewedAnimal);
   const completedQuizzes = useGameStore((s) => s.completedQuizzes);
+  const animalScores = useGameStore((s) => s.animalScores);
   const getProgressionState = useGameStore((s) => s.getProgressionState);
   const getCurrentAnimalId = useGameStore((s) => s.getCurrentAnimalId);
-  const getQuizScore = useGameStore((s) => s.getQuizScore);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionPositions = useRef<Array<{ id: string; top: number }>>([]);
@@ -436,7 +436,7 @@ export function ExploreScreen() {
 
             const side = index % 2 === 0 ? "left" : "right";
             const { animal, state } = item;
-            const scoreData = getQuizScore(animal.id);
+            const scoreData = animalScores[animal.id];
             const starCount = scoreData
               ? scoreData.score === 0
                 ? 0
@@ -580,23 +580,6 @@ function AnimalCircleCard({
             {showEmoji}
           </span>
 
-          {/* Stars — always visible */}
-          <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-[2px]">
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                className={`text-[10px] sm:text-[12px] ${
-                  i < starCount ? "opacity-100" : "opacity-25"
-                }`}
-                style={{
-                  filter: i < starCount ? "none" : "grayscale(1)",
-                }}
-              >
-                ⭐
-              </span>
-            ))}
-          </div>
-
           {/* Lock overlay */}
           {state === "locked" && (
             <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/10">
@@ -628,6 +611,22 @@ function AnimalCircleCard({
             {isPlaying ? "🔊" : "🔈"}
           </button>
         )}
+      </div>
+
+      {/* Stars — always visible below the card */}
+      <div className="flex gap-1 mt-0.5">
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className={`text-xl leading-none drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)] ${
+              i < starCount
+                ? "text-yellow-500"
+                : "text-[var(--ink-soft)] opacity-35"
+            }`}
+          >
+            ★
+          </span>
+        ))}
       </div>
 
       <div className="flex flex-col items-center">
