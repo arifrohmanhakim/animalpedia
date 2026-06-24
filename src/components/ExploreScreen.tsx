@@ -37,26 +37,24 @@ export function ExploreScreen() {
 
   return (
     <div className="screen-container bg-[var(--cream)]">
-      <div className="screen-scroll">
-        {/* Header */}
-        <div className="px-5 pt-4 pb-2">
-          <h1 className="font-display text-xl font-bold">Jelajah Hewan 🐾</h1>
+      {/* Sticky header */}
+      <div className="flex-shrink-0 px-5 pt-4 pb-1 bg-[var(--cream)] z-10">
+        <h1 className="font-display text-xl font-bold">Jelajah Hewan 🐾</h1>
 
-          {/* Search */}
-          <div className="flex items-center gap-2 bg-[var(--paper)] border-[3px] border-[var(--ink)] rounded-2xl px-3.5 py-2.5 mt-3">
-            <span className="text-sm">🔎</span>
-            <input
-              type="text"
-              placeholder="Cari hewan..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-1 bg-transparent text-xs font-semibold text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)]"
-            />
-          </div>
+        {/* Search */}
+        <div className="flex items-center gap-2 bg-[var(--paper)] border-[3px] border-[var(--ink)] rounded-2xl px-3.5 py-2.5 mt-3">
+          <span className="text-sm">🔎</span>
+          <input
+            type="text"
+            placeholder="Cari hewan..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="flex-1 bg-transparent text-xs font-semibold text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)]"
+          />
         </div>
 
         {/* Category filters */}
-        <div className="flex gap-2 overflow-x-auto px-5 py-2.5 -mx-2 px-2 scrollbar-hide">
+        <div className="flex gap-2 overflow-x-auto py-2.5 scrollbar-hide">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
@@ -74,8 +72,10 @@ export function ExploreScreen() {
             );
           })}
         </div>
+      </div>
 
-        {/* Animal grid */}
+      {/* Scrollable animal grid */}
+      <div className="screen-scroll">
         <div className="px-5 pb-6 grid grid-cols-2 gap-3.5">
           {filteredAnimals.map((animal, index) => {
             const discovered = isDiscovered(animal.id);
