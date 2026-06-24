@@ -16,7 +16,8 @@ export const zebra: Animal = {
   foodEmoji: "🌱",
   lifespan: "20–30 tahun",
   weight: "400–990 kg",
-  description: "Zebra adalah hewan yang terkenal dengan garis-garis hitam putih yang unik. Setiap zebra memiliki pola garis yang berbeda seperti sidik jari. Mereka hidup secara berkelompok untuk perlindungan.",
+  description:
+    "Zebra adalah hewan yang terkenal dengan garis-garis hitam putih yang unik. Setiap zebra memiliki pola garis yang berbeda seperti sidik jari. Mereka hidup secara berkelompok untuk perlindungan.",
   color: "#F5F0EE",
   funFacts: [
     "Setiap zebra memiliki pola garis yang berbeda!",
