@@ -85,14 +85,41 @@ export function getProgressionState(
   const idx = PROGRESSION_ORDER.indexOf(animalId);
   if (idx === -1) return 'locked'; // not in progression → treat as locked
 
-  const completedCount = completedQuizzes.length;
+  const completedSet = new Set(completedQuizzes);
 
-  if (idx < completedCount) return 'completed';
-  if (idx === completedCount) return 'current';
+  // Already completed? → completed
+  if (completedSet.has(animalId)) return 'completed';
+
+  // Find the first incomplete animal in progression order → that's 'current'
+  const firstIncomplete = PROGRESSION_ORDER.find((id) => !completedSet.has(id));
+  if (!firstIncomplete) return 'locked'; // all done (shouldn't reach this branch)
+
+  const currentIdx = PROGRESSION_ORDER.indexOf(firstIncomplete);
+
+  if (idx < currentIdx) return 'completed'; // before current → must be completed
+  if (idx === currentIdx) return 'current';
   return 'locked';
 }
 
 export function getCurrentAnimalId(completedQuizzes: string[]): string | null {
-  if (completedQuizzes.length >= PROGRESSION_ORDER.length) return null; // all done
-  return PROGRESSION_ORDER[completedQuizzes.length];
+  const completedSet = new Set(completedQuizzes);
+  for (const id of PROGRESSION_ORDER) {
+    if (!completedSet.has(id)) return id;
+  }
+  return null; // all done
+}
+
+/**
+ * Returns how many animals from the start of PROGRESSION_ORDER
+ * have been completed (in-sequence). Animals completed out of order
+ * are ignored for this count.
+ */
+export function getInSequenceCompletedCount(completedQuizzes: string[]): number {
+  const completedSet = new Set(completedQuizzes);
+  let count = 0;
+  for (const id of PROGRESSION_ORDER) {
+    if (completedSet.has(id)) count++;
+    else break;
+  }
+  return count;
 }

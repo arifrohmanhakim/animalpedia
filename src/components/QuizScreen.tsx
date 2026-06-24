@@ -128,6 +128,7 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
   const animal = animals.find((a) => a.id === animalId);
   const addXP = useGameStore((s) => s.addXP);
   const recordCorrectQuiz = useGameStore((s) => s.recordCorrectQuiz);
+  const recordQuizScore = useGameStore((s) => s.recordQuizScore);
   const checkNewBadges = useGameStore((s) => s.checkNewBadges);
 
   const [questions] = useState(() => generateQuestions(animalId));
@@ -171,6 +172,7 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
       if (score > 0) {
         for (let i = 0; i < score; i++) recordCorrectQuiz();
       }
+      recordQuizScore(animalId, score, totalQuestions);
 
       showToastXP(xpAmount, `Kuis ${animal.name} selesai!`);
 

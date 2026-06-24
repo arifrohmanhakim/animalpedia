@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useGameStore } from "@/store/gameStore";
-import { animals, PROGRESSION_ORDER } from "@/data/animals";
+import { animals, PROGRESSION_ORDER, getInSequenceCompletedCount } from "@/data/animals";
 import type { Animal } from "@/data/animals/types";
 import type { ProgressionState } from "@/data/animals";
 import { playAnimalSound } from "@/lib/audio";
@@ -153,12 +153,13 @@ export function ExploreScreen() {
   const completedQuizzes = useGameStore((s) => s.completedQuizzes);
   const getProgressionState = useGameStore((s) => s.getProgressionState);
   const getCurrentAnimalId = useGameStore((s) => s.getCurrentAnimalId);
+  const getQuizScore = useGameStore((s) => s.getQuizScore);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionPositions = useRef<Array<{ id: string; top: number }>>([]);
 
   const currentAnimalId = getCurrentAnimalId();
-  const completedCount = completedQuizzes.length;
+  const completedCount = getInSequenceCompletedCount(completedQuizzes);
 
   /* Build animal lookup map */
   const animalMap = useMemo(() => {
@@ -435,6 +436,16 @@ export function ExploreScreen() {
 
             const side = index % 2 === 0 ? "left" : "right";
             const { animal, state } = item;
+            const scoreData = getQuizScore(animal.id);
+            const starCount = scoreData
+              ? scoreData.score === 0
+                ? 0
+                : scoreData.score === scoreData.total
+                  ? 3
+                  : scoreData.score / scoreData.total >= 0.5
+                    ? 2
+                    : 1
+              : 0;
 
             return (
               <div
@@ -455,6 +466,7 @@ export function ExploreScreen() {
                     <AnimalCircleCard
                       animal={animal}
                       state={state}
+                      starCount={starCount}
                       soundPlayingId={soundPlayingId}
                       onPlaySound={(e) => handlePlaySound(e, animal.id, state)}
                       onClick={() => handleAnimalClick(animal.id, state)}
@@ -473,6 +485,7 @@ export function ExploreScreen() {
                     <AnimalCircleCard
                       animal={animal}
                       state={state}
+                      starCount={starCount}
                       soundPlayingId={soundPlayingId}
                       onPlaySound={(e) => handlePlaySound(e, animal.id, state)}
                       onClick={() => handleAnimalClick(animal.id, state)}
@@ -517,12 +530,14 @@ export function ExploreScreen() {
 function AnimalCircleCard({
   animal,
   state,
+  starCount,
   soundPlayingId,
   onPlaySound,
   onClick,
 }: {
   animal: Animal;
   state: ProgressionState;
+  starCount: number;
   soundPlayingId: string | null;
   onPlaySound: (e: React.MouseEvent) => void;
   onClick: () => void;
@@ -564,6 +579,23 @@ function AnimalCircleCard({
           <span className="text-4xl sm:text-[64px] leading-none select-none">
             {showEmoji}
           </span>
+
+          {/* Stars — always visible */}
+          <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-[2px]">
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className={`text-[10px] sm:text-[12px] ${
+                  i < starCount ? "opacity-100" : "opacity-25"
+                }`}
+                style={{
+                  filter: i < starCount ? "none" : "grayscale(1)",
+                }}
+              >
+                ⭐
+              </span>
+            ))}
+          </div>
 
           {/* Lock overlay */}
           {state === "locked" && (

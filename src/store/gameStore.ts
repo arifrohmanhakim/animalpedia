@@ -27,6 +27,7 @@ interface GameState {
   favoriteAnimals: string[];
   quizCorrectCount: number;
   completedQuizzes: string[];
+  animalScores: Record<string, { score: number; total: number }>;
   lastLoginDate: string;
   dailyStreak: number;
   badges: Badge[];
@@ -63,6 +64,8 @@ interface GameState {
   getLevel: () => { level: number; title: string; xpForNext: number; progress: number };
   getAnimals: () => typeof allAnimals;
   recordCompletedQuiz: (animalId: string) => void;
+  recordQuizScore: (animalId: string, score: number, total: number) => void;
+  getQuizScore: (animalId: string) => { score: number; total: number } | undefined;
   getProgressionState: (animalId: string) => ProgressionState;
   getCurrentAnimalId: () => string | null;
   isDiscovered: (animalId: string) => boolean;
@@ -94,6 +97,7 @@ const saveState = (state: Partial<GameState>) => {
       favoriteAnimals: state.favoriteAnimals,
       quizCorrectCount: state.quizCorrectCount,
       completedQuizzes: state.completedQuizzes,
+      animalScores: state.animalScores,
       lastLoginDate: state.lastLoginDate,
       dailyStreak: state.dailyStreak,
       badges: state.badges,
@@ -182,6 +186,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   favoriteAnimals: savedState?.favoriteAnimals ?? [],
   quizCorrectCount: savedState?.quizCorrectCount ?? 0,
   completedQuizzes: savedState?.completedQuizzes ?? [],
+  animalScores: savedState?.animalScores ?? {},
   lastLoginDate: initialLastLoginDate,
   dailyStreak: initialDailyStreak,
   badges: savedState?.badges ?? badgeList.map((b) => ({ ...b, unlocked: false })),
@@ -278,6 +283,21 @@ export const useGameStore = create<GameState>((set, get) => ({
     set(newState);
     get().checkBadges();
     saveState({ ...get(), ...newState });
+  },
+
+  recordQuizScore: (animalId: string, score: number, total: number) => {
+    const state = get();
+    const prev = state.animalScores[animalId];
+    // Only keep the best score
+    if (prev && prev.score >= score) return;
+    const newScores = { ...state.animalScores, [animalId]: { score, total } };
+    const newState = { animalScores: newScores };
+    set(newState);
+    saveState({ ...get(), ...newState });
+  },
+
+  getQuizScore: (animalId: string) => {
+    return get().animalScores[animalId];
   },
 
   getProgressionState: (animalId: string) => getProgressionState(animalId, get().completedQuizzes),
