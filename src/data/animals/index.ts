@@ -146,4 +146,6 @@ export const animalsList: Animal[] = [
 ];
 
 export { families, findFamilyForAnimal } from "./families";
+export { PROGRESSION_ORDER, getProgressionState, getCurrentAnimalId } from "./progression";
+export type { ProgressionState } from "./progression";
 export const animals = animalsList;

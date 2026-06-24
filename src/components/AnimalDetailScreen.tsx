@@ -75,7 +75,7 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
   };
 
   return (
-    <div className="absolute inset-0 z-30 bg-[var(--cream)] flex flex-col animate-fade-in-up">
+    <div className="absolute inset-0 z-50 bg-[var(--cream)] flex flex-col animate-fade-in-up">
       <div className="screen-scroll flex-1">
         <div
           className="px-5 pt-6 pb-4 relative"

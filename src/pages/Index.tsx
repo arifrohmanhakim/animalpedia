@@ -19,6 +19,7 @@ const Index = () => {
   const quizInProgress = useGameStore((s) => s.quizInProgress);
   const currentQuizAnimalId = useGameStore((s) => s.currentQuizAnimalId);
   const endQuiz = useGameStore((s) => s.endQuiz);
+  const recordCompletedQuiz = useGameStore((s) => s.recordCompletedQuiz);
 
   const [detailAnimalId, setDetailAnimalId] = useState<string | null>(null);
 
@@ -89,7 +90,15 @@ const Index = () => {
     setDetailAnimalId(newAnimalId);
   }, []);
 
-  const handleCloseQuiz = useCallback(() => {
+  const handleFinishQuiz = useCallback(() => {
+    ignorePopRef.current = true;
+    const id = currentQuizAnimalId;
+    endQuiz();
+    if (id) recordCompletedQuiz(id);
+    window.history.back();
+  }, [endQuiz, currentQuizAnimalId, recordCompletedQuiz]);
+
+  const handleCancelQuiz = useCallback(() => {
     ignorePopRef.current = true;
     endQuiz();
     window.history.back();
@@ -144,8 +153,8 @@ const Index = () => {
       {quizInProgress && currentQuizAnimalId && (
         <QuizScreen
           animalId={currentQuizAnimalId}
-          onBack={handleCloseQuiz}
-          onFinish={handleCloseQuiz}
+          onBack={handleCancelQuiz}
+          onFinish={handleFinishQuiz}
         />
       )}
 

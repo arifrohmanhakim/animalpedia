@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { animals as allAnimals, families } from '../data/animals';
+import { animals as allAnimals, families, getProgressionState, getCurrentAnimalId } from '../data/animals';
+import type { ProgressionState } from '../data/animals';
 import { badges as badgeList } from '../data/badges';
 
 interface Badge {
@@ -25,6 +26,7 @@ interface GameState {
   discoveredAnimals: string[];
   favoriteAnimals: string[];
   quizCorrectCount: number;
+  completedQuizzes: string[];
   lastLoginDate: string;
   dailyStreak: number;
   badges: Badge[];
@@ -60,6 +62,9 @@ interface GameState {
   setActiveGame: (game: string | null) => void;
   getLevel: () => { level: number; title: string; xpForNext: number; progress: number };
   getAnimals: () => typeof allAnimals;
+  recordCompletedQuiz: (animalId: string) => void;
+  getProgressionState: (animalId: string) => ProgressionState;
+  getCurrentAnimalId: () => string | null;
   isDiscovered: (animalId: string) => boolean;
   isFavorite: (animalId: string) => boolean;
   getCollectionProgress: () => { discovered: number; total: number };
@@ -88,6 +93,7 @@ const saveState = (state: Partial<GameState>) => {
       discoveredAnimals: state.discoveredAnimals,
       favoriteAnimals: state.favoriteAnimals,
       quizCorrectCount: state.quizCorrectCount,
+      completedQuizzes: state.completedQuizzes,
       lastLoginDate: state.lastLoginDate,
       dailyStreak: state.dailyStreak,
       badges: state.badges,
@@ -175,6 +181,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   discoveredAnimals: savedState?.discoveredAnimals ?? [],
   favoriteAnimals: savedState?.favoriteAnimals ?? [],
   quizCorrectCount: savedState?.quizCorrectCount ?? 0,
+  completedQuizzes: savedState?.completedQuizzes ?? [],
   lastLoginDate: initialLastLoginDate,
   dailyStreak: initialDailyStreak,
   badges: savedState?.badges ?? badgeList.map((b) => ({ ...b, unlocked: false })),
@@ -261,6 +268,21 @@ export const useGameStore = create<GameState>((set, get) => ({
     get().checkBadges();
     saveState({ ...get(), ...newState });
   },
+
+  recordCompletedQuiz: (animalId: string) => {
+    const state = get();
+    if (state.completedQuizzes.includes(animalId)) return;
+
+    const newCompleted = [...state.completedQuizzes, animalId];
+    const newState = { completedQuizzes: newCompleted };
+    set(newState);
+    get().checkBadges();
+    saveState({ ...get(), ...newState });
+  },
+
+  getProgressionState: (animalId: string) => getProgressionState(animalId, get().completedQuizzes),
+
+  getCurrentAnimalId: () => getCurrentAnimalId(get().completedQuizzes),
 
   startQuiz: (animalId) => set({ quizInProgress: true, currentQuizAnimalId: animalId }),
   endQuiz: () => set({ quizInProgress: false, currentQuizAnimalId: null }),

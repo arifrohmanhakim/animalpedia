@@ -139,7 +139,7 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
 
   if (!animal || questions.length === 0) {
     return (
-      <div className="absolute inset-0 z-30 bg-[var(--cream)] flex items-center justify-center">
+      <div className="absolute inset-0 z-50 bg-[var(--cream)] flex items-center justify-center">
         <p>Soal tidak tersedia</p>
       </div>
     );
@@ -187,7 +187,7 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
 
   if (finished) {
     return (
-      <div className="absolute inset-0 z-30 bg-[var(--cream)] flex flex-col items-center justify-center px-8 overflow-hidden">
+      <div className="absolute inset-0 z-50 bg-[var(--cream)] flex flex-col items-center justify-center px-8 overflow-hidden">
         {score >= totalQuestions / 2 && <CelebrationConfetti />}
         <div className="text-8xl mb-4 z-20">
           {score === totalQuestions ? '🏆' : score >= totalQuestions / 2 ? '🎉' : '💪'}
@@ -217,7 +217,7 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
   }
 
   return (
-    <div className="absolute inset-0 z-30 bg-[var(--cream)] flex flex-col animate-fade-in-up">
+    <div className="absolute inset-0 z-50 bg-[var(--cream)] flex flex-col animate-fade-in-up">
       {/* Top bar */}
       <div className="flex items-center gap-2.5 px-5 pt-4 pb-2">
         <button
