@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const lumba_lumba: Animal = {
+    id: 'lumba-lumba',
+    name: 'Lumba-lumba',
+    englishName: 'Dolphin',
+    scientificName: 'Delphinus delphis',
+    emoji: '🐬',
+    category: 'laut',
+    habitat: 'Lautan Tropis',
+    habitatEmoji: '🌊',
+    food: 'Ikan kecil (karnivora)',
+    foodEmoji: '🐟',
+    lifespan: '40–50 tahun',
+    weight: '150–300 kg',
+    description: 'Lumba-lumba adalah mamalia laut yang sangat cerdas dan ramah. Mereka menggunakan suara klik untuk berkomunikasi dan bernavigasi di lautan.',
+    color: '#5DADE2',
+    funFacts: [
+      'Lumba-lumba tidur dengan satu mata terbuka!',
+      'Setengah otak lumba-lumba tetap terjaga saat tidur.',
+      'Lumba-lumba bisa menyelam hingga 300 meter.',
+      'Setiap lumba-lumba memiliki siulan khas seperti nama panggilan.',
+      'Lumba-lumba bisa berenang hingga 60 km/jam.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/5P2SXCFvKAM',
+    videoUrl: 'https://www.youtube.com/watch?v=5P2SXCFvKAM',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Perairan tropis dan subtropis di seluruh dunia',
+  };

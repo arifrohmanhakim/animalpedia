@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const semut: Animal = {
+    id: 'semut',
+    name: 'Semut',
+    englishName: 'Ant',
+    scientificName: 'Formicidae',
+    emoji: '🐜',
+    category: 'serangga',
+    habitat: 'Di mana saja',
+    habitatEmoji: '🌍',
+    food: 'Daun dan gula (omnivora)',
+    foodEmoji: '🍬',
+    lifespan: 'beberapa minggu–3 tahun',
+    weight: '1–10 miligram',
+    description: 'Semut adalah serangga pekerja keras yang hidup dalam koloni besar. Mereka bisa mengangkat beban 50 kali berat tubuhnya sendiri!',
+    color: '#17202A',
+    funFacts: [
+      'Semut bisa mengangkat beban 50 kali berat tubuhnya!',
+      'Ada lebih dari 12.000 spesies semut di dunia.',
+      'Semut menggunakan feromon untuk berkomunikasi.',
+      'Ratu semut bisa hidup hingga 30 tahun.',
+      'Semut gotong royong membangun sarang, mencari makanan, dan merawat bayi.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/WJTMso8iXjA',
+    videoUrl: 'https://www.youtube.com/watch?v=WJTMso8iXjA',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Seluruh benua kecuali Antartika',
+  };

@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const penguin: Animal = {
+    id: 'penguin',
+    name: 'Penguin',
+    englishName: 'Penguin',
+    scientificName: 'Spheniscidae',
+    emoji: '🐧',
+    category: 'burung',
+    habitat: 'Kutub Selatan',
+    habitatEmoji: '❄️',
+    food: 'Ikan (karnivora)',
+    foodEmoji: '🐟',
+    lifespan: '15–20 tahun',
+    weight: '1–35 kg',
+    description: 'Penguin adalah burung yang tidak bisa terbang, tapi mereka perenang ulung! Penguin tinggal di belahan bumi selatan, terutama Antartika.',
+    color: '#2C3E50',
+    funFacts: [
+      'Penguin bisa menyelam hingga 500 meter mencari ikan!',
+      'Penguin kaisar bisa bertahan di suhu -60°C.',
+      'Penguin jantan menjaga telur selama dua bulan tanpa makan.',
+      'Bulu penguin sangat rapat — 70 bulu per cm²!',
+      'Penguin berenang hingga 36 km/jam — lebih cepat dari perenang Olimpiade!',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/io1sLQx1Byc',
+    videoUrl: 'https://www.youtube.com/watch?v=io1sLQx1Byc',
+    distribution: ['Kutub Selatan', 'Australia & Oseania', 'Amerika Selatan'],
+    distributionCountries: 'Antartika, Australia, Selandia Baru, Chili, Argentina, Afrika Selatan',
+  };

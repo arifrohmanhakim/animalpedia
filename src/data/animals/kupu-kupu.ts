@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const kupu_kupu: Animal = {
+    id: 'kupu-kupu',
+    name: 'Kupu-kupu',
+    englishName: 'Butterfly',
+    scientificName: 'Lepidoptera',
+    emoji: '🦋',
+    category: 'serangga',
+    habitat: 'Padang Rumput dan Taman',
+    habitatEmoji: '🌸',
+    food: 'Nektar (herbivora)',
+    foodEmoji: '🌺',
+    lifespan: '2–4 minggu',
+    weight: '0,3–3 gram',
+    description: 'Kupu-kupu adalah serangga cantik yang mengalami metamorfosis sempurna. Mereka berubah dari ulat menjadi kepompong lalu menjadi kupu-kupu bersayap indah!',
+    color: '#AF7AC5',
+    funFacts: [
+      'Kupu-kupu merasakan rasa dengan kakinya!',
+      'Sayap kupu-kupu transparan, warnanya berasal dari pantulan cahaya.',
+      'Ada lebih dari 20.000 jenis kupu-kupu di dunia.',
+      'Kupu-kupu tidak bisa terbang jika suhu tubuhnya di bawah 30°C.',
+      'Kupu-kupu hanya hidup sekitar 2–4 minggu.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/SIEGEL2HJoI',
+    videoUrl: 'https://www.youtube.com/watch?v=SIEGEL2HJoI',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Seluruh benua kecuali Antartika',
+  };

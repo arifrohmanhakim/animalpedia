@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const bunglon: Animal = {
+    id: 'bunglon',
+    name: 'Bunglon',
+    englishName: 'Chameleon',
+    scientificName: 'Chamaeleonidae',
+    emoji: '🦎',
+    category: 'reptil',
+    habitat: 'Hutan dan Semak Belukar',
+    habitatEmoji: '🌿',
+    food: 'Serangga (karnivora)',
+    foodEmoji: '🪰',
+    lifespan: '5–10 tahun',
+    weight: '10–200 gram',
+    description: 'Bunglon adalah master kamuflase! Mereka bisa mengubah warna tubuhnya untuk bersembunyi, berkomunikasi, dan menunjukkan perasaan.',
+    color: '#82E0AA',
+    funFacts: [
+      'Bunglon bisa mengubah warna kulitnya dalam hitungan detik!',
+      'Mata bunglon bisa bergerak sendiri-sendiri ke arah berbeda.',
+      'Lidah bunglon lebih panjang dari tubuhnya sendiri!',
+      'Bunglon tidak bisa mendengar dengan baik — mereka lebih mengandalkan penglihatan.',
+      'Warna bunglon berubah sesuai suasana hati, bukan hanya untuk kamuflase.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/NBQvPDUOnjI',
+    videoUrl: 'https://www.youtube.com/watch?v=NBQvPDUOnjI',
+    distribution: ['Afrika Sub-Sahara', 'Asia Selatan', 'Eropa'],
+    distributionCountries: 'Madagaskar, Afrika, India, Sri Lanka, Eropa Selatan',
+  };

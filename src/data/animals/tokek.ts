@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const tokek: Animal = {
+    id: 'tokek',
+    name: 'Tokek',
+    englishName: 'Gecko',
+    scientificName: 'Gekkonidae',
+    emoji: '🦎',
+    category: 'reptil',
+    habitat: 'Tembok dan Batuan',
+    habitatEmoji: '🧱',
+    food: 'Serangga (karnivora)',
+    foodEmoji: '🪰',
+    lifespan: '5–10 tahun',
+    weight: '10–150 gram',
+    description: 'Tokek adalah kadal kecil yang suka memanjat dinding. Mereka bisa menempel di permukaan licin berkat bantalan khusus di kakinya.',
+    color: '#7DCEA0',
+    funFacts: [
+      'Tokek bisa memanjat di langit-langit tanpa jatuh!',
+      'Kaki tokek memiliki jutaan rambut kecil yang lengket.',
+      'Tokek kehilangan ekornya saat terancam, lalu menumbuhkannya kembali.',
+      'Tokek membersihkan matanya dengan lidahnya.',
+      'Suara tokek "tokek.. tokek.." hanya dibuat oleh tokek jantan.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/GOB8Ns6R0nM',
+    videoUrl: 'https://www.youtube.com/watch?v=GOB8Ns6R0nM',
+    distribution: ['Asia Tenggara', 'Asia Selatan', 'Australia & Oseania'],
+    distributionCountries: 'Asia Tenggara, India, Australia, Kepulauan Pasifik',
+  };

@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const kanguru: Animal = {
+    id: 'kanguru',
+    name: 'Kanguru',
+    englishName: 'Kangaroo',
+    scientificName: 'Macropus rufus',
+    emoji: '🦘',
+    category: 'mamalia',
+    habitat: 'Padang Rumput Australia',
+    habitatEmoji: '🌾',
+    food: 'Rumput (herbivora)',
+    foodEmoji: '🌿',
+    lifespan: '6–8 tahun',
+    weight: '20–90 kg',
+    description: 'Kanguru adalah hewan ikonik Australia yang bergerak dengan melompat. Kanguru betina membawa bayinya di dalam kantung di perutnya.',
+    color: '#CD853F',
+    funFacts: [
+      'Kanguru betina bisa "menjeda" kehamilan jika kondisi tidak mendukung.',
+      'Kanguru bisa melompat hingga 8 meter sekali lompatan!',
+      'Kanguru tidak bisa berjalan mundur.',
+      'Bayi kanguru seukuran kacang merah saat lahir.',
+      'Kanguru menggunakan ekornya sebagai kaki kelima saat berjalan.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/fhZB7g-UhS4',
+    videoUrl: 'https://www.youtube.com/watch?v=fhZB7g-UhS4',
+    distribution: ['Australia & Oseania'],
+    distributionCountries: 'Australia, Tasmania, Papua Nugini',
+  };

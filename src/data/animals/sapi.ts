@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const sapi: Animal = {
+    id: 'sapi',
+    name: 'Sapi',
+    englishName: 'Cow',
+    scientificName: 'Bos taurus',
+    emoji: '🐄',
+    category: 'mamalia',
+    habitat: 'Padang Rumput',
+    habitatEmoji: '🌾',
+    food: 'Rumput (herbivora)',
+    foodEmoji: '🌿',
+    lifespan: '15–25 tahun',
+    weight: '400–800 kg',
+    description: 'Sapi adalah hewan ternak penting yang memberi kita susu segar setiap hari. Sapi memiliki perut dengan empat ruang untuk mencerna rumput!',
+    color: '#FFFFFF',
+    funFacts: [
+      'Sapi memiliki perut dengan 4 ruang!',
+      'Sapi bisa menghasilkan 20–30 liter susu setiap hari.',
+      'Sapi memiliki penglihatan hampir 360 derajat.',
+      'Sapi bisa berdiri dan tidur, tapi butuh berbaring untuk tidur lelap.',
+      'Sapi menjilat anaknya untuk membersihkan dan merawatnya.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/j-WJZMHqZ2s',
+    videoUrl: 'https://www.youtube.com/watch?v=j-WJZMHqZ2s',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Seluruh dunia sebagai hewan ternak',
+  };

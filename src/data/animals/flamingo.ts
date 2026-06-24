@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const flamingo: Animal = {
+    id: 'flamingo',
+    name: 'Flamingo',
+    englishName: 'Flamingo',
+    scientificName: 'Phoenicopteridae',
+    emoji: '🦩',
+    category: 'burung',
+    habitat: 'Danau Garam dan Rawa',
+    habitatEmoji: '🦩',
+    food: 'Udang kecil dan alga (omnivora)',
+    foodEmoji: '🦐',
+    lifespan: '20–30 tahun',
+    weight: '2–4 kg',
+    description: 'Flamingo adalah burung berkaki panjang dengan bulu merah muda yang cantik. Warna merah mudanya berasal dari makanan mereka — udang kecil!',
+    color: '#FF69B4',
+    funFacts: [
+      'Flamingo berwarna merah muda karena makan udang!',
+      'Flamingo berdiri dengan satu kaki untuk menjaga suhu tubuh.',
+      'Flamingo bisa terbang hingga 600 km dalam satu malam.',
+      'Bayi flamingo berwarna abu-abu putih, baru merah muda setelah 2 tahun.',
+      'Flamingo hidup berkelompok hingga ribuan ekor.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/Fam-1TFBvXw',
+    videoUrl: 'https://www.youtube.com/watch?v=Fam-1TFBvXw',
+    distribution: ['Amerika Selatan', 'Afrika Sub-Sahara', 'Asia Selatan', 'Eropa'],
+    distributionCountries: 'Afrika, Amerika Selatan, India, Spanyol, Karibia',
+  };

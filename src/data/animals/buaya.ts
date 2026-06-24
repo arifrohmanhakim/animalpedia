@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const buaya: Animal = {
+    id: 'buaya',
+    name: 'Buaya',
+    englishName: 'Crocodile',
+    scientificName: 'Crocodylidae',
+    emoji: '🐊',
+    category: 'reptil',
+    habitat: 'Sungai dan Rawa',
+    habitatEmoji: '🛶',
+    food: 'Daging (karnivora)',
+    foodEmoji: '🥩',
+    lifespan: '50–70 tahun',
+    weight: '200–1.000 kg',
+    description: 'Buaya adalah reptil besar yang sudah ada sejak zaman dinosaurus! Mereka berburu dengan bersembunyi di air dan bisa menahan napas sangat lama.',
+    color: '#4A7C59',
+    funFacts: [
+      'Buaya sudah ada sejak 200 juta tahun yang lalu!',
+      'Air mata buaya benar-benar keluar saat mereka makan.',
+      'Buaya bisa menahan napas di dalam air hingga 2 jam.',
+      'Gigi buaya bisa berganti hingga 50 kali seumur hidup.',
+      'Buaya menelan batu untuk membantu mencerna makanan.',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/E5BI6Wx5R2U',
+    videoUrl: 'https://www.youtube.com/watch?v=E5BI6Wx5R2U',
+    distribution: ['Afrika Sub-Sahara', 'Asia Selatan', 'Asia Tenggara', 'Australia & Oseania', 'Amerika Utara', 'Amerika Selatan'],
+    distributionCountries: 'Afrika, Asia, Australia, Amerika Serikat (Florida), Amerika Tengah',
+  };

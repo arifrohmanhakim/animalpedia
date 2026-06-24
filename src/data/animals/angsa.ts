@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const angsa: Animal = {
+    id: 'angsa',
+    name: 'Angsa',
+    englishName: 'Swan',
+    scientificName: 'Cygnus',
+    emoji: '🦢',
+    category: 'burung',
+    habitat: 'Danau dan Sungai',
+    habitatEmoji: '🏞️',
+    food: 'Tumbuhan air (herbivora)',
+    foodEmoji: '🌿',
+    lifespan: '20–30 tahun',
+    weight: '6–15 kg',
+    description: 'Angsa adalah burung air yang sangat anggun dengan leher panjang melengkung. Mereka berenang dengan indah dan sering menjadi simbol cinta dan kesetiaan.',
+    color: '#FDFEFE',
+    funFacts: [
+      'Angsa bisa terbang hingga 8.000 km saat migrasi!',
+      'Angsa memiliki lebih dari 25.000 bulu di tubuhnya.',
+      'Sepasang angsa biasanya setia seumur hidup.',
+      'Angsa bisa menjadi sangat protektif terhadap sarang dan anaknya.',
+      'Leher angsa memiliki 24 tulang — lebih panjang dari leher jerapah!',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/2BKfXkFJu2Y',
+    videoUrl: 'https://www.youtube.com/watch?v=2BKfXkFJu2Y',
+    distribution: ['Eropa', 'Asia Timur', 'Amerika Utara', 'Australia & Oseania'],
+    distributionCountries: 'Amerika Utara, Eropa, Asia, Australia',
+  };

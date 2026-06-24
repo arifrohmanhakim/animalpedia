@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const merak: Animal = {
+    id: 'merak',
+    name: 'Merak',
+    englishName: 'Peacock',
+    scientificName: 'Pavo cristatus',
+    emoji: '🦚',
+    category: 'burung',
+    habitat: 'Hutan Terbuka',
+    habitatEmoji: '🌳',
+    food: 'Biji-bijian dan serangga (omnivora)',
+    foodEmoji: '🌾',
+    lifespan: '15–25 tahun',
+    weight: '3–6 kg',
+    description: 'Merak jantan memiliki bulu ekor yang sangat indah dengan pola seperti mata. Mereka membuka bulu ekornya untuk menarik perhatian merak betina.',
+    color: '#1ABC9C',
+    funFacts: [
+      'Ekor merak jantan bisa mencapai 2 meter!',
+      'Bulu ekor merak bergaris-garis seperti mata untuk menakuti predator.',
+      'Merak betina berwarna coklat kusam (tidak mencolok).',
+      'Suara merak terdengar seperti "mi-au" mengeong!',
+      'Merak adalah burung nasional India.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/J6RNeHRB3ag',
+    videoUrl: 'https://www.youtube.com/watch?v=J6RNeHRB3ag',
+    distribution: ['Asia Selatan', 'Asia Tenggara'],
+    distributionCountries: 'India, Sri Lanka, Pakistan, Indonesia, Malaysia',
+  };

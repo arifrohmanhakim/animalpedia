@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const komodo: Animal = {
+    id: 'komodo',
+    name: 'Komodo',
+    englishName: 'Komodo Dragon',
+    scientificName: 'Varanus komodoensis',
+    emoji: '🦎',
+    category: 'reptil',
+    habitat: 'Padang Sabana',
+    habitatEmoji: '🌾',
+    food: 'Daging (karnivora)',
+    foodEmoji: '🥩',
+    lifespan: '30–50 tahun',
+    weight: '70–150 kg',
+    description: 'Komodo adalah kadal terbesar di dunia! Mereka hanya ditemukan di Indonesia, tepatnya di Pulau Komodo dan sekitarnya.',
+    color: '#707B7C',
+    funFacts: [
+      'Komodo adalah kadal terbesar di dunia — panjangnya bisa mencapai 3 meter!',
+      'Air liur komodo mengandung bakteri berbahaya yang bisa melumpuhkan mangsa.',
+      'Komodo bisa berlari hingga 20 km/jam.',
+      'Komodo bisa memakan 80% berat tubuhnya dalam sekali makan.',
+      'Komodo betina bisa bertelur tanpa kawin (partenogenesis).',
+    ],
+    conservationStatus: 'terancam',
+    videoEmbedUrl: 'https://www.youtube.com/embed/6l82rYJIKzE',
+    videoUrl: 'https://www.youtube.com/watch?v=6l82rYJIKzE',
+    distribution: ['Asia Tenggara'],
+    distributionCountries: 'Indonesia (Pulau Komodo, Rinca, Flores, Gili Motang)',
+  };

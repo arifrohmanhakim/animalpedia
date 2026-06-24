@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const katak: Animal = {
+    id: 'katak',
+    name: 'Katak',
+    englishName: 'Frog',
+    scientificName: 'Anura',
+    emoji: '🐸',
+    category: 'amfibi',
+    habitat: 'Kolam dan Sungai',
+    habitatEmoji: '🪷',
+    food: 'Serangga (karnivora)',
+    foodEmoji: '🪰',
+    lifespan: '5–10 tahun',
+    weight: '10–500 gram',
+    description: 'Katak adalah amfibi yang bisa hidup di air dan di darat. Mereka melompat dengan kaki belakang yang kuat dan menangkap serangga dengan lidah panjangnya.',
+    color: '#2ECC71',
+    funFacts: [
+      'Katak bisa melompat hingga 20 kali panjang tubuhnya!',
+      'Katak minum air melalui kulitnya, bukan mulutnya.',
+      'Beberapa katak bisa berubah warna seperti bunglon.',
+      'Katak tidak bisa hidup di air asin.',
+      'Katak menggunakan matanya untuk membantu menelan makanan!',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/1o6x66iaVDA',
+    videoUrl: 'https://www.youtube.com/watch?v=1o6x66iaVDA',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Seluruh benua kecuali Antartika',
+  };

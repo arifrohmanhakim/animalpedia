@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const lebah: Animal = {
+    id: 'lebah',
+    name: 'Lebah Madu',
+    englishName: 'Honey Bee',
+    scientificName: 'Apis mellifera',
+    emoji: '🐝',
+    category: 'serangga',
+    habitat: 'Taman dan Hutan',
+    habitatEmoji: '🌻',
+    food: 'Nektar dan Serbuk Sari',
+    foodEmoji: '🌸',
+    lifespan: '6 minggu–5 tahun',
+    weight: '0,1 gram',
+    description: 'Lebah adalah serangga penyerbuk yang sangat penting bagi kehidupan di Bumi. Mereka menghasilkan madu yang lezat dan tinggal dalam koloni yang teratur.',
+    color: '#F39C12',
+    funFacts: [
+      'Lebah harus mengunjungi 2 juta bunga untuk menghasilkan 1 kg madu!',
+      'Ratu lebah bisa bertelur hingga 2.000 telur per hari.',
+      'Lebah memiliki 5 mata — 2 besar di samping dan 3 kecil di atas kepala.',
+      'Lebah bisa terbang hingga 25 km/jam.',
+      'Lebah menari untuk memberi tahu temannya lokasi bunga.',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/9eFv_ULHrrA',
+    videoUrl: 'https://www.youtube.com/watch?v=9eFv_ULHrrA',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Seluruh dunia kecuali Antartika',
+  };

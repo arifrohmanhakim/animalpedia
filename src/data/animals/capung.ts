@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const capung: Animal = {
+    id: 'capung',
+    name: 'Capung',
+    englishName: 'Dragonfly',
+    scientificName: 'Anisoptera',
+    emoji: '🪰',
+    category: 'serangga',
+    habitat: 'Dekat Kolam dan Danau',
+    habitatEmoji: '🏞️',
+    food: 'Serangga kecil (karnivora)',
+    foodEmoji: '🪰',
+    lifespan: '2–6 minggu',
+    weight: '0,1–0,5 gram',
+    description: 'Capung adalah penerbang ulung dengan dua pasang sayap transparan. Mereka adalah predator yang hebat — bisa menangkap mangsa di udara dengan akurat!',
+    color: '#3498DB',
+    funFacts: [
+      'Capung bisa terbang ke segala arah — maju, mundur, dan melayang!',
+      'Mata capung terdiri dari 30.000 lensa kecil.',
+      'Capung bisa terbang hingga 55 km/jam.',
+      'Capung menghabiskan sebagian besar hidupnya sebagai nimfa di air.',
+      'Capung sudah ada sejak 300 juta tahun yang lalu — sebelum dinosaurus!',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/ZiG8JDNJ3KM',
+    videoUrl: 'https://www.youtube.com/watch?v=ZiG8JDNJ3KM',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Seluruh benua kecuali Antartika',
+  };

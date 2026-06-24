@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const monyet: Animal = {
+    id: 'monyet',
+    name: 'Monyet',
+    englishName: 'Monkey',
+    scientificName: 'Cercopithecidae',
+    emoji: '🐒',
+    category: 'mamalia',
+    habitat: 'Hutan Hujan Tropis',
+    habitatEmoji: '🌴',
+    food: 'Buah-buahan (omnivora)',
+    foodEmoji: '🍌',
+    lifespan: '10–30 tahun',
+    weight: '3–40 kg',
+    description: 'Monyet adalah primata cerdas yang hidup berkelompok. Mereka suka bermain, berayun dari pohon ke pohon, dan menggunakan alat sederhana.',
+    color: '#8B5E3C',
+    funFacts: [
+      'Monyet bisa menggunakan batu untuk memecahkan kacang!',
+      'Beberapa monyet bisa mengenali diri mereka di cermin.',
+      'Monyet berkomunikasi dengan berbagai suara dan ekspresi wajah.',
+      'Monyet ekor panjang bisa melompat hingga 10 meter antar pohon.',
+      'Bayi monyet sangat bergantung pada ibunya seperti bayi manusia.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/oVrYwVqSM7M',
+    videoUrl: 'https://www.youtube.com/watch?v=oVrYwVqSM7M',
+    distribution: ['Asia Selatan', 'Asia Tenggara', 'Afrika Sub-Sahara', 'Amerika Selatan'],
+    distributionCountries: 'Asia Tenggara, India, Afrika, Amerika Tengah dan Selatan',
+  };

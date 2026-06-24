@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const penyu: Animal = {
+    id: 'penyu',
+    name: 'Penyu',
+    englishName: 'Sea Turtle',
+    scientificName: 'Cheloniidae',
+    emoji: '🐢',
+    category: 'reptil',
+    habitat: 'Lautan Tropis',
+    habitatEmoji: '🌊',
+    food: 'Ubur-ubur dan rumput laut (omnivora)',
+    foodEmoji: '🪼',
+    lifespan: '50–100 tahun',
+    weight: '70–700 kg',
+    description: 'Penyu adalah reptil laut yang indah dan anggun. Mereka bermigrasi ribuan kilometer untuk bertelur di pantai tempat mereka dilahirkan.',
+    color: '#52BE80',
+    funFacts: [
+      'Penyu bisa hidup hingga 100 tahun!',
+      'Penyu kembali ke pantai kelahirannya untuk bertelur.',
+      'Jenis kelamin anak penyu ditentukan oleh suhu pasir.',
+      'Penyu bisa berenang ribuan kilometer saat migrasi.',
+      'Hanya 1 dari 1.000 anak penyu yang bertahan hidup hingga dewasa.',
+    ],
+    conservationStatus: 'terancam',
+    videoEmbedUrl: 'https://www.youtube.com/embed/5kY3N9m0K6I',
+    videoUrl: 'https://www.youtube.com/watch?v=5kY3N9m0K6I',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Perairan tropis di seluruh dunia',
+  };

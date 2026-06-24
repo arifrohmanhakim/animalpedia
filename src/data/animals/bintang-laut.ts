@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const bintang_laut: Animal = {
+    id: 'bintang-laut',
+    name: 'Bintang Laut',
+    englishName: 'Starfish',
+    scientificName: 'Asteroidea',
+    emoji: '⭐',
+    category: 'laut',
+    habitat: 'Dasar Laut',
+    habitatEmoji: '🪸',
+    food: 'Kerang dan siput (karnivora)',
+    foodEmoji: '🐚',
+    lifespan: '5–35 tahun',
+    weight: '10–500 gram',
+    description: 'Bintang laut adalah hewan laut berbentuk bintang. Mereka bisa menumbuhkan kembali lengannya yang putus! Bintang laut bergerak dengan ribuan kaki tabung kecil.',
+    color: '#E74C3C',
+    funFacts: [
+      'Bintang laut bisa menumbuhkan lengan yang putus!',
+      'Bintang laut tidak memiliki otak atau darah.',
+      'Mereka bergerak dengan 15.000 kaki tabung kecil.',
+      'Bintang laut bisa membuka cangkang kerang dengan lengannya.',
+      'Ada lebih dari 2.000 spesies bintang laut di dunia.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/BhZf8n3AY20',
+    videoUrl: 'https://www.youtube.com/watch?v=BhZf8n3AY20',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Seluruh samudra di dunia',
+  };

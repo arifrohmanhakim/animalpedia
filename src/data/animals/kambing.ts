@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const kambing: Animal = {
+    id: 'kambing',
+    name: 'Kambing',
+    englishName: 'Goat',
+    scientificName: 'Capra aegagrus hircus',
+    emoji: '🐐',
+    category: 'mamalia',
+    habitat: 'Padang Rumput dan Pegunungan',
+    habitatEmoji: '⛰️',
+    food: 'Rumput (herbivora)',
+    foodEmoji: '🌿',
+    lifespan: '10–15 tahun',
+    weight: '20–80 kg',
+    description: 'Kambing adalah hewan ternak yang lincah dan suka memanjat. Mereka sangat pandai menjaga keseimbangan dan bisa berdiri di tebing curam!',
+    color: '#D4C3A3',
+    funFacts: [
+      'Kambing memiliki pupil mata persegi panjang yang unik!',
+      'Kambing bisa memanjat pohon untuk mencari buah.',
+      'Kambing bisa mengingat cara membuka tempat makanan hingga setahun.',
+      'Kambing mengenali temannya dari suara — bleating!',
+      'Ada lebih dari 300 jenis kambing di seluruh dunia.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/i6W4n7pI_Ys',
+    videoUrl: 'https://www.youtube.com/watch?v=i6W4n7pI_Ys',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Seluruh dunia sebagai hewan ternak',
+  };

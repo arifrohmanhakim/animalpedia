@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const panda: Animal = {
+    id: 'panda',
+    name: 'Panda',
+    englishName: 'Panda',
+    scientificName: 'Ailuropoda melanoleuca',
+    emoji: '🐼',
+    category: 'mamalia',
+    habitat: 'Hutan Bambu',
+    habitatEmoji: '🎋',
+    food: 'Bambu (herbivora)',
+    foodEmoji: '🎍',
+    lifespan: '20–30 tahun',
+    weight: '70–150 kg',
+    description: 'Panda adalah beruang lucu berwarna hitam putih yang sangat suka makan bambu. Mereka adalah simbol perdamaian dari Tiongkok.',
+    color: '#FFFFFF',
+    funFacts: [
+      'Panda menghabiskan 12–16 jam sehari untuk makan bambu!',
+      'Panda bisa makan hingga 38 kg bambu per hari.',
+      'Bayi panda berukuran sangat kecil, hanya 100 gram saat lahir.',
+      'Panda memiliki jari keenam khusus untuk memegang bambu.',
+      'Panda adalah hewan pemalu dan suka menyendiri.',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/OtGnx9U3Z5A',
+    videoUrl: 'https://www.youtube.com/watch?v=OtGnx9U3Z5A',
+    distribution: ['Asia Timur'],
+    distributionCountries: 'Tiongkok (Pegunungan Sichuan, Shaanxi, Gansu)',
+  };

@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const elang: Animal = {
+    id: 'elang',
+    name: 'Elang',
+    englishName: 'Eagle',
+    scientificName: 'Aquila chrysaetos',
+    emoji: '🦅',
+    category: 'burung',
+    habitat: 'Pegunungan dan Hutan',
+    habitatEmoji: '⛰️',
+    food: 'Daging (karnivora)',
+    foodEmoji: '🥩',
+    lifespan: '20–30 tahun',
+    weight: '3–7 kg',
+    description: 'Elang adalah burung pemangsa yang kuat dengan penglihatan tajam. Mereka bisa melihat mangsa dari jarak sangat jauh dan terbang sangat tinggi.',
+    color: '#8B4513',
+    funFacts: [
+      'Mata elang 4–8 kali lebih tajam dari mata manusia!',
+      'Elang bisa terbang hingga ketinggian 3.000 meter.',
+      'Kecepatan terbang elang saat menyelam bisa mencapai 320 km/jam.',
+      'Elang membangun sarang di tebing tinggi yang bisa mencapai 2 meter.',
+      'Elang bisa melihat mangsa dari jarak 3 km!',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/5B0TrDmBJB4',
+    videoUrl: 'https://www.youtube.com/watch?v=5B0TrDmBJB4',
+    distribution: ['Eropa', 'Asia Tengah', 'Amerika Utara'],
+    distributionCountries: 'Amerika Utara, Eropa, Asia, Afrika Utara',
+  };

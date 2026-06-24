@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const kunang_kunang: Animal = {
+    id: 'kunang-kunang',
+    name: 'Kunang-kunang',
+    englishName: 'Firefly',
+    scientificName: 'Lampyridae',
+    emoji: '✨',
+    category: 'serangga',
+    habitat: 'Hutan dan Rawa',
+    habitatEmoji: '🌳',
+    food: 'Nektar dan serangga kecil',
+    foodEmoji: '🌺',
+    lifespan: '2–10 minggu',
+    weight: '0,1–0,5 gram',
+    description: 'Kunang-kunang adalah serangga ajaib yang bisa mengeluarkan cahaya dari tubuhnya! Cahaya ini digunakan untuk berkomunikasi dan mencari pasangan.',
+    color: '#F9E79F',
+    funFacts: [
+      'Cahaya kunang-kunang adalah cahaya dingin — tidak menghasilkan panas!',
+      'Setiap spesies kunang-kunang memiliki pola kedip yang unik.',
+      'Kunang-kunang bisa mengatur kecerahan cahayanya.',
+      'Larva kunang-kunang juga bisa bercahaya!',
+      'Cahaya kunang-kunang adalah reaksi kimia di dalam tubuhnya.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/sntK1PkM1cU',
+    videoUrl: 'https://www.youtube.com/watch?v=sntK1PkM1cU',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Amerika, Eropa, Asia, Australia — daerah tropis dan subtropis',
+  };

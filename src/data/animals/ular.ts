@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const ular: Animal = {
+    id: 'ular',
+    name: 'Ular',
+    englishName: 'Snake',
+    scientificName: 'Serpentes',
+    emoji: '🐍',
+    category: 'reptil',
+    habitat: 'Hutan dan Padang Pasir',
+    habitatEmoji: '🏜️',
+    food: 'Daging (karnivora)',
+    foodEmoji: '🥩',
+    lifespan: '10–25 tahun',
+    weight: '0,5–100 kg',
+    description: 'Ular adalah reptil tanpa kaki yang bergerak dengan cara meliuk-liuk. Beberapa ular berbisa berbahaya, tapi kebanyakan ular tidak berbahaya bagi manusia.',
+    color: '#27AE60',
+    funFacts: [
+      'Ular bisa menelan mangsa yang lebih besar dari kepalanya!',
+      'Ular mencium bau dengan lidahnya yang bercabang.',
+      'Ada lebih dari 3.000 spesies ular di dunia.',
+      'Ular tidak memiliki kelopak mata — matanya selalu terbuka.',
+      'Beberapa ular bisa hidup tanpa makanan hingga setahun!',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/m71qYHjWTRo',
+    videoUrl: 'https://www.youtube.com/watch?v=m71qYHjWTRo',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Seluruh benua kecuali Antartika',
+  };

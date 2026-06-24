@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const kuda_laut: Animal = {
+    id: 'kuda-laut',
+    name: 'Kuda Laut',
+    englishName: 'Seahorse',
+    scientificName: 'Hippocampus',
+    emoji: '🦑',
+    category: 'laut',
+    habitat: 'Terumbu Karang',
+    habitatEmoji: '🪸',
+    food: 'Plankton (karnivora)',
+    foodEmoji: '🦐',
+    lifespan: '1–5 tahun',
+    weight: '10–50 gram',
+    description: 'Kuda laut adalah ikan kecil berbentuk unik dengan ekor melengkung. Yang paling istimewa: kuda laut jantan yang hamil dan melahirkan anak!',
+    color: '#F5B041',
+    funFacts: [
+      'Kuda laut jantan yang hamil dan melahirkan!',
+      'Kuda laut menggunakan ekornya untuk berpegangan pada rumput laut.',
+      'Kuda laut tidak memiliki gigi atau perut.',
+      'Kuda laut bergerak dengan sirip punggung yang bergetar cepat.',
+      'Mata kuda laut bisa bergerak sendiri-sendiri seperti bunglon!',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/8Wh3Bg7jU_o',
+    videoUrl: 'https://www.youtube.com/watch?v=8Wh3Bg7jU_o',
+    distribution: ['Asia Tenggara', 'Australia & Oseania'],
+    distributionCountries: 'Perairan dangkal tropis dan subtropis',
+  };

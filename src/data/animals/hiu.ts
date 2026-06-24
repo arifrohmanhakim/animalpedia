@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const hiu: Animal = {
+    id: 'hiu',
+    name: 'Hiu',
+    englishName: 'Shark',
+    scientificName: 'Selachimorpha',
+    emoji: '🦈',
+    category: 'laut',
+    habitat: 'Lautan Di Seluruh Dunia',
+    habitatEmoji: '🌊',
+    food: 'Ikan dan mamalia laut (karnivora)',
+    foodEmoji: '🐟',
+    lifespan: '20–150 tahun',
+    weight: '200–2.000 kg',
+    description: 'Hiu adalah ikan predator yang hebat. Hiu putih besar adalah hiu terbesar yang sering digambarkan di film, sebenarnya hiu paus yang terbesar dan tidak berbahaya bagi manusia.',
+    color: '#5D6D7E',
+    funFacts: [
+      'Hiu sudah ada sebelum dinosaurus! Yaitu 450 juta tahun lalu.',
+      'Hiu paus adalah ikan terbesar di dunia — panjangnya bisa 18 meter!',
+      'Hiu tidak memiliki tulang — kerangkanya terbuat dari tulang rawan.',
+      'Hiu bisa merasakan setetes darah di kolam renang raksasa.',
+      'Hiu berganti gigi terus-menerus — bisa 30.000 gigi seumur hidup!',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/2kfd1Y7X3DI',
+    videoUrl: 'https://www.youtube.com/watch?v=2kfd1Y7X3DI',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Seluruh samudra di dunia',
+  };

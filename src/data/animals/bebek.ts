@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const bebek: Animal = {
+    id: 'bebek',
+    name: 'Bebek',
+    englishName: 'Duck',
+    scientificName: 'Anatidae',
+    emoji: '🦆',
+    category: 'burung',
+    habitat: 'Kolam dan Danau',
+    habitatEmoji: '🦆',
+    food: 'Tumbuhan air dan serangga (omnivora)',
+    foodEmoji: '🌱',
+    lifespan: '5–10 tahun',
+    weight: '1–3 kg',
+    description: 'Bebek adalah burung air yang gemar berenang. Mereka memiliki paruh lebar untuk menyaring makanan dari air dan bulu yang anti air.',
+    color: '#C0392B',
+    funFacts: [
+      'Bulu bebek anti air karena dilapisi minyak khusus!',
+      'Bebek bisa tidur dengan satu mata terbuka.',
+      'Bebek jantan memiliki warna lebih cerah dari betina.',
+      'Anak bebek mengikuti induknya dalam barisan yang rapi.',
+      'Bebek bisa menyelam untuk mencari makanan di dasar kolam.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/rC6UX2UOcXg',
+    videoUrl: 'https://www.youtube.com/watch?v=rC6UX2UOcXg',
+    distribution: ['Di Seluruh Dunia'],
+    distributionCountries: 'Seluruh benua kecuali Antartika',
+  };

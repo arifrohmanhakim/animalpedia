@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const kura_kura: Animal = {
+    id: 'kura-kura',
+    name: 'Kura-kura',
+    englishName: 'Tortoise',
+    scientificName: 'Testudinidae',
+    emoji: '🐢',
+    category: 'reptil',
+    habitat: 'Padang Rumput dan Gurun',
+    habitatEmoji: '🏜️',
+    food: 'Rumput dan sayuran (herbivora)',
+    foodEmoji: '🥬',
+    lifespan: '80–150 tahun',
+    weight: '15–300 kg',
+    description: 'Kura-kura adalah reptil bercangkang keras yang bergerak lambat. Mereka adalah hewan yang sangat tua — hidup mereka bisa lebih lama dari manusia!',
+    color: '#6B8E23',
+    funFacts: [
+      'Kura-kura adalah hewan darat tertua — bisa hidup hingga 150 tahun!',
+      'Cangkang kura-kura adalah bagian dari tulang belakangnya.',
+      'Kura-kura tidak bisa keluar dari cangkangnya — cangkangnya menyatu!',
+      'Kura-kura sudah ada sejak 220 juta tahun yang lalu.',
+      'Kura-kura raksasa Aldabra beratnya bisa mencapai 300 kg!',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/z4OB0CQAqOM',
+    videoUrl: 'https://www.youtube.com/watch?v=z4OB0CQAqOM',
+    distribution: ['Afrika Sub-Sahara', 'Asia Selatan', 'Amerika Selatan'],
+    distributionCountries: 'Kepulauan Galapagos, Seychelles, Madagaskar, Indonesia',
+  };

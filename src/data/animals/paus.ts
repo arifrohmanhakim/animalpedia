@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const paus: Animal = {
+    id: 'paus',
+    name: 'Paus Biru',
+    englishName: 'Blue Whale',
+    scientificName: 'Balaenoptera musculus',
+    emoji: '🐋',
+    category: 'laut',
+    habitat: 'Lautan Terbuka',
+    habitatEmoji: '🌊',
+    food: 'Krill (karnivora)',
+    foodEmoji: '🦐',
+    lifespan: '70–90 tahun',
+    weight: '100.000–200.000 kg',
+    description: 'Paus biru adalah hewan TERBESAR yang pernah hidup di Bumi — bahkan lebih besar dari dinosaurus! Jantungnya sebesar mobil kecil.',
+    color: '#2C7BB6',
+    funFacts: [
+      'Jantung paus biru sebesar mobil kecil!',
+      'Lidah paus biru seberat gajah dewasa.',
+      'Bayi paus biru minum 400 liter susu setiap hari.',
+      'Suara paus biru bisa terdengar hingga 1.600 km jauhnya.',
+      'Paus biru bisa menyelam hingga 500 meter dan menahan napas hingga 90 menit.',
+    ],
+    conservationStatus: 'terancam',
+    videoEmbedUrl: 'https://www.youtube.com/embed/bI7dSsoXEvU',
+    videoUrl: 'https://www.youtube.com/watch?v=bI7dSsoXEvU',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Seluruh samudra di dunia',
+  };

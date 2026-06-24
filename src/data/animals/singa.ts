@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const singa: Animal = {
+    id: 'singa',
+    name: 'Singa',
+    englishName: 'Lion',
+    scientificName: 'Panthera leo',
+    emoji: '🦁',
+    category: 'mamalia',
+    habitat: 'Savana Afrika',
+    habitatEmoji: '🌅',
+    food: 'Daging (karnivora)',
+    foodEmoji: '🥩',
+    lifespan: '10–14 tahun',
+    weight: '150–250 kg',
+    description: 'Singa adalah raja hutan yang tinggal secara berkelompok. Singa jantan memiliki surai tebal yang indah. Singa betina lebih ahli berburu untuk kelompoknya.',
+    color: '#F5D76E',
+    funFacts: [
+      'Singa bisa tidur hingga 20 jam sehari!',
+      'Auman singa bisa terdengar hingga 8 km jauhnya.',
+      'Surai singa jantan tumbuh semakin gelap seiring usia.',
+      'Singa betina yang melakukan 90% perburuan.',
+      'Sekelompok singa disebut pride atau kebanggaan.',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/OMkEVX23BxM',
+    videoUrl: 'https://www.youtube.com/watch?v=OMkEVX23BxM',
+    distribution: ['Afrika Sub-Sahara'],
+    distributionCountries: 'Tanzania, Kenya, Afrika Selatan, Botswana, Zimbabwe',
+  };

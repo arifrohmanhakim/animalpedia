@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const beruang: Animal = {
+    id: 'beruang',
+    name: 'Beruang',
+    englishName: 'Bear',
+    scientificName: 'Ursidae',
+    emoji: '🐻',
+    category: 'mamalia',
+    habitat: 'Hutan Pegunungan',
+    habitatEmoji: '🌲',
+    food: 'Omnivora (serba makan)',
+    foodEmoji: '🍯',
+    lifespan: '20–30 tahun',
+    weight: '100–700 kg',
+    description: 'Beruang adalah hewan besar bertubuh tebal dengan bulu lebat. Beruang kutub adalah perenang ulung, sementara beruang coklat suka memancing ikan salmon!',
+    color: '#8B4513',
+    funFacts: [
+      'Beruang kutub memiliki kulit hitam di bawah bulu putihnya!',
+      'Beruang bisa berlari hingga 50 km/jam.',
+      'Beruang tidur sepanjang musim dingin (hibernasi).',
+      'Beruang coklat bisa memancing ikan salmon dengan cakarnya.',
+      'Indera penciuman beruang 100 kali lebih tajam dari manusia.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/Lmp3Fs5YPAc',
+    videoUrl: 'https://www.youtube.com/watch?v=Lmp3Fs5YPAc',
+    distribution: ['Amerika Utara', 'Eropa', 'Asia Timur', 'Asia Tengah'],
+    distributionCountries: 'Amerika Utara, Rusia, Skandinavia, Kanada, Jepang',
+  };

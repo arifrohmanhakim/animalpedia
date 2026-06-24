@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const jerapah: Animal = {
+    id: 'jerapah',
+    name: 'Jerapah',
+    englishName: 'Giraffe',
+    scientificName: 'Giraffa camelopardalis',
+    emoji: '🦒',
+    category: 'mamalia',
+    habitat: 'Savana Afrika',
+    habitatEmoji: '🌅',
+    food: 'Daun (herbivora)',
+    foodEmoji: '🌿',
+    lifespan: '20–25 tahun',
+    weight: '800–1.200 kg',
+    description: 'Jerapah adalah hewan tertinggi di dunia! Leher panjangnya membantu meraih daun di puncak pohon. Jerapah hanya perlu tidur 30 menit hingga 2 jam sehari.',
+    color: '#F0C040',
+    funFacts: [
+      'Leher jerapah memiliki 7 tulang yang sama seperti manusia!',
+      'Jerapah hanya minum air setiap beberapa hari sekali.',
+      'Bintik jerapah seperti sidik jari — unik untuk setiap jerapah.',
+      'Jerapah bisa berlari hingga 56 km/jam.',
+      'Lidah jerapah panjangnya mencapai 50 cm dan berwarna ungu!',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/GFLRqc5n3Oo',
+    videoUrl: 'https://www.youtube.com/watch?v=GFLRqc5n3Oo',
+    distribution: ['Afrika Sub-Sahara'],
+    distributionCountries: 'Kenya, Tanzania, Afrika Selatan, Namibia, Botswana',
+  };

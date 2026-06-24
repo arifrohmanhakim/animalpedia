@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const kambing_gunung: Animal = {
+    id: 'kambing-gunung',
+    name: 'Kambing Gunung',
+    englishName: 'Mountain Goat',
+    scientificName: 'Oreamnos americanus',
+    emoji: '🐐',
+    category: 'mamalia',
+    habitat: 'Pegunungan Tinggi',
+    habitatEmoji: '⛰️',
+    food: 'Rumput dan lumut (herbivora)',
+    foodEmoji: '🌿',
+    lifespan: '9–15 tahun',
+    weight: '45–140 kg',
+    description: 'Kambing gunung adalah pemanjat tebing yang luar biasa! Mereka bisa berdiri di tebing curam dengan kuku khusus yang anti selip.',
+    color: '#F0F0F0',
+    funFacts: [
+      'Kambing gunung bisa memanjat tebing dengan kemiringan 60 derajat!',
+      'Kuku mereka memiliki bantalan kasar seperti karet untuk mencengkeram batu.',
+      'Kambing gunung bisa melompat hingga 3,5 meter.',
+      'Mereka bisa memanjat bendungan untuk menjilat garam dari batu.',
+      'Bayi kambing gunung sudah bisa memanjat beberapa jam setelah lahir!',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/2pB0Q4PK_NQ',
+    videoUrl: 'https://www.youtube.com/watch?v=2pB0Q4PK_NQ',
+    distribution: ['Amerika Utara'],
+    distributionCountries: 'Amerika Serikat (Rocky Mountains), Kanada',
+  };

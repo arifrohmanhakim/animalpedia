@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const iguana: Animal = {
+    id: 'iguana',
+    name: 'Iguana',
+    englishName: 'Iguana',
+    scientificName: 'Iguana iguana',
+    emoji: '🦎',
+    category: 'reptil',
+    habitat: 'Hutan Hujan Tropis',
+    habitatEmoji: '🌴',
+    food: 'Daun dan buah (herbivora)',
+    foodEmoji: '🥬',
+    lifespan: '10–20 tahun',
+    weight: '4–8 kg',
+    description: 'Iguana adalah kadal besar herbivora yang suka berjemur di pohon. Mereka memiliki duri di punggung dan ekor panjang yang bisa digunakan untuk mempertahankan diri.',
+    color: '#58D68D',
+    funFacts: [
+      'Iguana bisa memutuskan ekornya untuk melarikan diri dari predator!',
+      'Iguana memiliki "mata ketiga" di atas kepalanya yang peka cahaya.',
+      'Iguana berenang dengan baik — mereka bisa menahan napas hingga 30 menit!',
+      'Warna iguana bisa berubah untuk mengatur suhu tubuh.',
+      'Iguana jantan memiliki duri yang lebih besar dan warna yang lebih cerah.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/cdRH1J6qVfU',
+    videoUrl: 'https://www.youtube.com/watch?v=cdRH1J6qVfU',
+    distribution: ['Amerika Selatan', 'Amerika Tengah'],
+    distributionCountries: 'Meksiko, Brasil, Kolombia, Ekuador, Karibia',
+  };

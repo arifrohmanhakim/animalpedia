@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const gurita: Animal = {
+    id: 'gurita',
+    name: 'Gurita',
+    englishName: 'Octopus',
+    scientificName: 'Octopoda',
+    emoji: '🐙',
+    category: 'laut',
+    habitat: 'Terumbu Karang',
+    habitatEmoji: '🪸',
+    food: 'Krustasea (karnivora)',
+    foodEmoji: '🦀',
+    lifespan: '1–3 tahun',
+    weight: '1–50 kg',
+    description: 'Gurita adalah hewan laut yang sangat cerdas dengan delapan lengan. Mereka bisa berubah warna dan bentuk untuk berkamuflase.',
+    color: '#E74C3C',
+    funFacts: [
+      'Gurita memiliki tiga jantung!',
+      'Darah gurita berwarna biru karena mengandung tembaga.',
+      'Lengan gurita memiliki pikiran sendiri — setiap lengan bisa bergerak sendiri.',
+      'Gurita bisa melewati celah sekecil matanya.',
+      'Gurita adalah hewan invertebrata paling cerdas di dunia.',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/Pkc7GJp3n7Y',
+    videoUrl: 'https://www.youtube.com/watch?v=Pkc7GJp3n7Y',
+    distribution: ['Semua Lautan'],
+    distributionCountries: 'Perairan tropis dan subtropis di seluruh dunia',
+  };

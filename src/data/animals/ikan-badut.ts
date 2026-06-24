@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const ikan_badut: Animal = {
+    id: 'ikan-badut',
+    name: 'Ikan Badut',
+    englishName: 'Clownfish',
+    scientificName: 'Amphiprioninae',
+    emoji: '🐠',
+    category: 'laut',
+    habitat: 'Terumbu Karang',
+    habitatEmoji: '🪸',
+    food: 'Plankton dan alga (omnivora)',
+    foodEmoji: '🦐',
+    lifespan: '6–10 tahun',
+    weight: '50–200 gram',
+    description: 'Ikan badut adalah ikan kecil berwarna oranye terang dengan garis putih. Mereka tinggal di dalam anemon laut yang beracun tanpa terluka!',
+    color: '#E67E22',
+    funFacts: [
+      'Ikan badut kebal terhadap racun anemon laut!',
+      'Semua ikan badut lahir sebagai jantan, lalu bisa berubah jadi betina.',
+      'Ikan badut hidup berkelompok dengan satu betina pemimpin.',
+      'Mereka membersihkan anemon tempat tinggalnya setiap hari.',
+      'Ikan badut terkenal dari film Finding Nemo!',
+    ],
+    conservationStatus: 'aman',
+    videoEmbedUrl: 'https://www.youtube.com/embed/JDLOnWOKF1U',
+    videoUrl: 'https://www.youtube.com/watch?v=JDLOnWOKF1U',
+    distribution: ['Asia Tenggara', 'Australia & Oseania'],
+    distributionCountries: 'Perairan tropis Samudra Pasifik dan Hindia',
+  };

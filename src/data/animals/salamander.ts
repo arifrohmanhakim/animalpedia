@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const salamander: Animal = {
+    id: 'salamander',
+    name: 'Salamander',
+    englishName: 'Salamander',
+    scientificName: 'Caudata',
+    emoji: '🦎',
+    category: 'amfibi',
+    habitat: 'Sungai dan Hutan Lembab',
+    habitatEmoji: '🌲',
+    food: 'Serangga dan cacing (karnivora)',
+    foodEmoji: '🪰',
+    lifespan: '10–30 tahun',
+    weight: '10–500 gram',
+    description: 'Salamander adalah amfibi berekor panjang yang mirip kadal. Mereka memiliki kemampuan luar biasa untuk menumbuhkan kembali bagian tubuh yang hilang!',
+    color: '#F0B27A',
+    funFacts: [
+      'Salamander bisa menumbuhkan kembali ekor, kaki, bahkan bagian mata!',
+      'Kulit salamander selalu lembab dan digunakan untuk bernapas.',
+      'Salamander raksasa China bisa mencapai panjang 1,8 meter!',
+      'Beberapa salamander tidak memiliki paru-paru — bernapas melalui kulit.',
+      'Salamander mengeluarkan racun dari kulitnya untuk melindungi diri.',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/OaMqyrSPYbU',
+    videoUrl: 'https://www.youtube.com/watch?v=OaMqyrSPYbU',
+    distribution: ['Amerika Utara', 'Eropa', 'Asia Timur'],
+    distributionCountries: 'Amerika Utara, Eropa, China, Jepang, Rusia',
+  };

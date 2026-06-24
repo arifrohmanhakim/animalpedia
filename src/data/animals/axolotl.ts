@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const axolotl: Animal = {
+    id: 'axolotl',
+    name: 'Axolotl',
+    englishName: 'Axolotl',
+    scientificName: 'Ambystoma mexicanum',
+    emoji: '🦎',
+    category: 'amfibi',
+    habitat: 'Danau Air Tawar',
+    habitatEmoji: '🏞️',
+    food: 'Cacing dan serangga (karnivora)',
+    foodEmoji: '🪱',
+    lifespan: '10–15 tahun',
+    weight: '60–250 gram',
+    description: 'Axolotl adalah salamander unik yang tidak pernah tumbuh dewasa! Mereka tetap tinggal di air sepanjang hidupnya dengan insang eksternal seperti mahkota.',
+    color: '#F5B7B1',
+    funFacts: [
+      'Axolotl tidak mengalami metamorfosis — tetap muda seumur hidup!',
+      'Axolotl bisa menumbuhkan kembali otak, jantung, dan sumsum tulang belakang!',
+      'Axolotl hanya ditemukan di satu tempat: Danau Xochimilco, Meksiko.',
+      'Mereka tersenyum sepanjang waktu karena bentuk mulutnya yang unik.',
+      'Axolotl bisa menyerap oksigen melalui kulit dan insangnya.',
+    ],
+    conservationStatus: 'terancam',
+    videoEmbedUrl: 'https://www.youtube.com/embed/WPmg_S7YBZU',
+    videoUrl: 'https://www.youtube.com/watch?v=WPmg_S7YBZU',
+    distribution: ['Amerika Utara'],
+    distributionCountries: 'Meksiko (Danau Xochimilco)',
+  };

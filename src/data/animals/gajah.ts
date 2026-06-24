@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const gajah: Animal = {
+    id: 'gajah',
+    name: 'Gajah',
+    englishName: 'Elephant',
+    scientificName: 'Loxodonta africana',
+    emoji: '🐘',
+    category: 'mamalia',
+    habitat: 'Savana dan Hutan',
+    habitatEmoji: '🌳',
+    food: 'Tumbuhan (herbivora)',
+    foodEmoji: '🌿',
+    lifespan: '60–70 tahun',
+    weight: '3.000–6.000 kg',
+    description: 'Gajah adalah hewan darat terbesar di dunia! Mereka sangat cerdas, memiliki ingatan yang kuat, dan hidup dalam keluarga yang dipimpin oleh gajah betina tertua.',
+    color: '#B8B8B8',
+    funFacts: [
+      'Belalai gajah memiliki lebih dari 40.000 otot!',
+      'Gajah bisa berkomunikasi melalui getaran tanah.',
+      'Gigi gajah bisa berganti hingga 6 kali seumur hidup.',
+      'Gajah mandi lumpur untuk melindungi kulit dari sinar matahari.',
+      'Gajah adalah satu-satunya mamalia yang tidak bisa melompat.',
+    ],
+    conservationStatus: 'terancam',
+    videoEmbedUrl: 'https://www.youtube.com/embed/9Y5TRB4pyCI',
+    videoUrl: 'https://www.youtube.com/watch?v=9Y5TRB4pyCI',
+    distribution: ['Afrika Sub-Sahara', 'Asia Selatan', 'Asia Tenggara'],
+    distributionCountries: 'Afrika, India, Thailand, Sri Lanka, Indonesia (Sumatra)',
+  };

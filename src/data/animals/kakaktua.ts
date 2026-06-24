@@ -1,0 +1,30 @@
+import type { Animal } from './types';
+
+export const kakaktua: Animal = {
+    id: 'kakaktua',
+    name: 'Kakatua',
+    englishName: 'Cockatoo',
+    scientificName: 'Cacatuidae',
+    emoji: '🦜',
+    category: 'burung',
+    habitat: 'Hutan Hujan Tropis',
+    habitatEmoji: '🌴',
+    food: 'Biji-bijian dan buah (herbivora)',
+    foodEmoji: '🥥',
+    lifespan: '40–70 tahun',
+    weight: '0,3–1,2 kg',
+    description: 'Kakatua adalah burung cerdas dengan jambul khas di kepalanya. Mereka bisa meniru suara manusia dan sangat pandai memecahkan teka-teki.',
+    color: '#FFFFFF',
+    funFacts: [
+      'Kakatua bisa hidup hingga 80 tahun — lebih lama dari manusia!',
+      'Kakatua bisa menirukan berbagai suara, termasuk ucapan manusia.',
+      'Kakatua menggunakan cakarnya untuk memegang makanan saat makan.',
+      'Jambul kakatua menunjukkan perasaan mereka.',
+      'Kakatua sangat setia pada pasangannya seumur hidup.',
+    ],
+    conservationStatus: 'rentan',
+    videoEmbedUrl: 'https://www.youtube.com/embed/2kJF3G2Tk7I',
+    videoUrl: 'https://www.youtube.com/watch?v=2kJF3G2Tk7I',
+    distribution: ['Asia Tenggara', 'Australia & Oseania'],
+    distributionCountries: 'Indonesia, Australia, Papua Nugini, Filipina',
+  };
