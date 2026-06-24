@@ -15,6 +15,10 @@ export default defineConfig(() => ({
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "placeholder.svg", "sounds/**/*"],
+      devOptions: {
+        enabled: true,
+        type: "module",
+      },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,mp3,wav,ogg}"],
         runtimeCaching: [

@@ -67,7 +67,8 @@ export function ToastContainer() {
   }, []);
 
   return (
-    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] flex flex-col gap-2 w-[calc(100%-2rem)] max-w-sm pointer-events-none">
+    <div className="fixed top-4 left-0 right-0 z-[100] flex justify-center pointer-events-none">
+      <div className="flex flex-col gap-2 w-[calc(100%-2rem)] max-w-sm">
       {toasts.map((toast, i) => (
         <div
           key={toast.id}
@@ -106,6 +107,7 @@ export function ToastContainer() {
           )}
         </div>
       ))}
+      </div>
     </div>
   );
 }

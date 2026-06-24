@@ -11,6 +11,7 @@ import { GamesHub } from '@/components/GamesHub';
 import { AnimalDetailScreen } from '@/components/AnimalDetailScreen';
 import { QuizScreen } from '@/components/QuizScreen';
 import { ToastContainer } from '@/components/ToastNotification';
+import { InstallPrompt } from '@/components/InstallPrompt';
 
 const Index = () => {
   const showSplash = useGameStore((s) => s.showSplash);
@@ -122,44 +123,47 @@ const Index = () => {
   };
 
   return (
-    <div
-      className="h-dvh w-full max-w-md mx-auto relative overflow-hidden flex flex-col"
-      style={{
-        background: 'var(--cream)',
-        boxShadow: '0 0 40px rgba(0,0,0,0.08)',
-      }}
-    >
-      {showSplash && <SplashScreen />}
+    <>
+      <div
+        className="h-dvh w-full max-w-md mx-auto relative overflow-hidden flex flex-col"
+        style={{
+          background: 'var(--cream)',
+          boxShadow: '0 0 40px rgba(0,0,0,0.08)',
+        }}
+      >
+        {showSplash && <SplashScreen />}
 
-      {!showSplash && !onboardingComplete && <OnboardingScreen />}
+        {!showSplash && !onboardingComplete && <OnboardingScreen />}
 
-      {!showSplash && onboardingComplete && (
-        <div className="flex flex-col flex-1 overflow-hidden">
-          <div className="flex-1 overflow-hidden relative">
-            {renderTabContent()}
+        {!showSplash && onboardingComplete && (
+          <div className="flex flex-col flex-1 overflow-hidden">
+            <div className="flex-1 overflow-hidden relative">
+              {renderTabContent()}
+            </div>
+            <BottomNav />
           </div>
-          <BottomNav />
-        </div>
-      )}
+        )}
 
-      {detailAnimalId && (
-        <AnimalDetailScreen
-          animalId={detailAnimalId}
-          onBack={handleCloseDetail}
-          onNavigate={handleNavigateFamily}
-        />
-      )}
+        {detailAnimalId && (
+          <AnimalDetailScreen
+            animalId={detailAnimalId}
+            onBack={handleCloseDetail}
+            onNavigate={handleNavigateFamily}
+          />
+        )}
 
-      {quizInProgress && currentQuizAnimalId && (
-        <QuizScreen
-          animalId={currentQuizAnimalId}
-          onBack={handleCancelQuiz}
-          onFinish={handleFinishQuiz}
-        />
-      )}
+        {quizInProgress && currentQuizAnimalId && (
+          <QuizScreen
+            animalId={currentQuizAnimalId}
+            onBack={handleCancelQuiz}
+            onFinish={handleFinishQuiz}
+          />
+        )}
+      </div>
 
       <ToastContainer />
-    </div>
+      <InstallPrompt />
+    </>
   );
 };
 
