@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useGameStore } from "@/store/gameStore";
-import { animals, PROGRESSION_ORDER, getInSequenceCompletedCount } from "@/data/animals";
+import {
+  animals,
+  PROGRESSION_ORDER,
+  getInSequenceCompletedCount,
+} from "@/data/animals";
 import type { Animal } from "@/data/animals/types";
 import type { ProgressionState } from "@/data/animals";
 import { playAnimalSound } from "@/lib/audio";
@@ -576,7 +580,7 @@ function AnimalCircleCard({
           style={{ background: cardBg }}
           disabled={state === "locked"}
         >
-          <span className="text-4xl sm:text-[64px] leading-none select-none">
+          <span className="text-3xl sm:text-[64px] leading-none select-none">
             {showEmoji}
           </span>
 
@@ -597,7 +601,7 @@ function AnimalCircleCard({
           {/* Current indicator arrow */}
           {state === "current" && (
             <div className="absolute -top-1 left-1/2 -translate-x-1/2">
-              <div className="text-[10px] animate-bounce">👇</div>
+              <div className="text-3xl animate-bounce">👇</div>
             </div>
           )}
         </button>
@@ -618,7 +622,7 @@ function AnimalCircleCard({
         {[0, 1, 2].map((i) => (
           <span
             key={i}
-            className={`text-xl leading-none drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)] ${
+            className={`${i === 1 ? "text-2xl" : "text-xl"} leading-none drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)] ${
               i < starCount
                 ? "text-yellow-500"
                 : "text-[var(--ink-soft)] opacity-35"
