@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useGameStore } from "@/store/gameStore";
 import { animals } from "@/data/animals";
 import { showToastXP, showToastBadge } from "@/components/ToastNotification";
@@ -7,6 +7,7 @@ import { AudioNarrationModal } from "@/components/AudioNarrationModal";
 import { VideoPlayerModal } from "@/components/VideoPlayerModal";
 import { MapModal } from "@/components/MapModal";
 import { FamilyTree } from "@/components/FamilyTree";
+import { playAmbience, type AmbienceController } from "@/lib/ambience";
 
 interface Props {
   animalId: string;
@@ -26,6 +27,34 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
   const [showNarration, setShowNarration] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [showMapModal, setShowMapModal] = useState(false);
+  const ambienceRef = useRef<AmbienceController | null>(null);
+  const [ambienceMuted, setAmbienceMuted] = useState(() => {
+    return localStorage.getItem('ambienceMuted') === 'true';
+  });
+
+  // Auto-play ambience on mount, stop on unmount
+  useEffect(() => {
+    if (!animal) return;
+    if (!ambienceMuted) {
+      ambienceRef.current = playAmbience(animal.habitat);
+    }
+    return () => {
+      ambienceRef.current?.stop();
+      ambienceRef.current = null;
+    };
+  }, [animal, ambienceMuted]);
+
+  const toggleAmbience = () => {
+    const next = !ambienceMuted;
+    setAmbienceMuted(next);
+    localStorage.setItem('ambienceMuted', String(next));
+    if (next) {
+      ambienceRef.current?.stop();
+      ambienceRef.current = null;
+    } else if (animal) {
+      ambienceRef.current = playAmbience(animal.habitat);
+    }
+  };
 
   useEffect(() => {
     if (animal) {
@@ -91,16 +120,29 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
             >
               ←
             </button>
-            <button
-              onClick={() => toggleFavorite(animal.id)}
-              className={`w-[34px] h-[34px] rounded-full border-2 flex items-center justify-center text-sm transition-all active:scale-90 ${
-                fav
-                  ? 'bg-[var(--red-pale)] border-[var(--red)]'
-                  : 'bg-[var(--paper)] border-[var(--ink)]'
-              }`}
-            >
-              {fav ? '❤️' : '🤍'}
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={toggleAmbience}
+                className={`w-[34px] h-[34px] rounded-full border-2 flex items-center justify-center text-sm transition-all active:scale-90 ${
+                  ambienceMuted
+                    ? 'bg-[var(--paper)] border-[var(--ink-soft)] opacity-50'
+                    : 'bg-[var(--orange-pale)] border-[var(--orange)]'
+                }`}
+                title={ambienceMuted ? "Aktifkan suara lingkungan" : "Matikan suara lingkungan"}
+              >
+                {ambienceMuted ? '🔇' : '🎵'}
+              </button>
+              <button
+                onClick={() => toggleFavorite(animal.id)}
+                className={`w-[34px] h-[34px] rounded-full border-2 flex items-center justify-center text-sm transition-all active:scale-90 ${
+                  fav
+                    ? 'bg-[var(--red-pale)] border-[var(--red)]'
+                    : 'bg-[var(--paper)] border-[var(--ink)]'
+                }`}
+              >
+                {fav ? '❤️' : '🤍'}
+              </button>
+            </div>
           </div>
           <div className="text-center mt-1">
             {animal.illustrationSvg ? (

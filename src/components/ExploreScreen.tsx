@@ -25,44 +25,36 @@ const PLANT_SVGS = {
 
 type PlantType = keyof typeof PLANT_SVGS;
 
-const SIDE_PLANTS: PlantType[] = [
-  "treeA",
-  "treeB",
-  "treeA",
-  "fern",
-  "bush",
-  "treeB",
-  "grassA",
-  "grassB",
-  "grassC",
-  "flower",
-];
-
-function PlantIllustration({
+function ZoneDecoration({
   type,
   side,
   top,
   scale,
+  svg,
 }: {
-  type: PlantType;
+  type: string;
   side: string;
   top: number;
   scale: number;
+  svg?: string;
 }) {
-  const svg = PLANT_SVGS[type];
+  const isCustom = !!svg;
+  const svgContent = isCustom ? svg! : PLANT_SVGS[type as PlantType];
+  if (!svgContent) return null;
+
   return (
     <div
       className="absolute pointer-events-none select-none"
       style={{
         [side as "left" | "right"]:
-          type === "treeA" || type === "treeB" ? "4px" : "12px",
+          !isCustom && (type === "treeA" || type === "treeB") ? "4px" : "8px",
         top: `${top}px`,
         transform: `scale(${scale})`,
-        opacity: type.startsWith("tree") ? 0.55 : 0.5,
+        opacity: isCustom ? 0.45 : type.startsWith("tree") ? 0.55 : 0.5,
         filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.12))",
         zIndex: 0,
       }}
-      dangerouslySetInnerHTML={{ __html: svg }}
+      dangerouslySetInnerHTML={{ __html: svgContent }}
     />
   );
 }
@@ -88,28 +80,35 @@ function generatePathD(count: number): string {
   return d;
 }
 
-/* ======== PLANT POSITIONS ======== */
+/* ======== DECORATION POSITIONS ======== */
 
-function generatePlants(count: number) {
+type DecorationItem = {
+  type: string;
+  side: "left" | "right";
+  top: number;
+  scale: number;
+  svg?: string;
+};
+
+function generateDecorations(count: number, zone: string): DecorationItem[] {
   const totalHeight = count * 160 + 300;
-  const placements: Array<{
-    type: PlantType;
-    side: "left" | "right";
-    top: number;
-    scale: number;
-  }> = [];
+  const items = ZONE_DECORATIONS[zone] || ZONE_DECORATIONS.mamalia;
+  const placements: DecorationItem[] = [];
   const density = Math.max(4, Math.ceil(count / 2.5));
 
   for (let i = 0; i < density; i++) {
     for (let side = 0; side < 2; side++) {
-      const idx = (i * 2 + side) % SIDE_PLANTS.length;
+      const idx = (i * 2 + side) % items.length;
       const topOffset =
         (i / density) * totalHeight + 20 + side * 50 + Math.random() * 40;
+      const item = items[idx];
+      const isSvg = item.startsWith("<svg");
       placements.push({
-        type: SIDE_PLANTS[idx],
+        type: isSvg ? "custom" : item,
         side: side === 0 ? "left" : "right",
         top: Math.floor(topOffset),
-        scale: 0.75 + (i % 4) * 0.12,
+        scale: isSvg ? 0.6 + (i % 4) * 0.1 : 0.75 + (i % 4) * 0.12,
+        svg: isSvg ? item : undefined,
       });
     }
   }
@@ -129,6 +128,79 @@ const ZONE_CONFIG: Record<
   laut: { emoji: "🐠", label: "Lautan Lepas", color: "#0D6E9E" },
   serangga: { emoji: "🐝", label: "Kebun Bunga", color: "#689F38" },
   amfibi: { emoji: "🐸", label: "Tepi Danau", color: "#3B8E5E" },
+};
+
+/* ======== ZONE BACKGROUND THEMES ======== */
+
+type ZoneTheme = {
+  bg: string;
+  road: { base: string; inner: string; highlight: string };
+  edge: string;
+};
+
+const ZONE_THEME: Record<string, ZoneTheme> = {
+  mamalia: {
+    bg: "#E8F0D6, #DCE8C8, #C5D9A8",
+    road: { base: "#A0722A", inner: "#BF9345", highlight: "#D4A853" },
+    edge: "rgba(139,195,74,0.15)",
+  },
+  burung: {
+    bg: "#B3E5FC, #81D4FA, #4FC3F7",
+    road: { base: "#90A4AE", inner: "#B0BEC5", highlight: "#CFD8DC" },
+    edge: "rgba(255,255,255,0.2)",
+  },
+  reptil: {
+    bg: "#FDEBD0, #F5CBA7, #E59866",
+    road: { base: "#C9A96E", inner: "#D4B88A", highlight: "#E0C9A6" },
+    edge: "rgba(230,126,34,0.1)",
+  },
+  laut: {
+    bg: "#B3D9F2, #5DADE2, #1A5276",
+    road: { base: "#5D7B8C", inner: "#7A9BAE", highlight: "#9FBAC9" },
+    edge: "rgba(255,255,255,0.15)",
+  },
+  serangga: {
+    bg: "#E8F5E9, #C8E6C9, #A5D6A7",
+    road: { base: "#8D6E63", inner: "#A1887F", highlight: "#BCAAA4" },
+    edge: "rgba(244,143,177,0.15)",
+  },
+  amfibi: {
+    bg: "#B2DFDB, #80CBC4, #4DB6AC",
+    road: { base: "#7B8D6E", inner: "#9AAA8A", highlight: "#B8C9A8" },
+    edge: "rgba(255,255,255,0.2)",
+  },
+};
+
+/* ======== ZONE SVG DECORATIONS ======== */
+
+const ZONE_DECORATIONS: Record<string, string[]> = {
+  mamalia: ["treeA", "treeB", "treeA", "fern", "bush", "treeB", "grassA", "grassB", "grassC", "flower"],
+  burung: [
+    `<svg viewBox="0 0 60 36" width="60" height="36"><ellipse cx="20" cy="20" rx="18" ry="12" fill="white" opacity="0.7"/><ellipse cx="36" cy="18" rx="16" ry="14" fill="white" opacity="0.7"/><ellipse cx="28" cy="16" rx="22" ry="13" fill="white" opacity="0.8"/></svg>`,
+    `<svg viewBox="0 0 40 24" width="40" height="24"><ellipse cx="15" cy="12" rx="12" ry="8" fill="white" opacity="0.5"/><ellipse cx="25" cy="10" rx="10" ry="9" fill="white" opacity="0.5"/><ellipse cx="19" cy="9" rx="14" ry="8" fill="white" opacity="0.6"/></svg>`,
+    `<svg viewBox="0 0 30 30" width="30" height="30"><circle cx="15" cy="15" r="12" fill="#FFD54F" opacity="0.8"/><circle cx="15" cy="15" r="10" fill="#FFEB3B" opacity="0.6"/></svg>`,
+  ],
+  reptil: [
+    `<svg viewBox="0 0 36 50" width="36" height="50"><rect x="14" y="5" width="8" height="30" rx="4" fill="#5D4037"/><path d="M14 10 Q2 15 4 25" stroke="#5D4037" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M22 10 Q34 15 32 25" stroke="#5D4037" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M14 35 Q10 45 12 50" stroke="#5D4037" stroke-width="2" fill="none"/><path d="M22 35 Q26 45 24 50" stroke="#5D4037" stroke-width="2" fill="none"/></svg>`,
+    `<svg viewBox="0 0 30 20" width="30" height="20"><path d="M0 15 Q8 5 15 10 Q22 5 30 15" stroke="#C9A96E" stroke-width="1.5" fill="none" opacity="0.5"/></svg>`,
+    `<svg viewBox="0 0 50 30" width="50" height="30"><ellipse cx="25" cy="25" rx="23" ry="4" fill="#E67E22" opacity="0.15"/><ellipse cx="15" cy="22" rx="12" ry="3" fill="#E67E22" opacity="0.1"/></svg>`,
+  ],
+  laut: [
+    `<svg viewBox="0 0 50 16" width="50" height="16"><path d="M0 12 Q10 2 25 8 Q40 14 50 4" stroke="white" stroke-width="2" fill="none" opacity="0.4" stroke-linecap="round"/></svg>`,
+    `<svg viewBox="0 0 40 12" width="40" height="12"><path d="M0 8 Q8 0 20 5 Q32 10 40 2" stroke="white" stroke-width="1.5" fill="none" opacity="0.3" stroke-linecap="round"/></svg>`,
+    `<svg viewBox="0 0 20 20" width="20" height="20"><circle cx="8" cy="10" r="3" fill="white" opacity="0.25"/><circle cx="13" cy="7" r="2" fill="white" opacity="0.2"/><circle cx="6" cy="14" r="1.5" fill="white" opacity="0.15"/></svg>`,
+  ],
+  serangga: [
+    "flower",
+    "grassA", "grassB",
+    `<svg viewBox="0 0 24 24" width="24" height="24"><ellipse cx="8" cy="8" rx="6" ry="4" fill="#F48FB1" opacity="0.7"/><ellipse cx="16" cy="8" rx="6" ry="4" fill="#CE93D8" opacity="0.7"/><rect x="11" y="6" width="2" height="10" fill="#66BB6A"/></svg>`,
+    `<svg viewBox="0 0 20 18" width="20" height="18"><ellipse cx="10" cy="10" rx="8" ry="6" fill="#FF7043" opacity="0.6"/><circle cx="8" cy="8" r="2" fill="#FFB74D"/><circle cx="12" cy="8" r="2" fill="#FFB74D"/></svg>`,
+  ],
+  amfibi: [
+    `<svg viewBox="0 0 30 36" width="30" height="36"><path d="M8 36 Q4 20 8 4" stroke="#66BB6A" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M22 36 Q26 20 22 4" stroke="#66BB6A" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M8 20 Q15 16 22 20" stroke="#66BB6A" stroke-width="1.5" fill="none"/></svg>`,
+    `<svg viewBox="0 0 40 12" width="40" height="12"><path d="M0 10 Q10 4 20 8 Q30 12 40 6" stroke="white" stroke-width="1.5" fill="none" opacity="0.3" stroke-linecap="round"/></svg>`,
+    `<svg viewBox="0 0 24 14" width="24" height="14"><ellipse cx="12" cy="8" rx="10" ry="5" fill="#4DB6AC" opacity="0.25"/><circle cx="8" cy="7" r="3" fill="#F8BBD0" opacity="0.35"/><circle cx="16" cy="7" r="2.5" fill="#F8BBD0" opacity="0.3"/></svg>`,
+  ],
 };
 
 /* ======== ZONE LOCK HELPER ======== */
@@ -208,9 +280,9 @@ export function ExploreScreen() {
     return cache;
   }, [completedCount]);
 
-  const plants = useMemo(
-    () => generatePlants(flatOrder.length),
-    [flatOrder.length],
+  const zoneDecorations = useMemo(
+    () => generateDecorations(flatOrder.length, currentZone === "semua" ? "mamalia" : currentZone),
+    [flatOrder.length, currentZone],
   );
   const svgPath = useMemo(
     () => generatePathD(flatOrder.length),
@@ -329,22 +401,42 @@ export function ExploreScreen() {
 
       {/* ======== FOREST PATH ======== */}
       <div ref={scrollRef} className="screen-scroll relative">
-        {/* Ground texture */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#E8F0D6] via-[#DCE8C8] to-[#C8D9A8]" />
+        {/* Dynamic zone background */}
+        <div
+          className="absolute inset-0 pointer-events-none transition-all duration-700 ease-in-out"
+          style={{
+            background: `linear-gradient(to bottom, ${currentZone === "semua" ? "#E8F0D6, #DCE8C8, #C5D9A8" : (ZONE_THEME[currentZone]?.bg || ZONE_THEME.mamalia.bg)})`,
+          }}
+        />
 
-        {/* Grass edge strips */}
-        <div className="absolute left-0 top-0 bottom-0 w-2/12 bg-gradient-to-r from-[#8BC34A]/15 to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-2/12 bg-gradient-to-l from-[#8BC34A]/15 to-transparent pointer-events-none" />
+        {/* Zone edge strips */}
+        {currentZone !== "semua" && (
+          <>
+            <div
+              className="absolute left-0 top-0 bottom-0 w-2/12 pointer-events-none transition-all duration-500"
+              style={{
+                background: `linear-gradient(to right, ${ZONE_THEME[currentZone]?.edge} 0%, transparent 100%)`,
+              }}
+            />
+            <div
+              className="absolute right-0 top-0 bottom-0 w-2/12 pointer-events-none transition-all duration-500"
+              style={{
+                background: `linear-gradient(to left, ${ZONE_THEME[currentZone]?.edge} 0%, transparent 100%)`,
+              }}
+            />
+          </>
+        )}
 
-        {/* SVG plant illustrations */}
+        {/* SVG zone decorations */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {plants.map((p, i) => (
-            <PlantIllustration
+          {zoneDecorations.map((d, i) => (
+            <ZoneDecoration
               key={i}
-              type={p.type}
-              side={p.side}
-              top={p.top}
-              scale={p.scale}
+              type={d.type}
+              side={d.side}
+              top={d.top}
+              scale={d.scale}
+              svg={d.svg}
             />
           ))}
         </div>
@@ -368,32 +460,35 @@ export function ExploreScreen() {
               opacity="0.25"
               transform="translate(0, 5)"
             />
-            {/* Road base (dirt) */}
+            {/* Road base */}
             <path
               d={svgPath}
-              stroke="#A0722A"
+              stroke={ZONE_THEME[currentZone]?.road.base || "#A0722A"}
               strokeWidth="44"
               fill="none"
               strokeLinecap="round"
               opacity="0.85"
+              className="transition-all duration-500"
             />
-            {/* Road inner (lighter dirt) */}
+            {/* Road inner */}
             <path
               d={svgPath}
-              stroke="#BF9345"
+              stroke={ZONE_THEME[currentZone]?.road.inner || "#BF9345"}
               strokeWidth="30"
               fill="none"
               strokeLinecap="round"
               opacity="0.7"
+              className="transition-all duration-500"
             />
             {/* Road top highlight */}
             <path
               d={svgPath}
-              stroke="#D4A853"
+              stroke={ZONE_THEME[currentZone]?.road.highlight || "#D4A853"}
               strokeWidth="14"
               fill="none"
               strokeLinecap="round"
               opacity="0.45"
+              className="transition-all duration-500"
             />
             {/* Center dashed line */}
             <path
