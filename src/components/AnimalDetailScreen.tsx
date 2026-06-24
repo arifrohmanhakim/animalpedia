@@ -103,20 +103,22 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
             </button>
           </div>
           <div className="text-center mt-1">
-            {animal.imageUrl ? (
+            {animal.illustrationSvg ? (
+              <div
+                className="w-[220px] h-[220px] mx-auto animate-float"
+                dangerouslySetInnerHTML={{ __html: animal.illustrationSvg }}
+              />
+            ) : animal.imageUrl && !animal.imageUrl.includes('emoji-datasource') ? (
               <img
                 src={animal.imageUrl}
                 alt={animal.name}
                 className="w-[160px] h-[160px] mx-auto object-contain animate-float"
                 loading="lazy"
               />
-            ) : animal.illustrationSvg ? (
-              <div
-                className="w-[220px] h-[220px] mx-auto animate-float"
-                dangerouslySetInnerHTML={{ __html: animal.illustrationSvg }}
-              />
             ) : (
-              <div className="text-[84px] leading-none animate-float">{animal.emoji}</div>
+              <svg viewBox="0 0 120 120" width="200" height="200" className="mx-auto animate-float">
+                <text x="60" y="95" textAnchor="middle" fontSize="85">{animal.emoji}</text>
+              </svg>
             )}
             <span
               className="sticker-badge inline-block -mt-1"
