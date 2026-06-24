@@ -4,6 +4,7 @@ export interface Animal {
   englishName: string;
   scientificName: string;
   emoji: string;
+  illustrationSvg: string;
   category: string;
   habitat: string;
   habitatEmoji: string;
@@ -34,4 +35,3 @@ export interface FamilyGroup {
   emoji: string;
   members: FamilyMember[];
 }
-
