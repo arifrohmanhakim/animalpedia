@@ -15,7 +15,8 @@ export const ikan_badut: Animal = {
     weight: '50–200 gram',
     description: 'Ikan badut adalah ikan kecil berwarna oranye terang dengan garis putih. Mereka tinggal di dalam anemon laut yang beracun tanpa terluka!',
     color: '#E67E22',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f420.png",
+  funFacts: [
       'Ikan badut kebal terhadap racun anemon laut!',
       'Semua ikan badut lahir sebagai jantan, lalu bisa berubah jadi betina.',
       'Ikan badut hidup berkelompok dengan satu betina pemimpin.',

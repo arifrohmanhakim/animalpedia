@@ -15,7 +15,8 @@ export const hiu: Animal = {
     weight: '200–2.000 kg',
     description: 'Hiu adalah ikan predator yang hebat. Hiu putih besar adalah hiu terbesar yang sering digambarkan di film, sebenarnya hiu paus yang terbesar dan tidak berbahaya bagi manusia.',
     color: '#5D6D7E',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f988.png",
+  funFacts: [
       'Hiu sudah ada sebelum dinosaurus! Yaitu 450 juta tahun lalu.',
       'Hiu paus adalah ikan terbesar di dunia — panjangnya bisa 18 meter!',
       'Hiu tidak memiliki tulang — kerangkanya terbuat dari tulang rawan.',

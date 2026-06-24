@@ -16,6 +16,7 @@ export const tikus: Animal = {
   color: '#A0A0A0',
   conservationStatus: 'aman',
   description: 'Tikus adalah mamalia kecil yang sangat adaptif dan bisa ditemukan di hampir seluruh dunia. Mereka berkembang biak dengan cepat dan memiliki indra penciuman yang tajam.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f42d.png",
   funFacts: [
     'Tikus bisa masuk melalui celah sekecil 6 mm!',
     'Ekor tikus digunakan untuk menjaga keseimbangan.',

@@ -15,7 +15,8 @@ export const merak: Animal = {
     weight: '3–6 kg',
     description: 'Merak jantan memiliki bulu ekor yang sangat indah dengan pola seperti mata. Mereka membuka bulu ekornya untuk menarik perhatian merak betina.',
     color: '#1ABC9C',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f99a.png",
+  funFacts: [
       'Ekor merak jantan bisa mencapai 2 meter!',
       'Bulu ekor merak bergaris-garis seperti mata untuk menakuti predator.',
       'Merak betina berwarna coklat kusam (tidak mencolok).',

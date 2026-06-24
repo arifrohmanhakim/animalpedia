@@ -15,7 +15,8 @@ export const katak: Animal = {
     weight: '10–500 gram',
     description: 'Katak adalah amfibi yang bisa hidup di air dan di darat. Mereka melompat dengan kaki belakang yang kuat dan menangkap serangga dengan lidah panjangnya.',
     color: '#2ECC71',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f438.png",
+  funFacts: [
       'Katak bisa melompat hingga 20 kali panjang tubuhnya!',
       'Katak minum air melalui kulitnya, bukan mulutnya.',
       'Beberapa katak bisa berubah warna seperti bunglon.',

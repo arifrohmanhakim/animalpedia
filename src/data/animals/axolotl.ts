@@ -15,7 +15,8 @@ export const axolotl: Animal = {
     weight: '60–250 gram',
     description: 'Axolotl adalah salamander unik yang tidak pernah tumbuh dewasa! Mereka tetap tinggal di air sepanjang hidupnya dengan insang eksternal seperti mahkota.',
     color: '#F5B7B1',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98e.png",
+  funFacts: [
       'Axolotl tidak mengalami metamorfosis — tetap muda seumur hidup!',
       'Axolotl bisa menumbuhkan kembali otak, jantung, dan sumsum tulang belakang!',
       'Axolotl hanya ditemukan di satu tempat: Danau Xochimilco, Meksiko.',

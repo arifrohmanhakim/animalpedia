@@ -16,6 +16,7 @@ export const rusa: Animal = {
   color: '#C8956B',
   conservationStatus: 'aman',
   description: 'Rusa adalah hewan pemalu yang gesit dan anggun. Rusa jantan memiliki tanduk bercabang yang indah yang rontok dan tumbuh setiap tahun.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98c.png",
   funFacts: [
     'Tanduk rusa rontok dan tumbuh kembali setiap tahun!',
     'Rusa bisa berlari hingga 65 km/jam.',

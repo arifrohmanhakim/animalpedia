@@ -16,6 +16,7 @@ export const badak: Animal = {
   color: '#7F8C8D',
   conservationStatus: 'terancam',
   description: 'Badak adalah hewan darat terbesar kedua setelah gajah. Mereka memiliki kulit tebal dan satu atau dua cula di hidungnya yang terbuat dari keratin.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98f.png",
   funFacts: [
     'Cula badak terbuat dari keratin — sama seperti kuku manusia!',
     'Badak bisa berlari hingga 50 km/jam meski tubuhnya besar.',

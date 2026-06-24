@@ -16,6 +16,7 @@ export const gorila: Animal = {
   color: '#2C3E50',
   conservationStatus: 'terancam',
   description: 'Gorila adalah primata terbesar dan terkuat di dunia. Meskipun tampak menakutkan, gorila adalah hewan yang lembut dan hidup dalam keluarga yang harmonis.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98d.png",
   funFacts: [
     'Gorila berbagi 98% DNA dengan manusia!',
     'Gorila jantan disebut "silverback" karena punggungnya yang keperakan.',

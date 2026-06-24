@@ -16,6 +16,7 @@ export const rubah: Animal = {
   color: '#E67E22',
   conservationStatus: 'aman',
   description: 'Rubah adalah hewan cerdik yang terkenal karena kelicikannya dalam dongeng. Mereka memiliki telinga runcing dan ekor lebat yang indah.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98a.png",
   funFacts: [
     'Rubah bisa mendengar suara jarum jam dari 30 meter!',
     'Ekor rubah digunakan untuk menjaga keseimbangan dan kehangatan.',

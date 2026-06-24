@@ -16,6 +16,7 @@ export const anjing: Animal = {
   color: '#C68E5B',
   conservationStatus: 'aman',
   description: 'Anjing adalah sahabat terbaik manusia yang setia dan cerdas. Mereka bisa dilatih untuk berbagai tugas seperti menggembala, menjaga, atau membantu penyandang disabilitas.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f436.png",
   funFacts: [
     'Indra penciuman anjing 100.000 kali lebih tajam dari manusia!',
     'Anjing bisa mengerti hingga 250 kata dan isyarat.',

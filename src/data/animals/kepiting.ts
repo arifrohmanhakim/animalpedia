@@ -16,6 +16,7 @@ export const kepiting: Animal = {
   color: '#E74C3C',
   conservationStatus: 'aman',
   description: 'Kepiting adalah krustasea berjalan menyamping dengan capit yang kuat. Mereka bisa ditemukan di pantai berpasir dan dasar lautan di seluruh dunia.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f980.png",
   funFacts: [
     'Kepiting berjalan menyamping, bukan maju!',
     'Kepiting bisa menumbuhkan kembali capit yang putus.',

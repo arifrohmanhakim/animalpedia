@@ -16,6 +16,7 @@ export const unta: Animal = {
   color: '#C2A67A',
   conservationStatus: 'aman',
   description: 'Unta adalah "kapal gurun" yang bisa bertahan hidup di padang pasir yang kering dan panas. Punuknya menyimpan lemak, bukan air!',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f42a.png",
   funFacts: [
     'Punuk unta menyimpan lemak, bukan air!',
     'Unta bisa minum 100 liter air dalam 10 menit.',

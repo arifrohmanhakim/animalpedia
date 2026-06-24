@@ -16,6 +16,7 @@ export const singa_laut: Animal = {
   color: '#8B7355',
   conservationStatus: 'aman',
   description: 'Singa laut adalah mamalia laut yang lincah dan cerdas. Mereka sering terlihat berjemur di pantai berbatu dan merupakan perenang dan penyelam ulung.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f9ad.png",
   funFacts: [
     'Singa laut bisa menahan napas hingga 20 menit!',
     'Mereka bisa menyelam hingga 300 meter mencari makanan.',

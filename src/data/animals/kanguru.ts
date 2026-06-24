@@ -15,7 +15,8 @@ export const kanguru: Animal = {
     weight: '20–90 kg',
     description: 'Kanguru adalah hewan ikonik Australia yang bergerak dengan melompat. Kanguru betina membawa bayinya di dalam kantung di perutnya.',
     color: '#CD853F',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f998.png",
+  funFacts: [
       'Kanguru betina bisa "menjeda" kehamilan jika kondisi tidak mendukung.',
       'Kanguru bisa melompat hingga 8 meter sekali lompatan!',
       'Kanguru tidak bisa berjalan mundur.',

@@ -15,7 +15,8 @@ export const kupu_kupu: Animal = {
     weight: '0,3–3 gram',
     description: 'Kupu-kupu adalah serangga cantik yang mengalami metamorfosis sempurna. Mereka berubah dari ulat menjadi kepompong lalu menjadi kupu-kupu bersayap indah!',
     color: '#AF7AC5',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98b.png",
+  funFacts: [
       'Kupu-kupu merasakan rasa dengan kakinya!',
       'Sayap kupu-kupu transparan, warnanya berasal dari pantulan cahaya.',
       'Ada lebih dari 20.000 jenis kupu-kupu di dunia.',

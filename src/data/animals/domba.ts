@@ -16,6 +16,7 @@ export const domba: Animal = {
   color: '#F5F0E1',
   conservationStatus: 'aman',
   description: 'Domba adalah hewan ternak yang terkenal dengan bulu wolnya yang tebal. Mereka hidup berkelompok dan sangat bergantung pada penglihatan dan pendengaran.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f411.png",
   funFacts: [
     'Domba memiliki pupil mata persegi panjang!',
     'Wol domba bisa tumbuh hingga 10 cm per tahun.',

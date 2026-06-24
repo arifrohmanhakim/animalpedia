@@ -16,6 +16,7 @@ export const serigala: Animal = {
   color: '#7F8C8D',
   conservationStatus: 'aman',
   description: 'Serigala adalah hewan yang hidup dan berburu secara berkelompok. Mereka memiliki ikatan keluarga yang kuat dan komunikasi yang rumit melalui lolongan.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f43a.png",
   funFacts: [
     'Lolongan serigala bisa terdengar hingga 10 km!',
     'Serigala bisa berlari 50 km dalam satu malam.',

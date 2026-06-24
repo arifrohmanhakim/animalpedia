@@ -16,6 +16,7 @@ export const kadal: Animal = {
   color: '#7DCEA0',
   conservationStatus: 'aman',
   description: 'Kadal adalah reptil kecil yang bisa ditemukan di hampir setiap sudut rumah. Mereka adalah pemburu serangga yang ulung dan bisa memutuskan ekornya.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98e.png",
   funFacts: [
     'Kadal bisa memutuskan ekornya untuk melarikan diri!',
     'Beberapa kadal bisa berubah warna seperti bunglon.',

@@ -15,7 +15,8 @@ export const lumba_lumba: Animal = {
     weight: '150–300 kg',
     description: 'Lumba-lumba adalah mamalia laut yang sangat cerdas dan ramah. Mereka menggunakan suara klik untuk berkomunikasi dan bernavigasi di lautan.',
     color: '#5DADE2',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f42c.png",
+  funFacts: [
       'Lumba-lumba tidur dengan satu mata terbuka!',
       'Setengah otak lumba-lumba tetap terjaga saat tidur.',
       'Lumba-lumba bisa menyelam hingga 300 meter.',

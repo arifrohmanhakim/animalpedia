@@ -15,7 +15,8 @@ export const semut: Animal = {
     weight: '1–10 miligram',
     description: 'Semut adalah serangga pekerja keras yang hidup dalam koloni besar. Mereka bisa mengangkat beban 50 kali berat tubuhnya sendiri!',
     color: '#17202A',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f41c.png",
+  funFacts: [
       'Semut bisa mengangkat beban 50 kali berat tubuhnya!',
       'Ada lebih dari 12.000 spesies semut di dunia.',
       'Semut menggunakan feromon untuk berkomunikasi.',

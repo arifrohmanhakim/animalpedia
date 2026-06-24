@@ -15,7 +15,8 @@ export const monyet: Animal = {
     weight: '3–40 kg',
     description: 'Monyet adalah primata cerdas yang hidup berkelompok. Mereka suka bermain, berayun dari pohon ke pohon, dan menggunakan alat sederhana.',
     color: '#8B5E3C',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f412.png",
+  funFacts: [
       'Monyet bisa menggunakan batu untuk memecahkan kacang!',
       'Beberapa monyet bisa mengenali diri mereka di cermin.',
       'Monyet berkomunikasi dengan berbagai suara dan ekspresi wajah.',

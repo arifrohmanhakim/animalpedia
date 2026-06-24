@@ -16,6 +16,7 @@ export const ubur_ubur: Animal = {
   color: '#AF7AC5',
   conservationStatus: 'aman',
   description: 'Ubur-ubur adalah hewan laut transparan yang melayang terbawa arus. Tubuhnya yang seperti payung dan tentakelnya yang bisa menyengat sangat ikonik.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fabc.png",
   funFacts: [
     'Ubur-ubur tidak memiliki otak, jantung, atau darah!',
     'Ubur-ubur sudah ada sejak 600 juta tahun yang lalu.',

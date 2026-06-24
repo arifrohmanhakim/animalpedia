@@ -16,6 +16,7 @@ export const laba_laba: Animal = {
   color: '#4A4A4A',
   conservationStatus: 'aman',
   description: 'Laba-laba adalah pembuat jaring ulung yang menenun jaring sutra dari tubuhnya. Mereka membantu mengendalikan populasi serangga di sekitar kita.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f577.png",
   funFacts: [
     'Sutra laba-laba lebih kuat dari baja dengan ketebalan yang sama!',
     'Beberapa laba-laba bisa berjalan di atas air.',

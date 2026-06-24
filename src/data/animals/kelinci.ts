@@ -16,6 +16,7 @@ export const kelinci: Animal = {
   color: '#F5E6D3',
   conservationStatus: 'aman',
   description: 'Kelinci adalah mamalia kecil bertelinga panjang yang lucu dan lincah. Kaki belakang mereka yang kuat memungkinkan mereka melompat tinggi dan berlari cepat.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f430.png",
   funFacts: [
     'Gigi kelinci terus tumbuh sepanjang hidupnya!',
     'Kelinci bisa melompat hingga 1 meter tingginya.',

@@ -16,6 +16,7 @@ export const macan_tutul: Animal = {
   color: '#E8B84B',
   conservationStatus: 'rentan',
   description: 'Macan tutul adalah kucing besar dengan bulu bertotol indah. Mereka pemanjat ulung dan sering menyimpan mangsanya di atas pohon.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f406.png",
   funFacts: [
     'Macan tutul bisa membawa mangsa yang lebih berat dari dirinya ke atas pohon!',
     'Totol macan tutul disebut rosette karena bentuknya seperti bunga mawar.',

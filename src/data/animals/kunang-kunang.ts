@@ -15,7 +15,8 @@ export const kunang_kunang: Animal = {
     weight: '0,1–0,5 gram',
     description: 'Kunang-kunang adalah serangga ajaib yang bisa mengeluarkan cahaya dari tubuhnya! Cahaya ini digunakan untuk berkomunikasi dan mencari pasangan.',
     color: '#F9E79F',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2728.png",
+  funFacts: [
       'Cahaya kunang-kunang adalah cahaya dingin — tidak menghasilkan panas!',
       'Setiap spesies kunang-kunang memiliki pola kedip yang unik.',
       'Kunang-kunang bisa mengatur kecerahan cahayanya.',

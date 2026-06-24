@@ -15,7 +15,8 @@ export const salamander: Animal = {
     weight: '10–500 gram',
     description: 'Salamander adalah amfibi berekor panjang yang mirip kadal. Mereka memiliki kemampuan luar biasa untuk menumbuhkan kembali bagian tubuh yang hilang!',
     color: '#F0B27A',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98e.png",
+  funFacts: [
       'Salamander bisa menumbuhkan kembali ekor, kaki, bahkan bagian mata!',
       'Kulit salamander selalu lembab dan digunakan untuk bernapas.',
       'Salamander raksasa China bisa mencapai panjang 1,8 meter!',

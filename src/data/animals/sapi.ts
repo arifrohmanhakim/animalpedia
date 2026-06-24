@@ -15,7 +15,8 @@ export const sapi: Animal = {
     weight: '400–800 kg',
     description: 'Sapi adalah hewan ternak penting yang memberi kita susu segar setiap hari. Sapi memiliki perut dengan empat ruang untuk mencerna rumput!',
     color: '#FFFFFF',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f404.png",
+  funFacts: [
       'Sapi memiliki perut dengan 4 ruang!',
       'Sapi bisa menghasilkan 20–30 liter susu setiap hari.',
       'Sapi memiliki penglihatan hampir 360 derajat.',

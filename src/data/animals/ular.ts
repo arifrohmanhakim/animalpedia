@@ -15,7 +15,8 @@ export const ular: Animal = {
     weight: '0,5–100 kg',
     description: 'Ular adalah reptil tanpa kaki yang bergerak dengan cara meliuk-liuk. Beberapa ular berbisa berbahaya, tapi kebanyakan ular tidak berbahaya bagi manusia.',
     color: '#27AE60',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f40d.png",
+  funFacts: [
       'Ular bisa menelan mangsa yang lebih besar dari kepalanya!',
       'Ular mencium bau dengan lidahnya yang bercabang.',
       'Ada lebih dari 3.000 spesies ular di dunia.',

@@ -15,7 +15,8 @@ export const panda: Animal = {
     weight: '70–150 kg',
     description: 'Panda adalah beruang lucu berwarna hitam putih yang sangat suka makan bambu. Mereka adalah simbol perdamaian dari Tiongkok.',
     color: '#FFFFFF',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f43c.png",
+  funFacts: [
       'Panda menghabiskan 12–16 jam sehari untuk makan bambu!',
       'Panda bisa makan hingga 38 kg bambu per hari.',
       'Bayi panda berukuran sangat kecil, hanya 100 gram saat lahir.',

@@ -16,6 +16,7 @@ export const kelelawar: Animal = {
   color: '#4A4A4A',
   conservationStatus: 'aman',
   description: 'Kelelawar adalah satu-satunya mamalia yang bisa terbang. Mereka menggunakan ekolokasi — gelombang suara — untuk bernavigasi dan mencari mangsa di kegelapan.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f987.png",
   funFacts: [
     'Kelelawar menggunakan ekolokasi untuk "melihat" di kegelapan!',
     'Kelelawar bisa memakan hingga 1.000 nyamuk per jam.',

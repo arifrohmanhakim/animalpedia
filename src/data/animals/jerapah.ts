@@ -15,7 +15,8 @@ export const jerapah: Animal = {
     weight: '800–1.200 kg',
     description: 'Jerapah adalah hewan tertinggi di dunia! Leher panjangnya membantu meraih daun di puncak pohon. Jerapah hanya perlu tidur 30 menit hingga 2 jam sehari.',
     color: '#F0C040',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f992.png",
+  funFacts: [
       'Leher jerapah memiliki 7 tulang yang sama seperti manusia!',
       'Jerapah hanya minum air setiap beberapa hari sekali.',
       'Bintik jerapah seperti sidik jari — unik untuk setiap jerapah.',

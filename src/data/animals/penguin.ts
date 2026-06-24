@@ -15,7 +15,8 @@ export const penguin: Animal = {
     weight: '1–35 kg',
     description: 'Penguin adalah burung yang tidak bisa terbang, tapi mereka perenang ulung! Penguin tinggal di belahan bumi selatan, terutama Antartika.',
     color: '#2C3E50',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f427.png",
+  funFacts: [
       'Penguin bisa menyelam hingga 500 meter mencari ikan!',
       'Penguin kaisar bisa bertahan di suhu -60°C.',
       'Penguin jantan menjaga telur selama dua bulan tanpa makan.',

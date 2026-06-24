@@ -15,7 +15,8 @@ export const tokek: Animal = {
     weight: '10–150 gram',
     description: 'Tokek adalah kadal kecil yang suka memanjat dinding. Mereka bisa menempel di permukaan licin berkat bantalan khusus di kakinya.',
     color: '#7DCEA0',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98e.png",
+  funFacts: [
       'Tokek bisa memanjat di langit-langit tanpa jatuh!',
       'Kaki tokek memiliki jutaan rambut kecil yang lengket.',
       'Tokek kehilangan ekornya saat terancam, lalu menumbuhkannya kembali.',

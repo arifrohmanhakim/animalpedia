@@ -16,6 +16,7 @@ export const paus_pembunuh: Animal = {
   color: '#1A1A2E',
   conservationStatus: 'aman',
   description: 'Paus pembunuh atau orca adalah lumba-lumba terbesar di dunia. Mereka pemburu cerdas yang bekerja sama dalam kelompok, memiliki pola hitam putih yang khas.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f433.png",
   funFacts: [
     'Orca bukan paus — mereka adalah lumba-lumba terbesar!',
     'Setiap orca memiliki pola abu-abu unik di pelana punggungnya.',

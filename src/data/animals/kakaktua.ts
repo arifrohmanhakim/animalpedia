@@ -15,7 +15,8 @@ export const kakaktua: Animal = {
     weight: '0,3–1,2 kg',
     description: 'Kakatua adalah burung cerdas dengan jambul khas di kepalanya. Mereka bisa meniru suara manusia dan sangat pandai memecahkan teka-teki.',
     color: '#FFFFFF',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f99c.png",
+  funFacts: [
       'Kakatua bisa hidup hingga 80 tahun — lebih lama dari manusia!',
       'Kakatua bisa menirukan berbagai suara, termasuk ucapan manusia.',
       'Kakatua menggunakan cakarnya untuk memegang makanan saat makan.',

@@ -16,6 +16,7 @@ export const belalang: Animal = {
   color: '#4A7C59',
   conservationStatus: 'aman',
   description: 'Belalang adalah serangga pelompat handal dengan kaki belakang yang sangat kuat. Mereka bisa melompat hingga 20 kali panjang tubuhnya!',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f997.png",
   funFacts: [
     'Belalang bisa melompat hingga 20 kali panjang tubuhnya!',
     'Belalang menggunakan sayapnya untuk terbang jarak jauh.',

@@ -16,6 +16,7 @@ export const kuda: Animal = {
   color: '#8B6F47',
   conservationStatus: 'aman',
   description: 'Kuda adalah hewan besar yang kuat dan telah lama menjadi teman manusia untuk transportasi dan olahraga. Mereka bisa berlari sangat cepat dan memiliki penglihatan yang luas.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f434.png",
   funFacts: [
     'Kuda bisa tidur berdiri atau berbaring!',
     'Kuda memiliki penglihatan hampir 360 derajat.',

@@ -15,7 +15,8 @@ export const bunglon: Animal = {
     weight: '10–200 gram',
     description: 'Bunglon adalah master kamuflase! Mereka bisa mengubah warna tubuhnya untuk bersembunyi, berkomunikasi, dan menunjukkan perasaan.',
     color: '#82E0AA',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98e.png",
+  funFacts: [
       'Bunglon bisa mengubah warna kulitnya dalam hitungan detik!',
       'Mata bunglon bisa bergerak sendiri-sendiri ke arah berbeda.',
       'Lidah bunglon lebih panjang dari tubuhnya sendiri!',

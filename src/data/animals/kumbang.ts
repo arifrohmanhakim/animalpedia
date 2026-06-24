@@ -16,6 +16,7 @@ export const kumbang: Animal = {
   color: '#2C3E50',
   conservationStatus: 'aman',
   description: 'Kumbang adalah kelompok serangga terbesar di dunia. Mereka memiliki sayap keras yang melindungi sayap tipis di bawahnya untuk terbang.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fab2.png",
   funFacts: [
     'Ada lebih dari 350.000 spesies kumbang di dunia!',
     'Kumbang badak bisa mengangkat beban 850 kali berat tubuhnya.',

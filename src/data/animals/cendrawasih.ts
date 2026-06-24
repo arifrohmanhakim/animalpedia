@@ -16,6 +16,7 @@ export const cendrawasih: Animal = {
   color: '#FF6B35',
   conservationStatus: 'aman',
   description: 'Cendrawasih adalah burung tercantik di dunia dengan bulu yang indah dan berwarna-warni. Mereka hanya ditemukan di Papua dan Australia.',
+    imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fab6.png",
   funFacts: [
     'Cendrawasih jantan memiliki tarian kawin yang rumit dan indah!',
     'Bulu cendrawasih yang indah digunakan untuk menarik betina.',

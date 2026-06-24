@@ -15,7 +15,8 @@ export const capung: Animal = {
     weight: '0,1–0,5 gram',
     description: 'Capung adalah penerbang ulung dengan dua pasang sayap transparan. Mereka adalah predator yang hebat — bisa menangkap mangsa di udara dengan akurat!',
     color: '#3498DB',
-    funFacts: [
+      imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1fab0.png",
+  funFacts: [
       'Capung bisa terbang ke segala arah — maju, mundur, dan melayang!',
       'Mata capung terdiri dari 30.000 lensa kecil.',
       'Capung bisa terbang hingga 55 km/jam.',
