@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { animals as allAnimals, badges as badgeList } from '@/data/animals';
+import { animals as allAnimals, badges as badgeList, families } from '@/data/animals';
 
 interface Badge {
   id: string;
@@ -11,18 +11,15 @@ interface Badge {
 }
 
 interface GameState {
-  // App flow
   showSplash: boolean;
   onboardingComplete: boolean;
   currentTab: string;
 
-  // Player
   playerName: string;
   selectedCharacter: string;
   ageRange: string;
   favoriteCategories: string[];
 
-  // Progression
   xp: number;
   discoveredAnimals: string[];
   favoriteAnimals: string[];
@@ -31,21 +28,16 @@ interface GameState {
   dailyStreak: number;
   badges: Badge[];
 
-  // Quiz
   quizInProgress: boolean;
   currentQuizAnimalId: string | null;
 
-  // Continue learning
   lastViewedAnimalId: string | null;
 
-  // Games hub
   activeGame: string | null;
 
-  // Daily challenge
   dailyChallengeDate: string;
   dailyChallengeCompleted: boolean;
 
-  // Actions
   finishSplash: () => void;
   completeOnboarding: (data: {
     playerName: string;
@@ -70,6 +62,7 @@ interface GameState {
   isDiscovered: (animalId: string) => boolean;
   isFavorite: (animalId: string) => boolean;
   getCollectionProgress: () => { discovered: number; total: number };
+  isFamilyComplete: (familyId: string) => boolean;
 }
 
 const STORAGE_KEY = 'animalpedia-kids-save';
@@ -77,9 +70,7 @@ const STORAGE_KEY = 'animalpedia-kids-save';
 const loadState = () => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      return JSON.parse(saved);
-    }
+    if (saved) return JSON.parse(saved);
   } catch {}
   return null;
 };
@@ -144,14 +135,12 @@ const getLevelFromXP = (xp: number) => {
 };
 
 const savedState = loadState();
-
 const today = new Date().toDateString();
 const dailyChallengeCompleted =
   savedState?.dailyChallengeDate === today
     ? savedState?.dailyChallengeCompleted ?? false
     : false;
 
-// Check daily streak on init
 let initialDailyStreak = savedState?.dailyStreak ?? 0;
 let initialLastLoginDate = savedState?.lastLoginDate ?? '';
 
@@ -159,18 +148,14 @@ if (initialLastLoginDate) {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   const yesterdayStr = yesterday.toDateString();
-
   if (initialLastLoginDate === today) {
-    // Already logged in today, keep streak
+    // keep streak
   } else if (initialLastLoginDate === yesterdayStr) {
-    // Logged in yesterday, increment streak
     initialDailyStreak += 1;
   } else {
-    // Missed a day, reset streak to 1
     initialDailyStreak = 1;
   }
 } else {
-  // First login ever
   initialDailyStreak = 1;
 }
 initialLastLoginDate = today;
@@ -291,6 +276,14 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   setActiveGame: (game) => set({ activeGame: game }),
 
+  isFamilyComplete: (familyId) => {
+    const state = get();
+    const family = families.find((f) => f.id === familyId);
+    if (!family) return false;
+    const existentMembers = family.members.filter((m) => m.exists);
+    return existentMembers.every((m) => state.discoveredAnimals.includes(m.animalId));
+  },
+
   checkBadges: () => {
     const state = get();
     let changed = false;
@@ -322,6 +315,23 @@ export const useGameStore = create<GameState>((set, get) => ({
           break;
         case 'daily-learner':
           shouldUnlock = state.dailyStreak >= 7;
+          break;
+        case 'reptile-fan': {
+          const reptileCount = state.discoveredAnimals.filter(
+            (id) => allAnimals.find((a) => a.id === id)?.category === 'reptil'
+          ).length;
+          shouldUnlock = reptileCount >= 5;
+          break;
+        }
+        case 'bird-watcher': {
+          const birdCount = state.discoveredAnimals.filter(
+            (id) => allAnimals.find((a) => a.id === id)?.category === 'burung'
+          ).length;
+          shouldUnlock = birdCount >= 5;
+          break;
+        }
+        case 'big-cat-family':
+          shouldUnlock = get().isFamilyComplete('big-cat-family');
           break;
       }
 
@@ -368,6 +378,23 @@ export const useGameStore = create<GameState>((set, get) => ({
         case 'daily-learner':
           shouldUnlock = state.dailyStreak >= 7;
           break;
+        case 'reptile-fan': {
+          const reptileCount = state.discoveredAnimals.filter(
+            (id) => allAnimals.find((a) => a.id === id)?.category === 'reptil'
+          ).length;
+          shouldUnlock = reptileCount >= 5;
+          break;
+        }
+        case 'bird-watcher': {
+          const birdCount = state.discoveredAnimals.filter(
+            (id) => allAnimals.find((a) => a.id === id)?.category === 'burung'
+          ).length;
+          shouldUnlock = birdCount >= 5;
+          break;
+        }
+        case 'big-cat-family':
+          shouldUnlock = get().isFamilyComplete('big-cat-family');
+          break;
       }
 
       if (shouldUnlock) newlyUnlocked.push(badge.id);
@@ -384,13 +411,9 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
 
   getLevel: () => getLevelFromXP(get().xp),
-
   getAnimals: () => allAnimals,
-
   isDiscovered: (animalId) => get().discoveredAnimals.includes(animalId),
-
   isFavorite: (animalId) => get().favoriteAnimals.includes(animalId),
-
   getCollectionProgress: () => ({
     discovered: get().discoveredAnimals.length,
     total: allAnimals.length,

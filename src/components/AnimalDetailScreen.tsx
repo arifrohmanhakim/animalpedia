@@ -6,13 +6,15 @@ import { AudioPlayer } from "@/components/AudioPlayer";
 import { AudioNarrationModal } from "@/components/AudioNarrationModal";
 import { VideoPlayerModal } from "@/components/VideoPlayerModal";
 import { MapModal } from "@/components/MapModal";
+import { FamilyTree } from "@/components/FamilyTree";
 
 interface Props {
   animalId: string;
   onBack: () => void;
+  onNavigate?: (animalId: string) => void;
 }
 
-export function AnimalDetailScreen({ animalId, onBack }: Props) {
+export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
   const animal = animals.find((a) => a.id === animalId);
   const discoverAnimal = useGameStore((s) => s.discoverAnimal);
   const startQuiz = useGameStore((s) => s.startQuiz);
@@ -75,7 +77,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
   return (
     <div className="absolute inset-0 z-30 bg-[var(--cream)] flex flex-col animate-fade-in-up">
       <div className="screen-scroll flex-1">
-        {/* Header with gradient background */}
         <div
           className="px-5 pt-6 pb-4 relative"
           style={{
@@ -115,7 +116,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
         </div>
 
         <div className="px-5 pt-4 pb-6">
-          {/* Animal name and audio */}
           <div className="flex justify-between items-start">
             <div>
               <h2 className="font-display text-2xl font-extrabold">{animal.name}</h2>
@@ -126,7 +126,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             <AudioPlayer animal={animal} variant="both" size="md" />
           </div>
 
-          {/* Narration button */}
           <button
             onClick={() => setShowNarration(true)}
             className="mt-2 w-full crayon-btn py-2 text-xs font-bold bg-[var(--blue-pale)] text-[var(--blue-deep)] border-[var(--blue-deep)] shadow-[0_3px_0_var(--blue-deep)]"
@@ -134,7 +133,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             🎤 Dengarkan {animal.name} bercerita!
           </button>
 
-          {/* Three info cards */}
           <div className="flex gap-2.5 mt-4">
             <div className="flex-1 crayon-card p-2.5 text-center bg-[var(--green-pale)]">
               <div className="text-[9px] font-bold text-[var(--green-deep)] uppercase tracking-wider">Habitat</div>
@@ -153,7 +151,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             </div>
           </div>
 
-          {/* Description */}
           <div className="mt-5">
             <h3 className="font-display text-sm font-bold mb-2">📖 Tentang {animal.name}</h3>
             <div className="crayon-card p-3.5 bg-[var(--paper)]">
@@ -161,7 +158,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             </div>
           </div>
 
-          {/* Fun Facts */}
           <div className="mt-5">
             <h3 className="font-display text-sm font-bold mb-2.5">✨ Fakta Menarik</h3>
             <div className="space-y-2.5">
@@ -181,7 +177,11 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             </div>
           </div>
 
-          {/* Weight comparison */}
+          {/* Family Tree — jembatan ke eksplorasi lebih lanjut */}
+          {onNavigate && (
+            <FamilyTree animalId={animal.id} onNavigate={onNavigate} />
+          )}
+
           <div className="mt-5">
             <h3 className="font-display text-sm font-bold mb-2.5">⚖️ Berat</h3>
             <div className="crayon-card p-3.5 bg-[var(--paper)]">
@@ -206,7 +206,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             </div>
           </div>
 
-          {/* Conservation status */}
           <div className="mt-5">
             <h3 className="font-display text-sm font-bold mb-2.5">🌍 Status Konservasi</h3>
             <div className="crayon-card p-3.5 bg-[var(--paper)] flex items-center gap-3">
@@ -229,7 +228,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             </div>
           </div>
 
-          {/* Video button */}
           <button
             onClick={() => setShowVideo(true)}
             className="mt-4 w-full crayon-btn py-3 text-sm font-bold bg-[#FF0000] text-white border-[var(--ink)] shadow-[0_3px_0_var(--ink)] flex items-center justify-center gap-2"
@@ -238,7 +236,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             Tonton Video {animal.name}
           </button>
 
-          {/* Map button */}
           <button
             onClick={() => setShowMapModal(true)}
             className="mt-2 w-full crayon-btn py-3 text-sm font-bold bg-[var(--green-deep)] text-white border-[var(--ink)] shadow-[0_3px_0_var(--ink)] flex items-center justify-center gap-2"
@@ -247,7 +244,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
             Tinggal di mana aku?
           </button>
 
-          {/* Quiz button */}
           <button
             onClick={() => {
               showToastXP(10, `Mulai kuis ${animal.name}!`);
@@ -262,7 +258,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
         </div>
       </div>
 
-      {/* Narration modal */}
       {showNarration && (
         <AudioNarrationModal
           animal={animal}
@@ -270,7 +265,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
         />
       )}
 
-      {/* Video modal */}
       {showVideo && (
         <VideoPlayerModal
           videoEmbedUrl={animal.videoEmbedUrl}
@@ -280,7 +274,6 @@ export function AnimalDetailScreen({ animalId, onBack }: Props) {
         />
       )}
 
-      {/* Map modal */}
       {showMapModal && (
         <MapModal
           distribution={animal.distribution}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { badges as badgeData } from '@/data/animals';
 
-type ToastType = 'xp' | 'badge';
+type ToastType = 'xp' | 'badge' | 'info';
 
 interface ToastItem {
   id: string;
@@ -40,6 +40,15 @@ export function showToastBadge(badgeId: string) {
   });
 }
 
+export function showToastInfo(message: string) {
+  showToast({
+    id: `info-${Date.now()}`,
+    type: 'info',
+    message,
+    emoji: '💡',
+  });
+}
+
 export function ToastContainer() {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
@@ -64,7 +73,12 @@ export function ToastContainer() {
           key={toast.id}
           className="crayon-card p-3 flex items-center gap-3 animate-fade-in-up pointer-events-auto"
           style={{
-            background: toast.type === 'badge' ? (toast.badgeColor || 'var(--yellow)') : 'var(--paper)',
+            background:
+              toast.type === 'badge'
+                ? (toast.badgeColor || 'var(--yellow)')
+                : toast.type === 'info'
+                ? 'var(--blue-pale)'
+                : 'var(--paper)',
             marginTop: i > 0 ? `${i * 60}px` : '0',
             position: i > 0 ? 'absolute' : 'relative',
             top: i > 0 ? `${i * 60}px` : '0',
@@ -75,7 +89,11 @@ export function ToastContainer() {
           <div className="text-2xl">{toast.emoji}</div>
           <div className="flex-1 min-w-0">
             <div className="font-bold text-xs">
-              {toast.type === 'xp' ? `+${toast.amount} XP` : '🏅 Badge Baru!'}
+              {toast.type === 'xp'
+                ? `+${toast.amount} XP`
+                : toast.type === 'badge'
+                ? '🏅 Badge Baru!'
+                : '💡 Info'}
             </div>
             <div className="text-[11px] font-semibold text-[var(--ink-soft)] truncate">
               {toast.message}
