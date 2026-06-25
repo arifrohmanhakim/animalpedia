@@ -443,6 +443,9 @@ export function ExploreScreen() {
   const pathHeight = flatOrder.length * 160 + 300;
 
   /* Scroll-based category detection */
+  const currentZoneRef = useRef(currentZone);
+  currentZoneRef.current = currentZone;
+
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -455,12 +458,12 @@ export function ExploreScreen() {
           current = g.category;
         }
       }
-      if (current !== currentZone) setCurrentZone(current);
+      if (current !== currentZoneRef.current) setCurrentZone(current);
     };
     container.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => container.removeEventListener("scroll", handleScroll);
-  }, [currentZone, offsets, groups, groupKeys]);
+  }, [offsets, groups, groupKeys]);
 
   const handleAnimalClick = useCallback(
     (animalId: string, state: ProgressionState) => {
