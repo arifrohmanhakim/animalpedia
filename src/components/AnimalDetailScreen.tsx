@@ -7,6 +7,7 @@ import { AudioNarrationModal } from "@/components/AudioNarrationModal";
 import { VideoPlayerModal } from "@/components/VideoPlayerModal";
 import { MapModal } from "@/components/MapModal";
 import { FamilyTree } from "@/components/FamilyTree";
+import { SwapPetModal } from "@/components/SwapPetModal";
 import { playAmbience, type AmbienceController } from "@/lib/ambience";
 
 interface Props {
@@ -20,16 +21,19 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
   const discoverAnimal = useGameStore((s) => s.discoverAnimal);
   const startQuiz = useGameStore((s) => s.startQuiz);
   const isFavorite = useGameStore((s) => s.isFavorite);
+  const isPetOwned = useGameStore((s) => s.isPetOwned);
   const toggleFavorite = useGameStore((s) => s.toggleFavorite);
+  const adoptPet = useGameStore((s) => s.adoptPet);
   const checkNewBadges = useGameStore((s) => s.checkNewBadges);
   const setLastViewedAnimal = useGameStore((s) => s.setLastViewedAnimal);
   const discoveredAnimals = useGameStore((s) => s.discoveredAnimals);
   const [showNarration, setShowNarration] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [showMapModal, setShowMapModal] = useState(false);
+  const [showSwapModal, setShowSwapModal] = useState(false);
   const ambienceRef = useRef<AmbienceController | null>(null);
   const [ambienceMuted, setAmbienceMuted] = useState(() => {
-    return localStorage.getItem('ambienceMuted') === 'true';
+    return localStorage.getItem("ambienceMuted") === "true";
   });
 
   // Auto-play ambience on mount, stop on unmount
@@ -47,7 +51,7 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
   const toggleAmbience = () => {
     const next = !ambienceMuted;
     setAmbienceMuted(next);
-    localStorage.setItem('ambienceMuted', String(next));
+    localStorage.setItem("ambienceMuted", String(next));
     if (next) {
       ambienceRef.current?.stop();
       ambienceRef.current = null;
@@ -75,31 +79,62 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
   }
 
   const fav = isFavorite(animal.id);
+  const ownedPet = isPetOwned(animal.id);
+
+  const handleAdoptPet = () => {
+    discoverAnimal(animal.id);
+    const result = adoptPet(animal.id);
+    if (result === "adopted") {
+      showToastXP(10, `Kamu memelihara ${animal.name}!`);
+    } else if (result === "slots-full") {
+      setShowSwapModal(true);
+    }
+    // 'already-owned' → no toast needed, button already shows state
+  };
+
+  const handleSwapPet = (releaseId: string) => {
+    const store = useGameStore.getState();
+    store.swapPet(releaseId, animal.id);
+    showToastXP(10, `Kamu memelihara ${animal.name}!`);
+    setShowSwapModal(false);
+  };
 
   const getConservationColor = (status: string) => {
     switch (status) {
-      case 'aman': return 'var(--green)';
-      case 'rentan': return 'var(--yellow-deep)';
-      case 'terancam': return 'var(--red)';
-      default: return 'var(--green)';
+      case "aman":
+        return "var(--green)";
+      case "rentan":
+        return "var(--yellow-deep)";
+      case "terancam":
+        return "var(--red)";
+      default:
+        return "var(--green)";
     }
   };
 
   const getConservationEmoji = (status: string) => {
     switch (status) {
-      case 'aman': return '🟢';
-      case 'rentan': return '🟡';
-      case 'terancam': return '🔴';
-      default: return '🟢';
+      case "aman":
+        return "🟢";
+      case "rentan":
+        return "🟡";
+      case "terancam":
+        return "🔴";
+      default:
+        return "🟢";
     }
   };
 
   const getConservationLabel = (status: string) => {
     switch (status) {
-      case 'aman': return 'Aman';
-      case 'rentan': return 'Rentan';
-      case 'terancam': return 'Terancam';
-      default: return 'Aman';
+      case "aman":
+        return "Aman";
+      case "rentan":
+        return "Rentan";
+      case "terancam":
+        return "Terancam";
+      default:
+        return "Aman";
     }
   };
 
@@ -110,7 +145,7 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
           className="px-5 pt-6 pb-4 relative"
           style={{
             background: `linear-gradient(180deg, ${animal.color}, var(--orange-pale))`,
-            borderRadius: '0 0 32px 32px',
+            borderRadius: "0 0 32px 32px",
           }}
         >
           <div className="flex justify-between items-center">
@@ -125,22 +160,26 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
                 onClick={toggleAmbience}
                 className={`w-[34px] h-[34px] rounded-full border-2 flex items-center justify-center text-sm transition-all active:scale-90 ${
                   ambienceMuted
-                    ? 'bg-[var(--paper)] border-[var(--ink-soft)] opacity-50'
-                    : 'bg-[var(--orange-pale)] border-[var(--orange)]'
+                    ? "bg-[var(--paper)] border-[var(--ink-soft)] opacity-50"
+                    : "bg-[var(--orange-pale)] border-[var(--orange)]"
                 }`}
-                title={ambienceMuted ? "Aktifkan suara lingkungan" : "Matikan suara lingkungan"}
+                title={
+                  ambienceMuted
+                    ? "Aktifkan suara lingkungan"
+                    : "Matikan suara lingkungan"
+                }
               >
-                {ambienceMuted ? '🔇' : '🎵'}
+                {ambienceMuted ? "🔇" : "🎵"}
               </button>
               <button
                 onClick={() => toggleFavorite(animal.id)}
                 className={`w-[34px] h-[34px] rounded-full border-2 flex items-center justify-center text-sm transition-all active:scale-90 ${
                   fav
-                    ? 'bg-[var(--red-pale)] border-[var(--red)]'
-                    : 'bg-[var(--paper)] border-[var(--ink)]'
+                    ? "bg-[var(--red-pale)] border-[var(--red)]"
+                    : "bg-[var(--paper)] border-[var(--ink)]"
                 }`}
               >
-                {fav ? '❤️' : '🤍'}
+                {fav ? "❤️" : "🤍"}
               </button>
             </div>
           </div>
@@ -150,7 +189,8 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
                 className="w-[220px] h-[220px] mx-auto animate-float"
                 dangerouslySetInnerHTML={{ __html: animal.illustrationSvg }}
               />
-            ) : animal.imageUrl && !animal.imageUrl.includes('emoji-datasource') ? (
+            ) : animal.imageUrl &&
+              !animal.imageUrl.includes("emoji-datasource") ? (
               <img
                 src={animal.imageUrl}
                 alt={animal.name}
@@ -158,8 +198,15 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
                 loading="lazy"
               />
             ) : (
-              <svg viewBox="0 0 120 120" width="200" height="200" className="mx-auto animate-float">
-                <text x="60" y="95" textAnchor="middle" fontSize="85">{animal.emoji}</text>
+              <svg
+                viewBox="0 0 120 120"
+                width="200"
+                height="200"
+                className="mx-auto animate-float"
+              >
+                <text x="60" y="95" textAnchor="middle" fontSize="85">
+                  {animal.emoji}
+                </text>
               </svg>
             )}
             <span
@@ -168,7 +215,8 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
                 background: getConservationColor(animal.conservationStatus),
               }}
             >
-              {getConservationEmoji(animal.conservationStatus)} {getConservationLabel(animal.conservationStatus)}
+              {getConservationEmoji(animal.conservationStatus)}{" "}
+              {getConservationLabel(animal.conservationStatus)}
             </span>
           </div>
         </div>
@@ -176,9 +224,12 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
         <div className="px-5 pt-4 pb-6">
           <div className="flex justify-between items-start">
             <div>
-              <h2 className="font-display text-2xl font-extrabold">{animal.name}</h2>
+              <h2 className="font-display text-2xl font-extrabold">
+                {animal.name}
+              </h2>
               <p className="text-xs font-semibold text-[var(--ink-soft)]">
-                {animal.englishName} · <span className="italic">{animal.scientificName}</span>
+                {animal.englishName} ·{" "}
+                <span className="italic">{animal.scientificName}</span>
               </p>
             </div>
             <AudioPlayer animal={animal} variant="both" size="md" />
@@ -191,45 +242,93 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
             🎤 Dengarkan {animal.name} bercerita!
           </button>
 
+          {ownedPet ? (
+            <button className="mt-2 w-full crayon-btn py-2.5 text-xs font-bold bg-[var(--green-pale)] text-[var(--green-deep)] border-[var(--green-deep)] shadow-[0_3px_0_var(--green-deep)]">
+              ✅ {animal.name} sudah dipelihara
+            </button>
+          ) : (
+            <div
+              className="crayon-card mt-2 px-4 py-3.5 text-center"
+              style={{
+                background: "linear-gradient(135deg, #FFF3DC, var(--yellow))",
+              }}
+            >
+              <div className="text-[13px] font-bold text-[var(--orange-deep)] mb-2">
+                Mau jadikan {animal.name} peliharaanmu?
+              </div>
+              <button
+                onClick={handleAdoptPet}
+                className="w-full bg-[var(--orange)] border-[3px] border-[var(--ink)] text-white font-display font-bold text-sm py-3 rounded-[18px] shadow-[0_3px_0_var(--ink)]"
+              >
+                🏡 Pelihara Aku!
+              </button>
+              <div className="text-[10px] font-semibold text-[var(--ink-soft)] mt-2">
+                {useGameStore.getState().petAnimals.length} dari{" "}
+                {useGameStore.getState().getPetSlots()} slot terisi · Naik level
+                untuk tambah slot
+              </div>
+            </div>
+          )}
+
           <div className="flex gap-2.5 mt-4">
             <div className="flex-1 crayon-card p-2.5 text-center bg-[var(--green-pale)]">
-              <div className="text-[9px] font-bold text-[var(--green-deep)] uppercase tracking-wider">Habitat</div>
+              <div className="text-[9px] font-bold text-[var(--green-deep)] uppercase tracking-wider">
+                Habitat
+              </div>
               <div className="text-xl mt-0.5">{animal.habitatEmoji}</div>
-              <div className="text-[10px] font-bold text-[var(--green-deep)] mt-0.5 leading-tight">{animal.habitat}</div>
+              <div className="text-[10px] font-bold text-[var(--green-deep)] mt-0.5 leading-tight">
+                {animal.habitat}
+              </div>
             </div>
             <div className="flex-1 crayon-card p-2.5 text-center bg-[var(--red-pale)]">
-              <div className="text-[9px] font-bold text-[#A23F2C] uppercase tracking-wider">Makanan</div>
+              <div className="text-[9px] font-bold text-[#A23F2C] uppercase tracking-wider">
+                Makanan
+              </div>
               <div className="text-xl mt-0.5">{animal.foodEmoji}</div>
-              <div className="text-[10px] font-bold text-[#A23F2C] mt-0.5 leading-tight">{animal.food}</div>
+              <div className="text-[10px] font-bold text-[#A23F2C] mt-0.5 leading-tight">
+                {animal.food}
+              </div>
             </div>
             <div className="flex-1 crayon-card p-2.5 text-center bg-[var(--blue-pale)]">
-              <div className="text-[9px] font-bold text-[var(--blue-deep)] uppercase tracking-wider">Usia</div>
+              <div className="text-[9px] font-bold text-[var(--blue-deep)] uppercase tracking-wider">
+                Usia
+              </div>
               <div className="text-xl mt-0.5">⏳</div>
-              <div className="text-[10px] font-bold text-[var(--blue-deep)] mt-0.5 leading-tight">{animal.lifespan}</div>
+              <div className="text-[10px] font-bold text-[var(--blue-deep)] mt-0.5 leading-tight">
+                {animal.lifespan}
+              </div>
             </div>
           </div>
 
           <div className="mt-5">
-            <h3 className="font-display text-sm font-bold mb-2">📖 Tentang {animal.name}</h3>
+            <h3 className="font-display text-sm font-bold mb-2">
+              📖 Tentang {animal.name}
+            </h3>
             <div className="crayon-card p-3.5 bg-[var(--paper)]">
-              <p className="text-xs font-semibold leading-relaxed">{animal.description}</p>
+              <p className="text-xs font-semibold leading-relaxed">
+                {animal.description}
+              </p>
             </div>
           </div>
 
           <div className="mt-5">
-            <h3 className="font-display text-sm font-bold mb-2.5">✨ Fakta Menarik</h3>
+            <h3 className="font-display text-sm font-bold mb-2.5">
+              ✨ Fakta Menarik
+            </h3>
             <div className="space-y-2.5">
               {animal.funFacts.map((fact, i) => (
                 <div
                   key={i}
                   className="crayon-card p-3 px-4"
                   style={{
-                    background: i === 0 ? 'var(--yellow)' : 'var(--paper)',
+                    background: i === 0 ? "var(--yellow)" : "var(--paper)",
                     animation: `fade-in-up 0.4s ease-out ${i * 0.1}s forwards`,
                     opacity: 0,
                   }}
                 >
-                  <div className="text-xs font-semibold leading-relaxed">{fact}</div>
+                  <div className="text-xs font-semibold leading-relaxed">
+                    {fact}
+                  </div>
                 </div>
               ))}
             </div>
@@ -247,8 +346,13 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
                 <div className="text-2xl">👤</div>
                 <div className="flex-1">
                   <div className="flex items-center gap-1">
-                    <div className="h-3 bg-[var(--orange)] rounded-full" style={{ width: '60%' }} />
-                    <span className="text-[10px] font-bold">Manusia (~70 kg)</span>
+                    <div
+                      className="h-3 bg-[var(--orange)] rounded-full"
+                      style={{ width: "60%" }}
+                    />
+                    <span className="text-[10px] font-bold">
+                      Manusia (~70 kg)
+                    </span>
                   </div>
                 </div>
               </div>
@@ -256,8 +360,13 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
                 <div className="text-2xl">{animal.emoji}</div>
                 <div className="flex-1">
                   <div className="flex items-center gap-1">
-                    <div className="h-4 bg-[var(--blue)] rounded-full" style={{ width: '85%' }} />
-                    <span className="text-[10px] font-bold">{animal.weight}</span>
+                    <div
+                      className="h-4 bg-[var(--blue)] rounded-full"
+                      style={{ width: "85%" }}
+                    />
+                    <span className="text-[10px] font-bold">
+                      {animal.weight}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -265,22 +374,30 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
           </div>
 
           <div className="mt-5">
-            <h3 className="font-display text-sm font-bold mb-2.5">🌍 Status Konservasi</h3>
+            <h3 className="font-display text-sm font-bold mb-2.5">
+              🌍 Status Konservasi
+            </h3>
             <div className="crayon-card p-3.5 bg-[var(--paper)] flex items-center gap-3">
               <div
                 className="w-10 h-10 rounded-full border-[2px] border-[var(--ink)] flex items-center justify-center"
-                style={{ background: getConservationColor(animal.conservationStatus) }}
+                style={{
+                  background: getConservationColor(animal.conservationStatus),
+                }}
               >
-                <span className="text-lg">{getConservationEmoji(animal.conservationStatus)}</span>
+                <span className="text-lg">
+                  {getConservationEmoji(animal.conservationStatus)}
+                </span>
               </div>
               <div>
-                <div className="font-bold text-sm">{getConservationLabel(animal.conservationStatus)}</div>
+                <div className="font-bold text-sm">
+                  {getConservationLabel(animal.conservationStatus)}
+                </div>
                 <div className="text-[10px] font-semibold text-[var(--ink-soft)]">
-                  {animal.conservationStatus === 'aman'
-                    ? 'Populasi hewan ini masih stabil di alam liar.'
-                    : animal.conservationStatus === 'rentan'
-                    ? 'Hewan ini perlu perhatian agar tidak terancam punah.'
-                    : 'Hewan ini terancam punah dan perlu dilindungi!'}
+                  {animal.conservationStatus === "aman"
+                    ? "Populasi hewan ini masih stabil di alam liar."
+                    : animal.conservationStatus === "rentan"
+                      ? "Hewan ini perlu perhatian agar tidak terancam punah."
+                      : "Hewan ini terancam punah dan perlu dilindungi!"}
                 </div>
               </div>
             </div>
@@ -338,6 +455,14 @@ export function AnimalDetailScreen({ animalId, onBack, onNavigate }: Props) {
           countries={animal.distributionCountries}
           animalName={animal.name}
           onClose={() => setShowMapModal(false)}
+        />
+      )}
+
+      {showSwapModal && (
+        <SwapPetModal
+          newAnimalId={animal.id}
+          onSwap={handleSwapPet}
+          onCancel={() => setShowSwapModal(false)}
         />
       )}
     </div>

@@ -1,17 +1,18 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { useGameStore } from '@/store/gameStore';
-import { SplashScreen } from '@/components/SplashScreen';
-import { OnboardingScreen } from '@/components/OnboardingScreen';
-import { BottomNav } from '@/components/BottomNav';
-import { HomeScreen } from '@/components/HomeScreen';
-import { ExploreScreen } from '@/components/ExploreScreen';
-import { CollectionScreen } from '@/components/CollectionScreen';
-import { ProfileScreen } from '@/components/ProfileScreen';
-import { GamesHub } from '@/components/GamesHub';
-import { AnimalDetailScreen } from '@/components/AnimalDetailScreen';
-import { QuizScreen } from '@/components/QuizScreen';
-import { ToastContainer } from '@/components/ToastNotification';
-import { InstallPrompt } from '@/components/InstallPrompt';
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useGameStore } from "@/store/gameStore";
+import { SplashScreen } from "@/components/SplashScreen";
+import { OnboardingScreen } from "@/components/OnboardingScreen";
+import { BottomNav } from "@/components/BottomNav";
+import { HomeScreen } from "@/components/HomeScreen";
+import { ExploreScreen } from "@/components/ExploreScreen";
+import { CollectionScreen } from "@/components/CollectionScreen";
+import { ProfileScreen } from "@/components/ProfileScreen";
+import { GamesHub } from "@/components/GamesHub";
+import { PetHouseScreen } from "@/components/PetHouseScreen";
+import { AnimalDetailScreen } from "@/components/AnimalDetailScreen";
+import { QuizScreen } from "@/components/QuizScreen";
+import { ToastContainer } from "@/components/ToastNotification";
+import { InstallPrompt } from "@/components/InstallPrompt";
 
 const Index = () => {
   const showSplash = useGameStore((s) => s.showSplash);
@@ -34,13 +35,13 @@ const Index = () => {
 
   useEffect(() => {
     if (detailAnimalId) {
-      window.history.pushState(null, '');
+      window.history.pushState(null, "");
     }
   }, [detailAnimalId]);
 
   useEffect(() => {
     if (quizInProgress) {
-      window.history.pushState(null, '');
+      window.history.pushState(null, "");
     }
   }, [quizInProgress]);
 
@@ -62,22 +63,23 @@ const Index = () => {
       }
     };
 
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
   }, [endQuiz]);
 
   useEffect(() => {
     const handler = (e: CustomEvent) => {
       setDetailAnimalId(e.detail.animalId);
     };
-    window.addEventListener('view-animal', handler as EventListener);
-    return () => window.removeEventListener('view-animal', handler as EventListener);
+    window.addEventListener("view-animal", handler as EventListener);
+    return () =>
+      window.removeEventListener("view-animal", handler as EventListener);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, []);
 
@@ -107,15 +109,17 @@ const Index = () => {
 
   const renderTabContent = () => {
     switch (currentTab) {
-      case 'home':
+      case "home":
         return <HomeScreen />;
-      case 'explore':
+      case "explore":
         return <ExploreScreen />;
-      case 'games':
+      case "games":
         return <GamesHub />;
-      case 'collection':
+      case "collection":
         return <CollectionScreen />;
-      case 'profile':
+      case "pet":
+        return <PetHouseScreen />;
+      case "profile":
         return <ProfileScreen />;
       default:
         return <HomeScreen />;
@@ -127,8 +131,8 @@ const Index = () => {
       <div
         className="h-dvh w-full max-w-md mx-auto relative overflow-hidden flex flex-col"
         style={{
-          background: 'var(--cream)',
-          boxShadow: '0 0 40px rgba(0,0,0,0.08)',
+          background: "var(--cream)",
+          boxShadow: "0 0 40px rgba(0,0,0,0.08)",
         }}
       >
         {showSplash && <SplashScreen />}

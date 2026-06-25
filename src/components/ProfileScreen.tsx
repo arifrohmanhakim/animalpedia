@@ -1,4 +1,5 @@
 import { useGameStore } from '@/store/gameStore';
+import { animals } from '@/data/animals';
 
 export function ProfileScreen() {
   const playerName = useGameStore((s) => s.playerName);
@@ -20,6 +21,21 @@ export function ProfileScreen() {
 
   const unlockedCount = badges.filter((b) => b.unlocked).length;
   const totalBadges = badges.length;
+
+  // Pet widget
+  const petAnimals = useGameStore((s) => s.petAnimals);
+  const petData = useGameStore((s) => s.petData);
+  const getPetHunger = useGameStore((s) => s.getPetHunger);
+  const getPetHappiness = useGameStore((s) => s.getPetHappiness);
+  const getPetAffection = useGameStore((s) => s.getPetAffection);
+  const setTab = useGameStore((s) => s.setTab);
+  const firstPetId = petAnimals.length > 0 ? petAnimals[0] : null;
+  const firstPetAnimal = firstPetId ? animals.find((a) => a.id === firstPetId) : null;
+  const firstPetHunger = firstPetId ? getPetHunger(firstPetId) : 0;
+  const firstPetHappiness = firstPetId ? getPetHappiness(firstPetId) : 0;
+  const firstPetAffection = firstPetId ? getPetAffection(firstPetId) : 0;
+  const firstPetMissing = firstPetHunger < 50 || firstPetHappiness < 50 || firstPetAffection < 50;
+  const hasPets = petAnimals.length > 0;
 
   return (
     <div className="screen-container bg-[var(--cream)]">
@@ -96,6 +112,53 @@ export function ProfileScreen() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Pet Widget */}
+        <div className="px-5 pt-4">
+          <h3 className="font-display text-sm font-bold mb-2.5">🏡 Peliharaan</h3>
+          {hasPets && firstPetAnimal ? (
+            <button
+              onClick={() => setTab('pet')}
+              className="w-full crayon-card p-3 flex items-center gap-3 text-left"
+            >
+              <div
+                className="w-12 h-12 rounded-xl border-[3px] border-[var(--ink)] flex items-center justify-center text-2xl flex-shrink-0"
+                style={{ background: firstPetAnimal.color }}
+              >
+                {firstPetAnimal.emoji}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-sm">{firstPetAnimal.name}</div>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span>{firstPetMissing ? '😴' : '😊'}</span>
+                  <span className="text-[10px] font-semibold text-[var(--ink-soft)]">
+                    {firstPetMissing ? 'Kangen kamu' : 'Sedang bahagia'}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 mt-1.5 text-[10px]">
+                  <span>{firstPetAnimal.foodEmoji} {firstPetHunger}%</span>
+                  <span>🎮 {firstPetHappiness}%</span>
+                  <span>💛 {firstPetAffection}%</span>
+                </div>
+              </div>
+              <div className="text-lg flex-shrink-0">›</div>
+            </button>
+          ) : (
+            <button
+              onClick={() => setTab('explore')}
+              className="w-full crayon-card p-3.5 flex items-center gap-3"
+            >
+              <div className="text-2xl">🐣</div>
+              <div className="flex-1 text-left">
+                <div className="font-bold text-sm">Adopsi hewan pertamamu!</div>
+                <div className="text-[10px] font-semibold text-[var(--ink-soft)]">
+                  Jelajahi & pelihara hewan favoritmu
+                </div>
+              </div>
+              <div className="text-lg flex-shrink-0">›</div>
+            </button>
+          )}
         </div>
 
         {/* Badges */}
