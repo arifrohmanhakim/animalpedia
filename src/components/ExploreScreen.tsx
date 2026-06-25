@@ -1,4 +1,11 @@
-import { useState, useEffect, useRef, useMemo, useCallback, useLayoutEffect } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+  useLayoutEffect,
+} from "react";
 import { useGameStore } from "@/store/gameStore";
 import {
   animals,
@@ -107,8 +114,7 @@ function ThemedZoneSection({
   const renderedTileWidth = containerWidth * 1.2;
   const renderedTileHeight =
     renderedTileWidth * (TILE_NATIVE_HEIGHT / TILE_NATIVE_WIDTH);
-  const offsetY =
-    topOffset !== undefined ? topOffset % renderedTileHeight : 0;
+  const offsetY = topOffset !== undefined ? topOffset % renderedTileHeight : 0;
 
   return (
     <div
@@ -416,7 +422,8 @@ export function ExploreScreen() {
         return;
       }
       const last = result[result.length - 1];
-      if (last) last.items.push({ animal: item.animal, state: item.state, index });
+      if (last)
+        last.items.push({ animal: item.animal, state: item.state, index });
     });
     return result;
   }, [flatOrder]);
@@ -543,10 +550,7 @@ export function ExploreScreen() {
       </div>
 
       {/* ======== FOREST PATH ======== */}
-      <div
-        ref={scrollRef}
-        className="screen-scroll relative"
-      >
+      <div ref={scrollRef} className="screen-scroll relative">
         {/* SVG zone decorations */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {zoneDecorations.map((d, i) => (
@@ -611,7 +615,7 @@ export function ExploreScreen() {
                         : scoreData.score / scoreData.total >= 0.5
                           ? 2
                           : 1
-                      : 0;
+                    : 0;
 
                   return (
                     <div
@@ -638,9 +642,7 @@ export function ExploreScreen() {
                             onPlaySound={(e) =>
                               handlePlaySound(e, animal.id, state)
                             }
-                            onClick={() =>
-                              handleAnimalClick(animal.id, state)
-                            }
+                            onClick={() => handleAnimalClick(animal.id, state)}
                           />
                         )}
                       </div>
@@ -661,9 +663,7 @@ export function ExploreScreen() {
                             onPlaySound={(e) =>
                               handlePlaySound(e, animal.id, state)
                             }
-                            onClick={() =>
-                              handleAnimalClick(animal.id, state)
-                            }
+                            onClick={() => handleAnimalClick(animal.id, state)}
                           />
                         )}
                       </div>
@@ -759,7 +759,7 @@ function AnimalCircleCard({
           {/* Lock overlay */}
           {state === "locked" && (
             <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/40">
-              <span className="text-4xl">🚫</span>
+              {/* <span className="text-4xl">🚫</span> */}
             </div>
           )}
 
