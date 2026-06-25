@@ -335,8 +335,17 @@ export const useGameStore = create<GameState>((set, get) => ({
 
       let shouldUnlock = false;
       switch (badge.id) {
+        case 'first-discovery':
+          shouldUnlock = state.discoveredAnimals.length >= 1;
+          break;
         case 'explorer':
           shouldUnlock = state.discoveredAnimals.length >= 10;
+          break;
+        case 'collector':
+          shouldUnlock = state.discoveredAnimals.length >= 25;
+          break;
+        case 'complete-collection':
+          shouldUnlock = state.discoveredAnimals.length === allAnimals.length;
           break;
         case 'mammal-expert': {
           const mammalCount = state.discoveredAnimals.filter(
@@ -353,17 +362,19 @@ export const useGameStore = create<GameState>((set, get) => ({
           shouldUnlock = oceanDiscovered === oceanIds.length;
           break;
         }
-        case 'quiz-champion':
-          shouldUnlock = state.quizCorrectCount >= 10;
-          break;
-        case 'daily-learner':
-          shouldUnlock = state.dailyStreak >= 7;
-          break;
         case 'reptile-fan': {
           const reptileCount = state.discoveredAnimals.filter(
             (id) => allAnimals.find((a) => a.id === id)?.category === 'reptil'
           ).length;
           shouldUnlock = reptileCount >= 5;
+          break;
+        }
+        case 'reptile-master': {
+          const reptileIds = allAnimals.filter((a) => a.category === 'reptil').map((a) => a.id);
+          const reptileDiscovered = reptileIds.filter((id) =>
+            state.discoveredAnimals.includes(id)
+          ).length;
+          shouldUnlock = reptileDiscovered === reptileIds.length;
           break;
         }
         case 'bird-watcher': {
@@ -373,8 +384,67 @@ export const useGameStore = create<GameState>((set, get) => ({
           shouldUnlock = birdCount >= 5;
           break;
         }
+        case 'bird-master': {
+          const birdIds = allAnimals.filter((a) => a.category === 'burung').map((a) => a.id);
+          const birdDiscovered = birdIds.filter((id) =>
+            state.discoveredAnimals.includes(id)
+          ).length;
+          shouldUnlock = birdDiscovered === birdIds.length;
+          break;
+        }
+        case 'insect-collector': {
+          const insectCount = state.discoveredAnimals.filter(
+            (id) => allAnimals.find((a) => a.id === id)?.category === 'serangga'
+          ).length;
+          shouldUnlock = insectCount >= 5;
+          break;
+        }
+        case 'amphibian-friend': {
+          const amphibianCount = state.discoveredAnimals.filter(
+            (id) => allAnimals.find((a) => a.id === id)?.category === 'amfibi'
+          ).length;
+          shouldUnlock = amphibianCount >= 3;
+          break;
+        }
         case 'big-cat-family':
           shouldUnlock = get().isFamilyComplete('big-cat-family');
+          break;
+        case 'farm-friends':
+          shouldUnlock = get().isFamilyComplete('farm-animals');
+          break;
+        case 'night-explorer':
+          shouldUnlock = get().isFamilyComplete('nocturnal');
+          break;
+        case 'water-birds':
+          shouldUnlock = get().isFamilyComplete('water-birds');
+          break;
+        case 'first-quiz':
+          shouldUnlock = state.completedQuizzes.length >= 1;
+          break;
+        case 'quiz-champion':
+          shouldUnlock = state.quizCorrectCount >= 10;
+          break;
+        case 'quiz-master': {
+          const threeStarCount = Object.values(state.animalScores).filter(
+            (s) => s.score === s.total && s.total > 0
+          ).length;
+          shouldUnlock = threeStarCount >= 5;
+          break;
+        }
+        case 'streak-3':
+          shouldUnlock = state.dailyStreak >= 3;
+          break;
+        case 'daily-learner':
+          shouldUnlock = state.dailyStreak >= 7;
+          break;
+        case 'streak-30':
+          shouldUnlock = state.dailyStreak >= 30;
+          break;
+        case 'level-5':
+          shouldUnlock = getLevelFromXP(state.xp).level >= 5;
+          break;
+        case 'level-10':
+          shouldUnlock = getLevelFromXP(state.xp).level >= 10;
           break;
       }
 
@@ -397,8 +467,17 @@ export const useGameStore = create<GameState>((set, get) => ({
 
       let shouldUnlock = false;
       switch (badge.id) {
+        case 'first-discovery':
+          shouldUnlock = state.discoveredAnimals.length >= 1;
+          break;
         case 'explorer':
           shouldUnlock = state.discoveredAnimals.length >= 10;
+          break;
+        case 'collector':
+          shouldUnlock = state.discoveredAnimals.length >= 25;
+          break;
+        case 'complete-collection':
+          shouldUnlock = state.discoveredAnimals.length === allAnimals.length;
           break;
         case 'mammal-expert': {
           const mammalCount = state.discoveredAnimals.filter(
@@ -415,17 +494,19 @@ export const useGameStore = create<GameState>((set, get) => ({
           shouldUnlock = oceanDiscovered === oceanIds.length;
           break;
         }
-        case 'quiz-champion':
-          shouldUnlock = state.quizCorrectCount >= 10;
-          break;
-        case 'daily-learner':
-          shouldUnlock = state.dailyStreak >= 7;
-          break;
         case 'reptile-fan': {
           const reptileCount = state.discoveredAnimals.filter(
             (id) => allAnimals.find((a) => a.id === id)?.category === 'reptil'
           ).length;
           shouldUnlock = reptileCount >= 5;
+          break;
+        }
+        case 'reptile-master': {
+          const reptileIds = allAnimals.filter((a) => a.category === 'reptil').map((a) => a.id);
+          const reptileDiscovered = reptileIds.filter((id) =>
+            state.discoveredAnimals.includes(id)
+          ).length;
+          shouldUnlock = reptileDiscovered === reptileIds.length;
           break;
         }
         case 'bird-watcher': {
@@ -435,8 +516,67 @@ export const useGameStore = create<GameState>((set, get) => ({
           shouldUnlock = birdCount >= 5;
           break;
         }
+        case 'bird-master': {
+          const birdIds = allAnimals.filter((a) => a.category === 'burung').map((a) => a.id);
+          const birdDiscovered = birdIds.filter((id) =>
+            state.discoveredAnimals.includes(id)
+          ).length;
+          shouldUnlock = birdDiscovered === birdIds.length;
+          break;
+        }
+        case 'insect-collector': {
+          const insectCount = state.discoveredAnimals.filter(
+            (id) => allAnimals.find((a) => a.id === id)?.category === 'serangga'
+          ).length;
+          shouldUnlock = insectCount >= 5;
+          break;
+        }
+        case 'amphibian-friend': {
+          const amphibianCount = state.discoveredAnimals.filter(
+            (id) => allAnimals.find((a) => a.id === id)?.category === 'amfibi'
+          ).length;
+          shouldUnlock = amphibianCount >= 3;
+          break;
+        }
         case 'big-cat-family':
           shouldUnlock = get().isFamilyComplete('big-cat-family');
+          break;
+        case 'farm-friends':
+          shouldUnlock = get().isFamilyComplete('farm-animals');
+          break;
+        case 'night-explorer':
+          shouldUnlock = get().isFamilyComplete('nocturnal');
+          break;
+        case 'water-birds':
+          shouldUnlock = get().isFamilyComplete('water-birds');
+          break;
+        case 'first-quiz':
+          shouldUnlock = state.completedQuizzes.length >= 1;
+          break;
+        case 'quiz-champion':
+          shouldUnlock = state.quizCorrectCount >= 10;
+          break;
+        case 'quiz-master': {
+          const threeStarCount = Object.values(state.animalScores).filter(
+            (s) => s.score === s.total && s.total > 0
+          ).length;
+          shouldUnlock = threeStarCount >= 5;
+          break;
+        }
+        case 'streak-3':
+          shouldUnlock = state.dailyStreak >= 3;
+          break;
+        case 'daily-learner':
+          shouldUnlock = state.dailyStreak >= 7;
+          break;
+        case 'streak-30':
+          shouldUnlock = state.dailyStreak >= 30;
+          break;
+        case 'level-5':
+          shouldUnlock = getLevelFromXP(state.xp).level >= 5;
+          break;
+        case 'level-10':
+          shouldUnlock = getLevelFromXP(state.xp).level >= 10;
           break;
       }
 
