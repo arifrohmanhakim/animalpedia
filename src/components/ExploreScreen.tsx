@@ -323,8 +323,8 @@ function isZoneLocked(category: string, completedCount: number): boolean {
     const idx = PROGRESSION_ORDER.indexOf(animal.id);
     if (idx !== -1 && idx < earliestIdx) earliestIdx = idx;
   }
-  // If the earliest animal in this zone is at or beyond completedCount, zone is locked
-  return earliestIdx >= completedCount;
+  // If the earliest animal in this zone is beyond completedCount, zone is locked
+  return earliestIdx > completedCount;
 }
 
 /* ======== MAIN COMPONENT ======== */
