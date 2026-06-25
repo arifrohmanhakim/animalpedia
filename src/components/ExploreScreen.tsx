@@ -360,25 +360,34 @@ export function ExploreScreen() {
     return map;
   }, []);
 
-  /* Build flat order from progression list, grouped by category */
+  /* Build flat order — group by category so each zone is contiguous */
   const flatOrder = useMemo(() => {
+    const grouped = new Map<string, Animal[]>();
+    for (const id of PROGRESSION_ORDER) {
+      const animal = animalMap.get(id);
+      if (!animal) continue;
+      const list = grouped.get(animal.category);
+      if (list) list.push(animal);
+      else grouped.set(animal.category, [animal]);
+    }
+
+    const categoryOrder = Object.keys(ZONE_CONFIG).filter(
+      (c) => c !== "semua" && grouped.has(c),
+    );
+
     const result: Array<
       | { type: "header"; category: string }
       | { type: "animal"; animal: Animal; state: ProgressionState }
     > = [];
-    let lastCategory = "";
 
-    for (const id of PROGRESSION_ORDER) {
-      const animal = animalMap.get(id);
-      if (!animal) continue;
-
-      const state = getProgressionState(id);
-
-      if (animal.category !== lastCategory) {
-        result.push({ type: "header", category: animal.category });
-        lastCategory = animal.category;
+    for (const cat of categoryOrder) {
+      const animals = grouped.get(cat);
+      if (!animals || animals.length === 0) continue;
+      result.push({ type: "header", category: cat });
+      for (const animal of animals) {
+        const state = getProgressionState(animal.id);
+        result.push({ type: "animal", animal, state });
       }
-      result.push({ type: "animal", animal, state });
     }
 
     return result;
