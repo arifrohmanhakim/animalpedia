@@ -566,7 +566,7 @@ export function ExploreScreen() {
         </div>
 
         {/* Content layer */}
-        <div className="relative z-10 pt-6 pb-32">
+        <div className="relative z-10 pb-32">
           {groups.map((group, gi) => {
             const groupKey = groupKeys[gi];
             const zc = ZONE_CONFIG[group.category];
@@ -687,10 +687,10 @@ export function ExploreScreen() {
                 </>
               ) : (
                 <>
-                  <div className="w-10 h-10 rounded-full bg-[#A0722A] border-[3px] border-[var(--ink)] flex items-center justify-center text-white text-sm shadow-[0_3px_0_var(--ink)]">
+                  <div className="w-20 h-20 rounded-full bg-[#A0722A] border-[3px] border-[var(--ink)] flex items-center justify-center text-white text-4xl shadow-[0_3px_0_var(--ink)]">
                     🏁
                   </div>
-                  <div className="text-[10px] font-bold text-[var(--ink-soft)] mt-2">
+                  <div className="text-[16px] font-bold text-[var(--ink-soft)] mt-2">
                     Akhir perjalanan
                   </div>
                 </>
