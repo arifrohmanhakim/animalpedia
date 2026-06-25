@@ -1,6 +1,7 @@
 import { useGameStore } from '@/store/gameStore';
 import { MemoryGame } from '@/components/MemoryGame';
 import { GameScreen } from '@/components/GameScreen';
+import { ImageGuessGame } from '@/components/ImageGuessGame';
 
 const games = [
   {
@@ -10,6 +11,14 @@ const games = [
     description: 'Dengar suara hewan & tebak!',
     bg: 'var(--blue-pale)',
     color: 'var(--blue-deep)',
+  },
+  {
+    id: 'image',
+    title: 'Tebak Gambar',
+    emoji: '🖼️',
+    description: 'Tebak hewan dari bagian gambarnya!',
+    bg: 'var(--purple-pale)',
+    color: 'var(--purple-deep)',
   },
   {
     id: 'memory',
@@ -39,6 +48,9 @@ export function GamesHub() {
   }
   if (activeGame === 'sound') {
     return <GameScreen onBack={() => setActiveGame(null)} />;
+  }
+  if (activeGame === 'image') {
+    return <ImageGuessGame onBack={() => setActiveGame(null)} />;
   }
   if (activeGame === 'quiz') {
     // For quiz we can trigger a random animal quiz

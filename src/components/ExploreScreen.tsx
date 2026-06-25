@@ -23,6 +23,8 @@ const PLANT_SVGS = {
   fern: `<svg viewBox="0 0 40 32" width="40" height="32"><path d="M20 32 Q18 20 20 2" stroke="#388E3C" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M20 20 Q28 16 34 14" stroke="#4CAF50" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M20 16 Q12 12 6 10" stroke="#43A047" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M20 24 Q30 22 36 22" stroke="#66BB6A" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M20 12 Q10 8 4 6" stroke="#66BB6A" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>`,
 };
 
+const MAP_BACKGROUND_IMAGE = "/bg.svg";
+
 type PlantType = keyof typeof PLANT_SVGS;
 
 function ZoneDecoration({
@@ -174,7 +176,18 @@ const ZONE_THEME: Record<string, ZoneTheme> = {
 /* ======== ZONE SVG DECORATIONS ======== */
 
 const ZONE_DECORATIONS: Record<string, string[]> = {
-  mamalia: ["treeA", "treeB", "treeA", "fern", "bush", "treeB", "grassA", "grassB", "grassC", "flower"],
+  mamalia: [
+    "treeA",
+    "treeB",
+    "treeA",
+    "fern",
+    "bush",
+    "treeB",
+    "grassA",
+    "grassB",
+    "grassC",
+    "flower",
+  ],
   burung: [
     `<svg viewBox="0 0 60 36" width="60" height="36"><ellipse cx="20" cy="20" rx="18" ry="12" fill="white" opacity="0.7"/><ellipse cx="36" cy="18" rx="16" ry="14" fill="white" opacity="0.7"/><ellipse cx="28" cy="16" rx="22" ry="13" fill="white" opacity="0.8"/></svg>`,
     `<svg viewBox="0 0 40 24" width="40" height="24"><ellipse cx="15" cy="12" rx="12" ry="8" fill="white" opacity="0.5"/><ellipse cx="25" cy="10" rx="10" ry="9" fill="white" opacity="0.5"/><ellipse cx="19" cy="9" rx="14" ry="8" fill="white" opacity="0.6"/></svg>`,
@@ -192,7 +205,8 @@ const ZONE_DECORATIONS: Record<string, string[]> = {
   ],
   serangga: [
     "flower",
-    "grassA", "grassB",
+    "grassA",
+    "grassB",
     `<svg viewBox="0 0 24 24" width="24" height="24"><ellipse cx="8" cy="8" rx="6" ry="4" fill="#F48FB1" opacity="0.7"/><ellipse cx="16" cy="8" rx="6" ry="4" fill="#CE93D8" opacity="0.7"/><rect x="11" y="6" width="2" height="10" fill="#66BB6A"/></svg>`,
     `<svg viewBox="0 0 20 18" width="20" height="18"><ellipse cx="10" cy="10" rx="8" ry="6" fill="#FF7043" opacity="0.6"/><circle cx="8" cy="8" r="2" fill="#FFB74D"/><circle cx="12" cy="8" r="2" fill="#FFB74D"/></svg>`,
   ],
@@ -281,7 +295,11 @@ export function ExploreScreen() {
   }, [completedCount]);
 
   const zoneDecorations = useMemo(
-    () => generateDecorations(flatOrder.length, currentZone === "semua" ? "mamalia" : currentZone),
+    () =>
+      generateDecorations(
+        flatOrder.length,
+        currentZone === "semua" ? "mamalia" : currentZone,
+      ),
     [flatOrder.length, currentZone],
   );
   const svgPath = useMemo(
@@ -400,33 +418,16 @@ export function ExploreScreen() {
       </div>
 
       {/* ======== FOREST PATH ======== */}
-      <div ref={scrollRef} className="screen-scroll relative">
-        {/* Dynamic zone background */}
-        <div
-          className="absolute inset-0 pointer-events-none transition-all duration-700 ease-in-out"
-          style={{
-            background: `linear-gradient(to bottom, ${currentZone === "semua" ? "#E8F0D6, #DCE8C8, #C5D9A8" : (ZONE_THEME[currentZone]?.bg || ZONE_THEME.mamalia.bg)})`,
-          }}
-        />
-
-        {/* Zone edge strips */}
-        {currentZone !== "semua" && (
-          <>
-            <div
-              className="absolute left-0 top-0 bottom-0 w-2/12 pointer-events-none transition-all duration-500"
-              style={{
-                background: `linear-gradient(to right, ${ZONE_THEME[currentZone]?.edge} 0%, transparent 100%)`,
-              }}
-            />
-            <div
-              className="absolute right-0 top-0 bottom-0 w-2/12 pointer-events-none transition-all duration-500"
-              style={{
-                background: `linear-gradient(to left, ${ZONE_THEME[currentZone]?.edge} 0%, transparent 100%)`,
-              }}
-            />
-          </>
-        )}
-
+      <div
+        ref={scrollRef}
+        className="screen-scroll relative"
+        style={{
+          backgroundImage: `url(${MAP_BACKGROUND_IMAGE})`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "120% auto",
+          backgroundAttachment: "local",
+        }}
+      >
         {/* SVG zone decorations */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {zoneDecorations.map((d, i) => (
@@ -440,68 +441,6 @@ export function ExploreScreen() {
             />
           ))}
         </div>
-
-        {/* SVG smooth zigzag road */}
-        {svgPath && (
-          <svg
-            className="absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none z-[2]"
-            width="120"
-            height={pathHeight}
-            viewBox={`0 0 120 ${pathHeight}`}
-            preserveAspectRatio="xMidYMin slice"
-          >
-            {/* Road shadow */}
-            <path
-              d={svgPath}
-              stroke="#6D4C2A"
-              strokeWidth="52"
-              fill="none"
-              strokeLinecap="round"
-              opacity="0.25"
-              transform="translate(0, 5)"
-            />
-            {/* Road base */}
-            <path
-              d={svgPath}
-              stroke={ZONE_THEME[currentZone]?.road.base || "#A0722A"}
-              strokeWidth="44"
-              fill="none"
-              strokeLinecap="round"
-              opacity="0.85"
-              className="transition-all duration-500"
-            />
-            {/* Road inner */}
-            <path
-              d={svgPath}
-              stroke={ZONE_THEME[currentZone]?.road.inner || "#BF9345"}
-              strokeWidth="30"
-              fill="none"
-              strokeLinecap="round"
-              opacity="0.7"
-              className="transition-all duration-500"
-            />
-            {/* Road top highlight */}
-            <path
-              d={svgPath}
-              stroke={ZONE_THEME[currentZone]?.road.highlight || "#D4A853"}
-              strokeWidth="14"
-              fill="none"
-              strokeLinecap="round"
-              opacity="0.45"
-              className="transition-all duration-500"
-            />
-            {/* Center dashed line */}
-            <path
-              d={svgPath}
-              stroke="#E8D5B5"
-              strokeWidth="3"
-              fill="none"
-              strokeLinecap="round"
-              strokeDasharray="10 16"
-              opacity="0.6"
-            />
-          </svg>
-        )}
 
         {/* Content layer */}
         <div className="relative z-10 pt-6 pb-32">
