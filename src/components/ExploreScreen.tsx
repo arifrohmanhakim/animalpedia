@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback, useLayoutEffect } from "react";
 import { useGameStore } from "@/store/gameStore";
 import {
   animals,
@@ -9,6 +9,7 @@ import type { Animal } from "@/data/animals/types";
 import type { ProgressionState } from "@/data/animals";
 import { playAnimalSound } from "@/lib/audio";
 import { showToastInfo } from "@/components/ToastNotification";
+import { useSectionOffsets } from "@/hooks/useSectionOffsets";
 
 /* ======== SVG PLANT ILLUSTRATIONS ======== */
 
@@ -23,7 +24,26 @@ const PLANT_SVGS = {
   fern: `<svg viewBox="0 0 40 32" width="40" height="32"><path d="M20 32 Q18 20 20 2" stroke="#388E3C" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M20 20 Q28 16 34 14" stroke="#4CAF50" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M20 16 Q12 12 6 10" stroke="#43A047" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M20 24 Q30 22 36 22" stroke="#66BB6A" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M20 12 Q10 8 4 6" stroke="#66BB6A" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>`,
 };
 
-const MAP_BACKGROUND_IMAGE = "/bg.svg";
+const TILE_NATIVE_WIDTH = 1224;
+const TILE_NATIVE_HEIGHT = 800;
+
+const MAP_BACKGROUND_IMAGE: Record<string, string> = {
+  mamalia: "/bg-mamalia.png",
+  burung: "/bg-burung.png",
+  reptil: "/bg-reptil.png",
+  laut: "/bg-laut.png",
+  serangga: "/bg-serangga.png",
+  amfibi: "/bg-amfibi.png",
+};
+
+const ZONE_TINT: Record<string, string> = {
+  mamalia: "#9fc20f",
+  burung: "#b8d4a0",
+  reptil: "#e3c98a",
+  laut: "#1a6f96",
+  serangga: "#a9d66a",
+  amfibi: "#7fc4a8",
+};
 
 type PlantType = keyof typeof PLANT_SVGS;
 
@@ -58,6 +78,76 @@ function ZoneDecoration({
       }}
       dangerouslySetInnerHTML={{ __html: svgContent }}
     />
+  );
+}
+
+/* ======== THEMED ZONE SECTION ======== */
+
+function ThemedZoneSection({
+  groupKey,
+  category,
+  topOffset,
+  containerWidth,
+  isFirst,
+  prevCategory,
+  registerRef,
+  children,
+}: {
+  groupKey: string;
+  category: string;
+  topOffset: number | undefined;
+  containerWidth: number;
+  isFirst: boolean;
+  prevCategory: string | null;
+  registerRef: (el: HTMLDivElement | null) => void;
+  children: React.ReactNode;
+}) {
+  const bgImage = MAP_BACKGROUND_IMAGE[category];
+
+  const renderedTileWidth = containerWidth * 1.2;
+  const renderedTileHeight =
+    renderedTileWidth * (TILE_NATIVE_HEIGHT / TILE_NATIVE_WIDTH);
+  const offsetY =
+    topOffset !== undefined ? topOffset % renderedTileHeight : 0;
+
+  return (
+    <div
+      ref={registerRef}
+      data-section={category}
+      style={{ position: "relative" }}
+    >
+      {/* Background layer — posisinya "tahu" lokasi globalnya */}
+      {bgImage && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundRepeat: "repeat",
+            backgroundSize: `${renderedTileWidth}px ${renderedTileHeight}px`,
+            backgroundPosition: `center -${offsetY}px`,
+            zIndex: 0,
+          }}
+        />
+      )}
+
+      {/* Transisi blend dari kategori sebelumnya */}
+      {!isFirst && prevCategory && (
+        <div
+          className="absolute top-0 left-0 right-0 pointer-events-none"
+          style={{
+            height: "64px",
+            background: `linear-gradient(to bottom, ${ZONE_TINT[prevCategory]}, transparent)`,
+            opacity: 0.55,
+            zIndex: 1,
+          }}
+        />
+      )}
+
+      {/* Konten section (header + animal cards) */}
+      <div className="relative" style={{ zIndex: 2 }}>
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -251,6 +341,18 @@ export function ExploreScreen() {
   const currentAnimalId = getCurrentAnimalId();
   const completedCount = getInSequenceCompletedCount(completedQuizzes);
 
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      if (scrollRef.current) setContainerWidth(scrollRef.current.clientWidth);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (scrollRef.current) ro.observe(scrollRef.current);
+    return () => ro.disconnect();
+  }, []);
+
   /* Build animal lookup map */
   const animalMap = useMemo(() => {
     const map = new Map<string, Animal>();
@@ -294,6 +396,29 @@ export function ExploreScreen() {
     return cache;
   }, [completedCount]);
 
+  const groups = useMemo(() => {
+    const result: Array<{
+      category: string;
+      items: Array<{ animal: Animal; state: ProgressionState; index: number }>;
+    }> = [];
+    flatOrder.forEach((item, index) => {
+      if (item.type === "header") {
+        result.push({ category: item.category, items: [] });
+        return;
+      }
+      const last = result[result.length - 1];
+      if (last) last.items.push({ animal: item.animal, state: item.state, index });
+    });
+    return result;
+  }, [flatOrder]);
+
+  const groupKeys = useMemo(
+    () => groups.map((g, i) => `${g.category}-${i}`),
+    [groups],
+  );
+
+  const { offsets, sectionRefs } = useSectionOffsets(scrollRef, groupKeys);
+
   const zoneDecorations = useMemo(
     () =>
       generateDecorations(
@@ -312,33 +437,21 @@ export function ExploreScreen() {
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
-    const measure = () => {
-      const positions: Array<{ id: string; top: number }> = [];
-      container.querySelectorAll("[data-section]").forEach((el) => {
-        const id = el.getAttribute("data-section");
-        if (id) positions.push({ id, top: (el as HTMLElement).offsetTop });
-      });
-      positions.sort((a, b) => a.top - b.top);
-      sectionPositions.current = positions;
-    };
-    measure();
     const handleScroll = () => {
       const scrollTop = container.scrollTop + 60;
       let current = "semua";
-      for (const pos of sectionPositions.current) {
-        if (pos.top <= scrollTop) current = pos.id;
+      for (const [i, g] of groups.entries()) {
+        const offset = offsets[groupKeys[i]];
+        if (offset !== undefined && offset <= scrollTop) {
+          current = g.category;
+        }
       }
       if (current !== currentZone) setCurrentZone(current);
     };
     container.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    const ro = new ResizeObserver(measure);
-    ro.observe(container);
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-      ro.disconnect();
-    };
-  }, [currentZone, flatOrder.length]);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [currentZone, offsets, groups, groupKeys]);
 
   const handleAnimalClick = useCallback(
     (animalId: string, state: ProgressionState) => {
@@ -421,12 +534,6 @@ export function ExploreScreen() {
       <div
         ref={scrollRef}
         className="screen-scroll relative"
-        style={{
-          backgroundImage: `url(${MAP_BACKGROUND_IMAGE})`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "120% auto",
-          backgroundAttachment: "local",
-        }}
       >
         {/* SVG zone decorations */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -444,16 +551,27 @@ export function ExploreScreen() {
 
         {/* Content layer */}
         <div className="relative z-10 pt-6 pb-32">
-          {flatOrder.map((item, index) => {
-            if (item.type === "header") {
-              const zc = ZONE_CONFIG[item.category];
-              const locked = zoneLockedCache[item.category] ?? false;
-              return (
-                <div
-                  key={`hdr-${item.category}`}
-                  data-section={item.category}
-                  className="flex items-center justify-center pt-6 pb-2"
-                >
+          {groups.map((group, gi) => {
+            const groupKey = groupKeys[gi];
+            const zc = ZONE_CONFIG[group.category];
+            const locked = zoneLockedCache[group.category] ?? false;
+            const prevCategory = gi > 0 ? groups[gi - 1].category : null;
+
+            return (
+              <ThemedZoneSection
+                key={groupKey}
+                groupKey={groupKey}
+                category={group.category}
+                topOffset={offsets[groupKey]}
+                containerWidth={containerWidth || 400}
+                isFirst={gi === 0}
+                prevCategory={prevCategory}
+                registerRef={(el) => {
+                  sectionRefs.current[groupKey] = el;
+                }}
+              >
+                {/* Header kategori */}
+                <div className="flex items-center justify-center pt-6 pb-2">
                   <div
                     className="crayon-card px-4 py-1.5 flex items-center gap-2 text-xs font-bold border-[2px] shadow-none transition-all"
                     style={{
@@ -462,75 +580,85 @@ export function ExploreScreen() {
                         : zc?.color || "var(--paper)",
                       color: locked ? "#777" : "#fff",
                       borderColor: "var(--ink)",
-                      opacity: locked ? 0.55 : 1,
                     }}
                   >
                     <span className="text-sm">{zc?.emoji}</span>
                     {locked ? "🔒 Wilayah Tertutup" : zc?.label}
                   </div>
                 </div>
-              );
-            }
 
-            const side = index % 2 === 0 ? "left" : "right";
-            const { animal, state } = item;
-            const scoreData = animalScores[animal.id];
-            const starCount = scoreData
-              ? scoreData.score === 0
-                ? 0
-                : scoreData.score === scoreData.total
-                  ? 3
-                  : scoreData.score / scoreData.total >= 0.5
-                    ? 2
-                    : 1
-              : 0;
+                {/* Animal cards */}
+                {group.items.map(({ animal, state, index }) => {
+                  const side = index % 2 === 0 ? "left" : "right";
+                  const scoreData = animalScores[animal.id];
+                  const starCount = scoreData
+                    ? scoreData.score === 0
+                      ? 0
+                      : scoreData.score === scoreData.total
+                        ? 3
+                        : scoreData.score / scoreData.total >= 0.5
+                          ? 2
+                          : 1
+                      : 0;
 
-            return (
-              <div
-                key={`${animal.id}`}
-                className="flex items-center min-h-[150px] px-4 py-4"
-                style={{
-                  animation: `fade-in-up 0.4s ease-out ${index * 0.03}s forwards`,
-                  opacity: 0,
-                }}
-              >
-                <div
-                  className="w-[calc(50%-60px)] sm:w-[calc(50%-70px)] flex"
-                  style={{
-                    justifyContent: side === "left" ? "flex-end" : "flex-start",
-                  }}
-                >
-                  {side === "left" && (
-                    <AnimalCircleCard
-                      animal={animal}
-                      state={state}
-                      starCount={starCount}
-                      soundPlayingId={soundPlayingId}
-                      onPlaySound={(e) => handlePlaySound(e, animal.id, state)}
-                      onClick={() => handleAnimalClick(animal.id, state)}
-                    />
-                  )}
-                </div>
-                <div className="w-[120px] flex-shrink-0" />
-                <div
-                  className="w-[calc(50%-60px)] sm:w-[calc(50%-70px)] flex"
-                  style={{
-                    justifyContent:
-                      side === "right" ? "flex-start" : "flex-end",
-                  }}
-                >
-                  {side === "right" && (
-                    <AnimalCircleCard
-                      animal={animal}
-                      state={state}
-                      starCount={starCount}
-                      soundPlayingId={soundPlayingId}
-                      onPlaySound={(e) => handlePlaySound(e, animal.id, state)}
-                      onClick={() => handleAnimalClick(animal.id, state)}
-                    />
-                  )}
-                </div>
-              </div>
+                  return (
+                    <div
+                      key={animal.id}
+                      className="flex items-center min-h-[150px] px-4 py-4"
+                      style={{
+                        animation: `fade-in-up 0.4s ease-out ${index * 0.03}s forwards`,
+                        opacity: 0,
+                      }}
+                    >
+                      <div
+                        className="w-[calc(50%-60px)] sm:w-[calc(50%-70px)] flex"
+                        style={{
+                          justifyContent:
+                            side === "left" ? "flex-end" : "flex-start",
+                        }}
+                      >
+                        {side === "left" && (
+                          <AnimalCircleCard
+                            animal={animal}
+                            state={state}
+                            starCount={starCount}
+                            soundPlayingId={soundPlayingId}
+                            onPlaySound={(e) =>
+                              handlePlaySound(e, animal.id, state)
+                            }
+                            onClick={() =>
+                              handleAnimalClick(animal.id, state)
+                            }
+                          />
+                        )}
+                      </div>
+                      <div className="w-[120px] flex-shrink-0" />
+                      <div
+                        className="w-[calc(50%-60px)] sm:w-[calc(50%-70px)] flex"
+                        style={{
+                          justifyContent:
+                            side === "right" ? "flex-start" : "flex-end",
+                        }}
+                      >
+                        {side === "right" && (
+                          <AnimalCircleCard
+                            animal={animal}
+                            state={state}
+                            starCount={starCount}
+                            soundPlayingId={soundPlayingId}
+                            onPlaySound={(e) =>
+                              handlePlaySound(e, animal.id, state)
+                            }
+                            onClick={() =>
+                              handleAnimalClick(animal.id, state)
+                            }
+                          />
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </ThemedZoneSection>
             );
           })}
 
@@ -584,18 +712,16 @@ function AnimalCircleCard({
 
   /* Visual treatment per state */
   let cardClasses =
-    "relative w-[88px] h-[88px] sm:w-[104px] sm:h-[104px] rounded-full border-[4px] border-[var(--ink)] flex items-center justify-center shadow-[0_4px_0_var(--ink)] transition-all active:scale-95";
-  let cardBg = animal.color;
+    "relative w-[76px] h-[76px] sm:w-[88px] sm:h-[88px] rounded-full border-[4px] border-[var(--ink)] flex items-center justify-center shadow-[0_4px_0_var(--ink)] transition-all active:scale-95";
+  let cardBg = "#ffffff";
   let showEmoji = animal.emoji;
   let showName = animal.name;
-  let showEnglish = animal.englishName;
 
   if (state === "locked") {
-    cardClasses += " grayscale opacity-40 cursor-not-allowed";
-    cardBg = "var(--cream)";
+    cardClasses += " grayscale cursor-not-allowed";
+    cardBg = "#ffffff";
     showEmoji = "❓";
     showName = "???";
-    showEnglish = "";
   } else if (state === "current") {
     cardClasses +=
       " hover:scale-105 cursor-pointer ring-[3px] ring-[var(--orange)] ring-offset-2 animate-pulse";
@@ -614,14 +740,14 @@ function AnimalCircleCard({
           style={{ background: cardBg }}
           disabled={state === "locked"}
         >
-          <span className="text-3xl sm:text-[64px] leading-none select-none">
+          <span className="text-5xl sm:text-[80px] leading-none select-none">
             {showEmoji}
           </span>
 
           {/* Lock overlay */}
           {state === "locked" && (
-            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/10">
-              <span className="text-2xl">🔒</span>
+            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/40">
+              <span className="text-4xl">🚫</span>
             </div>
           )}
 
@@ -652,14 +778,14 @@ function AnimalCircleCard({
       </div>
 
       {/* Stars — always visible below the card */}
-      <div className="flex gap-1 mt-0.5">
+      <div className="flex gap-0.5 mt-0.5 bg-white/80 rounded-md px-1 py-0.5">
         {[0, 1, 2].map((i) => (
           <span
             key={i}
-            className={`${i === 1 ? "text-2xl" : "text-xl"} leading-none drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)] ${
-              i < starCount
-                ? "text-yellow-500"
-                : "text-[var(--ink-soft)] opacity-35"
+            className={`text-sm ${
+              i === 1 ? "text-[15px]" : "text-sm"
+            } leading-none drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)] ${
+              i < starCount ? "text-yellow-500" : "text-[var(--ink-soft)]"
             }`}
           >
             ★
@@ -668,17 +794,9 @@ function AnimalCircleCard({
       </div>
 
       <div className="flex flex-col items-center">
-        <span
-          className="font-bold text-[11px] leading-tight bg-[var(--paper)] px-2.5 py-0.5 rounded-full border border-[var(--ink)]/30 shadow-[0_1px_0_var(--ink)]/10"
-          style={{ opacity: state === "locked" ? 0.5 : 1 }}
-        >
+        <span className="font-bold text-[11px] leading-tight bg-[var(--paper)] px-2.5 py-0.5 rounded-full border border-[var(--ink)]/30 shadow-[0_1px_0_var(--ink)]/10">
           {showName}
         </span>
-        {showEnglish && (
-          <span className="text-[9px] font-semibold text-[var(--ink-soft)] mt-0.5 leading-tight">
-            {showEnglish}
-          </span>
-        )}
       </div>
     </div>
   );
