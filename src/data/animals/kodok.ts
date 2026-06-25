@@ -17,6 +17,7 @@ export const kodok: Animal = {
   conservationStatus: 'aman',
   description: 'Kodok adalah amfibi berkulit kasar dan berbintil yang berbeda dari katak. Mereka lebih suka di darat dan memiliki kelenjar racun di belakang matanya.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f438.png",
+  story: "Halo! Aku Kodok, Toad! Aku suka bermain di Taman dan Hutan Lembab. Kodok tidak melompat sejauh katak — mereka lebih suka berjalan! kodok bisa hidup hingga 40 tahun di penangkaran. kulit kodok memiliki kelenjar yang mengeluarkan racun ringan. Yuk, main air bersama!",
   funFacts: [
     'Kodok tidak melompat sejauh katak — mereka lebih suka berjalan!',
     'Kodok bisa hidup hingga 40 tahun di penangkaran.',

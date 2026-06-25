@@ -16,6 +16,7 @@ export const komodo: Animal = {
     description: 'Komodo adalah kadal terbesar di dunia! Mereka hanya ditemukan di Indonesia, tepatnya di Pulau Komodo dan sekitarnya.',
     color: '#707B7C',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98e.png",
+  story: "Halo! Aku Komodo, Komodo Dragon! Komodo adalah kadal terbesar di dunia! Mereka hanya ditemukan di Indonesia, tepatnya di Pulau Komodo dan sekitarnya. Komodo adalah kadal terbesar di dunia — panjangnya bisa mencapai 3 meter! air liur komodo mengandung bakteri berbahaya yang bisa melumpuhkan mangsa. komodo bisa berlari hingga 20 km/jam. Meskipun kadang terlihat seram, aku ramah, kok!",
   funFacts: [
       'Komodo adalah kadal terbesar di dunia — panjangnya bisa mencapai 3 meter!',
       'Air liur komodo mengandung bakteri berbahaya yang bisa melumpuhkan mangsa.',

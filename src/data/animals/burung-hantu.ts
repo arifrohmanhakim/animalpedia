@@ -17,6 +17,7 @@ export const burung_hantu: Animal = {
   conservationStatus: 'aman',
   description: 'Burung hantu adalah burung nokturnal dengan mata besar menghadap ke depan. Kepalanya bisa memutar hingga 270 derajat untuk mencari mangsa.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f989.png",
+  story: "Cuit cuit! Aku Burung Hantu, si Owl yang lincah! Tahukah kamu? kepala burung hantu bisa memutar 270 derajat! mata burung hantu tidak bisa bergerak — mereka memutar seluruh kepala. burung hantu bisa terbang tanpa suara berkat bulu khusus. Senang bertemu denganmu!",
   funFacts: [
     'Kepala burung hantu bisa memutar 270 derajat!',
     'Mata burung hantu tidak bisa bergerak — mereka memutar seluruh kepala.',

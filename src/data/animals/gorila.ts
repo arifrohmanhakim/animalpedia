@@ -17,6 +17,7 @@ export const gorila: Animal = {
   conservationStatus: 'terancam',
   description: 'Gorila adalah primata terbesar dan terkuat di dunia. Meskipun tampak menakutkan, gorila adalah hewan yang lembut dan hidup dalam keluarga yang harmonis.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98d.png",
+  story: "Halo! Aku Gorila! Aku tinggal di Hutan Hujan Tropis yang indah. Gorilla memang terkenal sangat menarik, tapi aku juga suka bercanda, lho! Tahukah kamu? gorila berbagi 98% dna dengan manusia! gorila jantan disebut Yuk, kita berteman!",
   funFacts: [
     'Gorila berbagi 98% DNA dengan manusia!',
     'Gorila jantan disebut "silverback" karena punggungnya yang keperakan.',

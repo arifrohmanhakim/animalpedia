@@ -16,6 +16,7 @@ export const angsa: Animal = {
     description: 'Angsa adalah burung air yang sangat anggun dengan leher panjang melengkung. Mereka berenang dengan indah dan sering menjadi simbol cinta dan kesetiaan.',
     color: '#FDFEFE',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f9a2.png",
+  story: "Halo! Namaku Angsa. Swan itu nama Inggrisku, keren 'kan? Angsa adalah burung air yang sangat anggun dengan leher panjang melengkung. Angsa bisa terbang hingga 8.000 km saat migrasi! angsa memiliki lebih dari 25.000 bulu di tubuhnya. Ayo lihat aku di Danau dan Sungai!",
   funFacts: [
       'Angsa bisa terbang hingga 8.000 km saat migrasi!',
       'Angsa memiliki lebih dari 25.000 bulu di tubuhnya.',

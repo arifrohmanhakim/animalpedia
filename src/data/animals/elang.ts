@@ -16,6 +16,7 @@ export const elang: Animal = {
     description: 'Elang adalah burung pemangsa yang kuat dengan penglihatan tajam. Mereka bisa melihat mangsa dari jarak sangat jauh dan terbang sangat tinggi.',
     color: '#8B4513',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f985.png",
+  story: "Halo! Namaku Elang. Eagle itu nama Inggrisku, keren 'kan? Elang adalah burung pemangsa yang kuat dengan penglihatan tajam. Mata elang 4–8 kali lebih tajam dari mata manusia! elang bisa terbang hingga ketinggian 3.000 meter. Ayo lihat aku di Pegunungan dan Hutan!",
   funFacts: [
       'Mata elang 4–8 kali lebih tajam dari mata manusia!',
       'Elang bisa terbang hingga ketinggian 3.000 meter.',

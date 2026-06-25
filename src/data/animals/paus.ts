@@ -16,6 +16,7 @@ export const paus: Animal = {
     description: 'Paus biru adalah hewan TERBESAR yang pernah hidup di Bumi — bahkan lebih besar dari dinosaurus! Jantungnya sebesar mobil kecil.',
     color: '#2C7BB6',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f40b.png",
+  story: "Halo! Aku Paus Biru, Blue Whale! Aku berenang riang di Lautan Terbuka. Jantung paus biru sebesar mobil kecil! lidah paus biru seberat gajah dewasa. bayi paus biru minum 400 liter susu setiap hari. Ayo, berenang bersama aku!",
   funFacts: [
       'Jantung paus biru sebesar mobil kecil!',
       'Lidah paus biru seberat gajah dewasa.',

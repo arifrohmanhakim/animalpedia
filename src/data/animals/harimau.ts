@@ -18,6 +18,7 @@ export const harimau: Animal = {
   color: "#FF8C00",
   imageUrl:
     "https://static.vecteezy.com/system/resources/thumbnails/049/159/624/small/royal-bangle-tiger-3d-cartoon-image-png.png",
+  story: "Halo! Aku Harimau! Aku tinggal di Hutan Hujan yang indah. Tiger memang terkenal sangat menarik, tapi aku juga suka bercanda, lho! Tahukah kamu? setiap harimau memiliki pola belang yang unik. harimau bisa berenang hingga 6 km! Yuk, kita berteman!",
   funFacts: [
     "Setiap harimau memiliki pola belang yang unik.",
     "Harimau bisa berenang hingga 6 km!",

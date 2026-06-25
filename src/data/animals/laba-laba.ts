@@ -17,6 +17,7 @@ export const laba_laba: Animal = {
   conservationStatus: 'aman',
   description: 'Laba-laba adalah pembuat jaring ulung yang menenun jaring sutra dari tubuhnya. Mereka membantu mengendalikan populasi serangga di sekitar kita.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f577.png",
+  story: "Halo! Aku Laba-laba, Spider! Sutra laba-laba lebih kuat dari baja dengan ketebalan yang sama! beberapa laba-laba bisa berjalan di atas air. laba-laba memiliki 8 kaki dan 6–8 mata. Ayo bermain denganku!",
   funFacts: [
     'Sutra laba-laba lebih kuat dari baja dengan ketebalan yang sama!',
     'Beberapa laba-laba bisa berjalan di atas air.',

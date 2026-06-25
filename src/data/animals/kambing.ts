@@ -16,6 +16,7 @@ export const kambing: Animal = {
     description: 'Kambing adalah hewan ternak yang lincah dan suka memanjat. Mereka sangat pandai menjaga keseimbangan dan bisa berdiri di tebing curam!',
     color: '#D4C3A3',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f410.png",
+  story: "Halo! Aku Kambing, Goat! Akulah raja padang rumput dan pegunungan yang ramah, lho. Setiap hari aku bermain dan berburu bersama kelompokku. Kambing memiliki pupil mata persegi panjang yang unik! kambing bisa memanjat pohon untuk mencari buah. Kalau kamu lihat aku, jangan takut — aku baik banget!",
   funFacts: [
       'Kambing memiliki pupil mata persegi panjang yang unik!',
       'Kambing bisa memanjat pohon untuk mencari buah.',

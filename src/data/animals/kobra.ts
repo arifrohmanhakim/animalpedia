@@ -17,6 +17,7 @@ export const kobra: Animal = {
   conservationStatus: 'aman',
   description: 'Kobra adalah ular berbisa yang terkenal dengan tudung lehernya yang mengembang saat terancam. Mereka bisa "berdiri" hingga sepertiga panjang tubuhnya.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f40d.png",
+  story: "Halo! Aku Kobra, si Cobra! Aku punya 1–10 kg. Kobra bisa menyemburkan bisa ke mata musuh dari jarak 2 meter! tudung kobra terbuat dari tulang rusuk yang melebar. kobra memakan ular lain, termasuk ular berbisa! Seru 'kan? Ayo main bersama!",
   funFacts: [
     'Kobra bisa menyemburkan bisa ke mata musuh dari jarak 2 meter!',
     'Tudung kobra terbuat dari tulang rusuk yang melebar.',

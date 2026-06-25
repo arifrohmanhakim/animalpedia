@@ -17,6 +17,7 @@ export const kepiting: Animal = {
   conservationStatus: 'aman',
   description: 'Kepiting adalah krustasea berjalan menyamping dengan capit yang kuat. Mereka bisa ditemukan di pantai berpasir dan dasar lautan di seluruh dunia.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f980.png",
+  story: "Halo! Aku Kepiting, Crab! Aku berenang riang di Pantai dan Dasar Laut. Kepiting berjalan menyamping, bukan maju! kepiting bisa menumbuhkan kembali capit yang putus. ada lebih dari 6.800 spesies kepiting di dunia. Ayo, berenang bersama aku!",
   funFacts: [
     'Kepiting berjalan menyamping, bukan maju!',
     'Kepiting bisa menumbuhkan kembali capit yang putus.',

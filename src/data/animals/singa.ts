@@ -60,6 +60,7 @@ export const singa: Animal = {
   soundUrl: "/sounds/singa.mp3",
   imageUrl:
     "https://png.pngtree.com/png-vector/20240816/ourmid/pngtree-cute-cartoon-lion-clipart-illustration-free-png-image_13505675.png",
+  story: "Halo! Perkenalkan, aku Singa, si Lion yang ceria! Singa adalah raja hutan yang tinggal secara berkelompok. Singa bisa tidur hingga 20 jam sehari! auman singa bisa terdengar hingga 8 km jauhnya. surai singa jantan tumbuh semakin gelap seiring usia. Senang berkenalan dengan teman baru sepertimu!",
   funFacts: [
     "Singa bisa tidur hingga 20 jam sehari!",
     "Auman singa bisa terdengar hingga 8 km jauhnya.",

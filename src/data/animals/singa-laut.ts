@@ -17,6 +17,7 @@ export const singa_laut: Animal = {
   conservationStatus: 'aman',
   description: 'Singa laut adalah mamalia laut yang lincah dan cerdas. Mereka sering terlihat berjemur di pantai berbatu dan merupakan perenang dan penyelam ulung.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f9ad.png",
+  story: "Halo! Aku Singa Laut, Sea Lion! Aku berenang riang di Pantai Berbatu. Singa laut bisa menahan napas hingga 20 menit! mereka bisa menyelam hingga 300 meter mencari makanan. singa laut memiliki telinga luar yang terlihat. Ayo, berenang bersama aku!",
   funFacts: [
     'Singa laut bisa menahan napas hingga 20 menit!',
     'Mereka bisa menyelam hingga 300 meter mencari makanan.',

@@ -17,6 +17,7 @@ export const rubah: Animal = {
   conservationStatus: 'aman',
   description: 'Rubah adalah hewan cerdik yang terkenal karena kelicikannya dalam dongeng. Mereka memiliki telinga runcing dan ekor lebat yang indah.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98a.png",
+  story: "Halo! Aku Rubah, Fox! Akulah raja hutan dan padang rumput yang ramah, lho. Setiap hari aku bermain dan berburu bersama kelompokku. Rubah bisa mendengar suara jarum jam dari 30 meter! ekor rubah digunakan untuk menjaga keseimbangan dan kehangatan. Kalau kamu lihat aku, jangan takut — aku baik banget!",
   funFacts: [
     'Rubah bisa mendengar suara jarum jam dari 30 meter!',
     'Ekor rubah digunakan untuk menjaga keseimbangan dan kehangatan.',

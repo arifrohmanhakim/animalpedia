@@ -16,6 +16,7 @@ export const bintang_laut: Animal = {
     description: 'Bintang laut adalah hewan laut berbentuk bintang. Mereka bisa menumbuhkan kembali lengannya yang putus! Bintang laut bergerak dengan ribuan kaki tabung kecil.',
     color: '#E74C3C',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2b50.png",
+  story: "Halo! Aku Bintang Laut! Bintang laut adalah hewan laut berbentuk bintang. Tahukah kamu? bintang laut bisa menumbuhkan lengan yang putus! bintang laut tidak memiliki otak atau darah. mereka bergerak dengan 15.000 kaki tabung kecil. Aku ingin tahu lebih banyak tentang dirimu!",
   funFacts: [
       'Bintang laut bisa menumbuhkan lengan yang putus!',
       'Bintang laut tidak memiliki otak atau darah.',

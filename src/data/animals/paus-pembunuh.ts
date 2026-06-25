@@ -17,6 +17,7 @@ export const paus_pembunuh: Animal = {
   conservationStatus: 'aman',
   description: 'Paus pembunuh atau orca adalah lumba-lumba terbesar di dunia. Mereka pemburu cerdas yang bekerja sama dalam kelompok, memiliki pola hitam putih yang khas.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f433.png",
+  story: "Halo! Aku Paus Pembunuh, Orca! Aku berenang riang di Lautan Dingin dan Sedang. Orca bukan paus — mereka adalah lumba-lumba terbesar! setiap orca memiliki pola abu-abu unik di pelana punggungnya. orca bisa berenang hingga 56 km/jam. Ayo, berenang bersama aku!",
   funFacts: [
     'Orca bukan paus — mereka adalah lumba-lumba terbesar!',
     'Setiap orca memiliki pola abu-abu unik di pelana punggungnya.',

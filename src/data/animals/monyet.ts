@@ -16,6 +16,7 @@ export const monyet: Animal = {
     description: 'Monyet adalah primata cerdas yang hidup berkelompok. Mereka suka bermain, berayun dari pohon ke pohon, dan menggunakan alat sederhana.',
     color: '#8B5E3C',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f412.png",
+  story: "Halo! Aku Monyet! Aku tinggal di Hutan Hujan Tropis yang indah. Monkey memang terkenal sangat menarik, tapi aku juga suka bercanda, lho! Tahukah kamu? monyet bisa menggunakan batu untuk memecahkan kacang! beberapa monyet bisa mengenali diri mereka di cermin. Yuk, kita berteman!",
   funFacts: [
       'Monyet bisa menggunakan batu untuk memecahkan kacang!',
       'Beberapa monyet bisa mengenali diri mereka di cermin.',

@@ -16,6 +16,7 @@ export const bebek: Animal = {
     description: 'Bebek adalah burung air yang gemar berenang. Mereka memiliki paruh lebar untuk menyaring makanan dari air dan bulu yang anti air.',
     color: '#C0392B',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f986.png",
+  story: "Halo! Aku Bebek, Duck! Aku suka terbang tinggi di Kolam dan Danau. Bulu bebek anti air karena dilapisi minyak khusus! bebek bisa tidur dengan satu mata terbuka. bebek jantan memiliki warna lebih cerah dari betina. Ayo, terbang bersama aku!",
   funFacts: [
       'Bulu bebek anti air karena dilapisi minyak khusus!',
       'Bebek bisa tidur dengan satu mata terbuka.',

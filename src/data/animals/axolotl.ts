@@ -16,6 +16,7 @@ export const axolotl: Animal = {
     description: 'Axolotl adalah salamander unik yang tidak pernah tumbuh dewasa! Mereka tetap tinggal di air sepanjang hidupnya dengan insang eksternal seperti mahkota.',
     color: '#F5B7B1',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98e.png",
+  story: "Halo! Aku Axolotl! Tahukah kamu? axolotl tidak mengalami metamorfosis — tetap muda seumur hidup! axolotl bisa menumbuhkan kembali otak, jantung, dan sumsum tulang belakang! axolotl hanya ditemukan di satu tempat: danau xochimilco, meksiko. mereka tersenyum sepanjang waktu karena bentuk mulutnya yang unik. Hops, lompat yuk!",
   funFacts: [
       'Axolotl tidak mengalami metamorfosis — tetap muda seumur hidup!',
       'Axolotl bisa menumbuhkan kembali otak, jantung, dan sumsum tulang belakang!',

@@ -16,6 +16,7 @@ export const flamingo: Animal = {
     description: 'Flamingo adalah burung berkaki panjang dengan bulu merah muda yang cantik. Warna merah mudanya berasal dari makanan mereka — udang kecil!',
     color: '#FF69B4',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f9a9.png",
+  story: "Cuit cuit! Aku Flamingo, si Flamingo yang lincah! Tahukah kamu? flamingo berwarna merah muda karena makan udang! flamingo berdiri dengan satu kaki untuk menjaga suhu tubuh. flamingo bisa terbang hingga 600 km dalam satu malam. Senang bertemu denganmu!",
   funFacts: [
       'Flamingo berwarna merah muda karena makan udang!',
       'Flamingo berdiri dengan satu kaki untuk menjaga suhu tubuh.',

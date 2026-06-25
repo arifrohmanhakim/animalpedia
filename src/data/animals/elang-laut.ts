@@ -17,6 +17,7 @@ export const elang_laut: Animal = {
   conservationStatus: 'aman',
   description: 'Elang laut adalah burung pemangsa yang tinggal di dekat perairan dan mencari ikan. Mereka memiliki sayap lebar dan paruh yang kuat.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f985.png",
+  story: "Halo! Aku Elang Laut, Sea Eagle! Aku suka terbang tinggi di Pesisir dan Danau Besar. Elang laut bisa menyelam untuk menangkap ikan sedalam 1 meter! bentang sayap elang laut bisa mencapai 2,5 meter. elang laut bisa melihat ikan dari ketinggian 500 meter. Ayo, terbang bersama aku!",
   funFacts: [
     'Elang laut bisa menyelam untuk menangkap ikan sedalam 1 meter!',
     'Bentang sayap elang laut bisa mencapai 2,5 meter.',

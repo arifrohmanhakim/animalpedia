@@ -17,6 +17,7 @@ export const kucing: Animal = {
   conservationStatus: 'aman',
   description: 'Kucing adalah hewan peliharaan yang sangat populer di seluruh dunia. Mereka dikenal lincah, mandiri, dan suka membersihkan diri.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f431.png",
+  story: "Halo! Aku Kucing! Aku tinggal di Rumah dan Pemukiman yang indah. Cat memang terkenal sangat menarik, tapi aku juga suka bercanda, lho! Tahukah kamu? kucing bisa tidur hingga 16 jam sehari! kucing memiliki 32 otot di setiap telinganya. Yuk, kita berteman!",
   funFacts: [
     'Kucing bisa tidur hingga 16 jam sehari!',
     'Kucing memiliki 32 otot di setiap telinganya.',

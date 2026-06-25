@@ -16,6 +16,7 @@ export const buaya: Animal = {
     description: 'Buaya adalah reptil besar yang sudah ada sejak zaman dinosaurus! Mereka berburu dengan bersembunyi di air dan bisa menahan napas sangat lama.',
     color: '#4A7C59',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f40a.png",
+  story: "Halo! Aku Buaya! Tahukah kamu? buaya sudah ada sejak 200 juta tahun yang lalu! air mata buaya benar-benar keluar saat mereka makan. buaya bisa menahan napas di dalam air hingga 2 jam. Yuk, kenalan lebih dekat!",
   funFacts: [
       'Buaya sudah ada sejak 200 juta tahun yang lalu!',
       'Air mata buaya benar-benar keluar saat mereka makan.',

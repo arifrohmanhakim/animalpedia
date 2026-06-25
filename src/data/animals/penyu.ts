@@ -16,6 +16,7 @@ export const penyu: Animal = {
     description: 'Penyu adalah reptil laut yang indah dan anggun. Mereka bermigrasi ribuan kilometer untuk bertelur di pantai tempat mereka dilahirkan.',
     color: '#52BE80',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f422.png",
+  story: "Halo! Aku Penyu, si Sea Turtle! Aku punya 70–700 kg. Penyu bisa hidup hingga 100 tahun! penyu kembali ke pantai kelahirannya untuk bertelur. jenis kelamin anak penyu ditentukan oleh suhu pasir. Seru 'kan? Ayo main bersama!",
   funFacts: [
       'Penyu bisa hidup hingga 100 tahun!',
       'Penyu kembali ke pantai kelahirannya untuk bertelur.',

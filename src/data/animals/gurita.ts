@@ -16,6 +16,7 @@ export const gurita: Animal = {
     description: 'Gurita adalah hewan laut yang sangat cerdas dengan delapan lengan. Mereka bisa berubah warna dan bentuk untuk berkamuflase.',
     color: '#E74C3C',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f419.png",
+  story: "Halo! Aku Gurita! Gurita adalah hewan laut yang sangat cerdas dengan delapan lengan. Tahukah kamu? gurita memiliki tiga jantung! darah gurita berwarna biru karena mengandung tembaga. lengan gurita memiliki pikiran sendiri — setiap lengan bisa bergerak sendiri. Aku ingin tahu lebih banyak tentang dirimu!",
   funFacts: [
       'Gurita memiliki tiga jantung!',
       'Darah gurita berwarna biru karena mengandung tembaga.',

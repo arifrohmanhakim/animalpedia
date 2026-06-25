@@ -16,6 +16,7 @@ export const kakaktua: Animal = {
     description: 'Kakatua adalah burung cerdas dengan jambul khas di kepalanya. Mereka bisa meniru suara manusia dan sangat pandai memecahkan teka-teki.',
     color: '#FFFFFF',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f99c.png",
+  story: "Halo! Namaku Kakatua. Cockatoo itu nama Inggrisku, keren 'kan? Kakatua adalah burung cerdas dengan jambul khas di kepalanya. Kakatua bisa hidup hingga 80 tahun — lebih lama dari manusia! kakatua bisa menirukan berbagai suara, termasuk ucapan manusia. Ayo lihat aku di Hutan Hujan Tropis!",
   funFacts: [
       'Kakatua bisa hidup hingga 80 tahun — lebih lama dari manusia!',
       'Kakatua bisa menirukan berbagai suara, termasuk ucapan manusia.',

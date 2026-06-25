@@ -10,10 +10,15 @@ export function AudioNarrationModal({ animal, onClose }: Props) {
   const [currentLine, setCurrentLine] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
 
+  // Split story into sentences, filter empty, prepend greeting + append closing
+  const storyParts = animal.story
+    .split(/[.!?]/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => s + ".");
   const lines = [
     `Halo, aku ${animal.name}! Senang berkenalan denganmu!`,
-    `${animal.description}`,
-    ...animal.funFacts.slice(0, 3).map((f) => `Tahukah kamu? ${f}`),
+    ...storyParts,
     `Sekian dulu cerita tentang aku, ${animal.name}. Sampai jumpa lagi!`,
   ];
 

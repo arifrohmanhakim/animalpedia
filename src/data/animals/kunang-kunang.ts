@@ -16,6 +16,7 @@ export const kunang_kunang: Animal = {
     description: 'Kunang-kunang adalah serangga ajaib yang bisa mengeluarkan cahaya dari tubuhnya! Cahaya ini digunakan untuk berkomunikasi dan mencari pasangan.',
     color: '#F9E79F',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/2728.png",
+  story: "Halo! Aku Kunang-kunang! Tahukah kamu? cahaya kunang-kunang adalah cahaya dingin — tidak menghasilkan panas! setiap spesies kunang-kunang memiliki pola kedip yang unik. kunang-kunang bisa mengatur kecerahan cahayanya. Seru 'kan jadi Firefly?",
   funFacts: [
       'Cahaya kunang-kunang adalah cahaya dingin — tidak menghasilkan panas!',
       'Setiap spesies kunang-kunang memiliki pola kedip yang unik.',

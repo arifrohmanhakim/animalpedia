@@ -16,6 +16,7 @@ export const kambing_gunung: Animal = {
     description: 'Kambing gunung adalah pemanjat tebing yang luar biasa! Mereka bisa berdiri di tebing curam dengan kuku khusus yang anti selip.',
     color: '#F0F0F0',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f410.png",
+  story: "Halo! Aku Kambing Gunung, Mountain Goat! Akulah raja pegunungan tinggi yang ramah, lho. Setiap hari aku bermain dan berburu bersama kelompokku. Kambing gunung bisa memanjat tebing dengan kemiringan 60 derajat! kuku mereka memiliki bantalan kasar seperti karet untuk mencengkeram batu. Kalau kamu lihat aku, jangan takut — aku baik banget!",
   funFacts: [
       'Kambing gunung bisa memanjat tebing dengan kemiringan 60 derajat!',
       'Kuku mereka memiliki bantalan kasar seperti karet untuk mencengkeram batu.',

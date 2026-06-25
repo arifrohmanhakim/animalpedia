@@ -16,6 +16,7 @@ export const kura_kura: Animal = {
     description: 'Kura-kura adalah reptil bercangkang keras yang bergerak lambat. Mereka adalah hewan yang sangat tua — hidup mereka bisa lebih lama dari manusia!',
     color: '#6B8E23',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f422.png",
+  story: "Halo! Aku Kura-kura, si Tortoise! Aku punya 15–300 kg. Kura-kura adalah hewan darat tertua — bisa hidup hingga 150 tahun! cangkang kura-kura adalah bagian dari tulang belakangnya. kura-kura tidak bisa keluar dari cangkangnya — cangkangnya menyatu! Seru 'kan? Ayo main bersama!",
   funFacts: [
       'Kura-kura adalah hewan darat tertua — bisa hidup hingga 150 tahun!',
       'Cangkang kura-kura adalah bagian dari tulang belakangnya.',

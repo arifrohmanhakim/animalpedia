@@ -99,6 +99,7 @@ export const gajah: Animal = {
   color: "#B8B8B8",
   imageUrl:
     "https://png.pngtree.com/png-vector/20250601/ourmid/pngtree-illustration-of-a-gray-african-elephant-vector-png-image_16447719.png",
+  story: "Halo! Perkenalkan, aku Gajah, si Elephant yang ceria! Gajah adalah hewan darat terbesar di dunia! Mereka sangat cerdas, memiliki ingatan yang kuat, dan hidup dalam keluarga yang dipimpin oleh gajah betina tertua. Belalai gajah memiliki sekitar 100.000 otot dan bisa menampung 7,5 liter air! gajah bisa berkomunikasi melalui getaran tanah dari jarak jauh. anak gajah sering menghisap belalainya sendiri untuk rasa nyaman, seperti bayi menghisap jempol. Senang berkenalan dengan teman baru sepertimu!",
   funFacts: [
     "Belalai gajah memiliki sekitar 100.000 otot dan bisa menampung 7,5 liter air!",
     "Gajah bisa berkomunikasi melalui getaran tanah dari jarak jauh.",

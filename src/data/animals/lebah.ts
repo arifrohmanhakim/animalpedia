@@ -16,6 +16,7 @@ export const lebah: Animal = {
     description: 'Lebah adalah serangga penyerbuk yang sangat penting bagi kehidupan di Bumi. Mereka menghasilkan madu yang lezat dan tinggal dalam koloni yang teratur.',
     color: '#F39C12',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f41d.png",
+  story: "Halo! Aku Lebah Madu, Honey Bee! Lebah harus mengunjungi 2 juta bunga untuk menghasilkan 1 kg madu! ratu lebah bisa bertelur hingga 2.000 telur per hari. lebah memiliki 5 mata — 2 besar di samping dan 3 kecil di atas kepala. Ayo bermain denganku!",
   funFacts: [
       'Lebah harus mengunjungi 2 juta bunga untuk menghasilkan 1 kg madu!',
       'Ratu lebah bisa bertelur hingga 2.000 telur per hari.',

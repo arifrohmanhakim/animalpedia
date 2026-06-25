@@ -16,6 +16,7 @@ export const beruang: Animal = {
     description: 'Beruang adalah hewan besar bertubuh tebal dengan bulu lebat. Beruang kutub adalah perenang ulung, sementara beruang coklat suka memancing ikan salmon!',
     color: '#8B4513',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f43b.png",
+  story: "Halo! Perkenalkan, aku Beruang, si Bear yang ceria! Beruang adalah hewan besar bertubuh tebal dengan bulu lebat. Beruang kutub memiliki kulit hitam di bawah bulu putihnya! beruang bisa berlari hingga 50 km/jam. beruang tidur sepanjang musim dingin (hibernasi). Senang berkenalan dengan teman baru sepertimu!",
   funFacts: [
       'Beruang kutub memiliki kulit hitam di bawah bulu putihnya!',
       'Beruang bisa berlari hingga 50 km/jam.',

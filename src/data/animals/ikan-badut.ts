@@ -16,6 +16,7 @@ export const ikan_badut: Animal = {
     description: 'Ikan badut adalah ikan kecil berwarna oranye terang dengan garis putih. Mereka tinggal di dalam anemon laut yang beracun tanpa terluka!',
     color: '#E67E22',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f420.png",
+  story: "Halo! Aku Ikan Badut, Clownfish! Aku berenang riang di Terumbu Karang. Ikan badut kebal terhadap racun anemon laut! semua ikan badut lahir sebagai jantan, lalu bisa berubah jadi betina. ikan badut hidup berkelompok dengan satu betina pemimpin. Ayo, berenang bersama aku!",
   funFacts: [
       'Ikan badut kebal terhadap racun anemon laut!',
       'Semua ikan badut lahir sebagai jantan, lalu bisa berubah jadi betina.',

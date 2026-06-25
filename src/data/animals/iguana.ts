@@ -16,6 +16,7 @@ export const iguana: Animal = {
     description: 'Iguana adalah kadal besar herbivora yang suka berjemur di pohon. Mereka memiliki duri di punggung dan ekor panjang yang bisa digunakan untuk mempertahankan diri.',
     color: '#58D68D',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f98e.png",
+  story: "Halo! Aku Iguana, Iguana! Iguana adalah kadal besar herbivora yang suka berjemur di pohon. Iguana bisa memutuskan ekornya untuk melarikan diri dari predator! iguana memiliki di atas kepalanya yang peka cahaya. Meskipun kadang terlihat seram, aku ramah, kok!",
   funFacts: [
       'Iguana bisa memutuskan ekornya untuk melarikan diri dari predator!',
       'Iguana memiliki "mata ketiga" di atas kepalanya yang peka cahaya.',

@@ -16,6 +16,7 @@ export const kuda_laut: Animal = {
     description: 'Kuda laut adalah ikan kecil berbentuk unik dengan ekor melengkung. Yang paling istimewa: kuda laut jantan yang hamil dan melahirkan anak!',
     color: '#F5B041',
       imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f991.png",
+  story: "Halo! Aku Kuda Laut! Kuda laut adalah ikan kecil berbentuk unik dengan ekor melengkung. Tahukah kamu? kuda laut jantan yang hamil dan melahirkan! kuda laut menggunakan ekornya untuk berpegangan pada rumput laut. kuda laut tidak memiliki gigi atau perut. Aku ingin tahu lebih banyak tentang dirimu!",
   funFacts: [
       'Kuda laut jantan yang hamil dan melahirkan!',
       'Kuda laut menggunakan ekornya untuk berpegangan pada rumput laut.',

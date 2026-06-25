@@ -20,6 +20,7 @@ export const zebra: Animal = {
     "Zebra adalah hewan yang terkenal dengan garis-garis hitam putih yang unik. Setiap zebra memiliki pola garis yang berbeda seperti sidik jari. Mereka hidup secara berkelompok untuk perlindungan.",
   color: "#F5F0EE",
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f993.png",
+  story: "Halo! Perkenalkan, aku Zebra, si Zebra yang ceria! Zebra adalah hewan yang terkenal dengan garis-garis hitam putih yang unik. Setiap zebra memiliki pola garis yang berbeda! garis-garis mereka membantu mengatur suhu tubuh. zebra dapat berlari hingga 65 km/jam. Senang berkenalan dengan teman baru sepertimu!",
   funFacts: [
     "Setiap zebra memiliki pola garis yang berbeda!",
     "Garis-garis mereka membantu mengatur suhu tubuh.",

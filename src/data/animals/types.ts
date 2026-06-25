@@ -14,6 +14,10 @@ export interface Animal {
   weight: string;
   description: string;
   color: string;
+  /** Narasi cerita anak dari sudut pandang hewan (first-person).
+   *  Digunakan di modal "Dengarkan {name} bercerita".
+   *  Harus berbeda dari description dan funFacts — gaya dongeng, bukan fakta. */
+  story: string;
   funFacts: string[];
   conservationStatus: string;
   videoEmbedUrl: string;

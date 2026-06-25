@@ -17,6 +17,7 @@ export const kuda: Animal = {
   conservationStatus: 'aman',
   description: 'Kuda adalah hewan besar yang kuat dan telah lama menjadi teman manusia untuk transportasi dan olahraga. Mereka bisa berlari sangat cepat dan memiliki penglihatan yang luas.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f434.png",
+  story: "Halo! Perkenalkan, aku Kuda, si Horse yang ceria! Kuda adalah hewan besar yang kuat dan telah lama menjadi teman manusia untuk transportasi dan olahraga. Kuda bisa tidur berdiri atau berbaring! kuda memiliki penglihatan hampir 360 derajat. kuda bisa berlari beberapa jam setelah lahir. Senang berkenalan dengan teman baru sepertimu!",
   funFacts: [
     'Kuda bisa tidur berdiri atau berbaring!',
     'Kuda memiliki penglihatan hampir 360 derajat.',

@@ -17,6 +17,7 @@ export const macan_tutul: Animal = {
   conservationStatus: 'rentan',
   description: 'Macan tutul adalah kucing besar dengan bulu bertotol indah. Mereka pemanjat ulung dan sering menyimpan mangsanya di atas pohon.',
     imageUrl: "https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f406.png",
+  story: "Halo! Perkenalkan, aku Macan Tutul, si Leopard yang ceria! Macan tutul adalah kucing besar dengan bulu bertotol indah. Macan tutul bisa membawa mangsa yang lebih berat dari dirinya ke atas pohon! totol macan tutul disebut rosette karena bentuknya seperti bunga mawar. macan tutul bisa berlari hingga 58 km/jam. Senang berkenalan dengan teman baru sepertimu!",
   funFacts: [
     'Macan tutul bisa membawa mangsa yang lebih berat dari dirinya ke atas pohon!',
     'Totol macan tutul disebut rosette karena bentuknya seperti bunga mawar.',
