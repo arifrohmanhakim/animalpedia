@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useGameStore } from '@/store/gameStore';
 import { animals } from '@/data/animals';
 import { showToastXP, showToastBadge } from '@/components/ToastNotification';
@@ -21,6 +21,7 @@ export function MemoryGame({ onBack }: { onBack: () => void }) {
   const [moves, setMoves] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
+  const checkingRef = useRef(false); // synchronous lock against rapid tapping
 
   const initGame = useCallback(() => {
     // Pick 6 random animals
@@ -51,6 +52,7 @@ export function MemoryGame({ onBack }: { onBack: () => void }) {
     setMatchedCount(0);
     setMoves(0);
     setIsChecking(false);
+    checkingRef.current = false;
     setGameFinished(false);
   }, []);
 
@@ -59,7 +61,7 @@ export function MemoryGame({ onBack }: { onBack: () => void }) {
   }, [initGame]);
 
   const handleCardClick = (index: number) => {
-    if (isChecking || gameFinished) return;
+    if (checkingRef.current || gameFinished) return;
     if (cards[index].isFlipped || cards[index].isMatched) return;
     if (flippedIndices.length >= 2) return;
 
@@ -72,6 +74,7 @@ export function MemoryGame({ onBack }: { onBack: () => void }) {
 
     if (newFlipped.length === 2) {
       setMoves((m) => m + 1);
+      checkingRef.current = true;
       setIsChecking(true);
       const [first, second] = newFlipped;
 
@@ -85,6 +88,7 @@ export function MemoryGame({ onBack }: { onBack: () => void }) {
           setMatchedCount((c) => c + 1);
           setFlippedIndices([]);
           setIsChecking(false);
+          checkingRef.current = false;
 
           // Check if all matched
           if (matchedCount + 1 === 6) {
@@ -106,6 +110,7 @@ export function MemoryGame({ onBack }: { onBack: () => void }) {
           resetCards[second].isFlipped = false;
           setCards(resetCards);
           setFlippedIndices([]);
+          checkingRef.current = false;
           setIsChecking(false);
         }, 800);
       }
@@ -166,7 +171,7 @@ export function MemoryGame({ onBack }: { onBack: () => void }) {
                     onClick={() => handleCardClick(index)}
                     className={`crayon-card aspect-square flex items-center justify-center text-3xl transition-all active:scale-95 ${
                       isVisible ? 'bg-[var(--green-pale)]' : 'bg-[var(--paper)]'
-                    } ${card.isMatched ? 'opacity-60' : ''}`}
+                    } ${card.isMatched ? 'opacity-60 animate-pulse' : ''}`}
                     style={{
                       animation: `fade-in-up 0.2s ease-out ${index * 0.03}s forwards`,
                       opacity: 0,

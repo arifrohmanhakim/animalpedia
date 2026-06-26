@@ -89,22 +89,38 @@ export function ToastContainer() {
         >
           <div className="text-2xl">{toast.emoji}</div>
           <div className="flex-1 min-w-0">
-            <div className="font-bold text-xs">
-              {toast.type === 'xp'
-                ? `+${toast.amount} XP`
-                : toast.type === 'badge'
-                ? '🏅 Badge Baru!'
-                : '💡 Info'}
-            </div>
-            <div className="text-[11px] font-semibold text-[var(--ink-soft)] truncate">
-              {toast.message}
-            </div>
+            {toast.type === 'xp' ? (
+              <>
+                <div className="font-extrabold text-sm leading-tight">
+                  <span style={{ color: 'var(--green-deep)' }}>+{toast.amount} XP!</span>
+                  {toast.amount > 0 && (
+                    <span className="text-[var(--ink)] ml-1">Kamu Hebat! 🎉</span>
+                  )}
+                </div>
+                <div className="text-[11px] font-semibold text-[var(--ink-soft)] truncate mt-0.5">
+                  {toast.message}
+                </div>
+              </>
+            ) : toast.type === 'badge' ? (
+              <>
+                <div className="font-extrabold text-sm leading-tight text-[var(--ink)]">
+                  🏅 Badge Baru!
+                </div>
+                <div className="text-[11px] font-semibold text-[var(--ink-soft)] truncate mt-0.5">
+                  {toast.message}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="font-extrabold text-sm leading-tight text-[var(--ink)]">
+                  💡 Info
+                </div>
+                <div className="text-[11px] font-semibold text-[var(--ink-soft)] truncate mt-0.5">
+                  {toast.message}
+                </div>
+              </>
+            )}
           </div>
-          {toast.type === 'xp' && (
-            <div className="text-lg font-extrabold" style={{ color: 'var(--green-deep)' }}>
-              +{toast.amount}
-            </div>
-          )}
         </div>
       ))}
       </div>

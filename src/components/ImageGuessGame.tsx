@@ -139,7 +139,7 @@ export function ImageGuessGame({ onBack }: { onBack?: () => void }) {
     if (correctAnimal.illustrationSvg && croppedSvg) {
       return (
         <div
-          className="w-[200px] h-[200px] rounded-2xl border-[4px] border-[var(--ink)] shadow-[0_4px_0_var(--ink)] overflow-hidden bg-[var(--paper)]"
+          className="w-[200px] h-[200px] rounded-2xl border-[4px] border-[var(--ink)] shadow-[0_4px_0_var(--ink)] overflow-hidden bg-[var(--paper)] select-none"
         >
           <div
             className="w-full h-full"
@@ -151,7 +151,7 @@ export function ImageGuessGame({ onBack }: { onBack?: () => void }) {
 
     if (correctAnimal.imageUrl && !correctAnimal.imageUrl.includes('emoji-datasource')) {
       return (
-        <div className="w-[200px] h-[200px] rounded-2xl border-[4px] border-[var(--ink)] shadow-[0_4px_0_var(--ink)] overflow-hidden bg-[var(--paper)]">
+        <div className="w-[200px] h-[200px] rounded-2xl border-[4px] border-[var(--ink)] shadow-[0_4px_0_var(--ink)] overflow-hidden bg-[var(--paper)] select-none">
           <img
             src={correctAnimal.imageUrl}
             alt=""
@@ -259,7 +259,7 @@ export function ImageGuessGame({ onBack }: { onBack?: () => void }) {
                   key={animal.id}
                   onClick={() => handleAnswer(animal.id)}
                   disabled={gameState !== 'playing'}
-                  className="crayon-card p-4 text-center transition-all active:scale-95"
+                  className="crayon-card p-4 text-center transition-all active:scale-95 select-none"
                   style={{
                     background: bg,
                     borderColor: border,

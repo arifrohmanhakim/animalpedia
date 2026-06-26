@@ -51,6 +51,7 @@ export function PetHouseScreen() {
 
   /* Reaksi singkat berisi funFact, muncul sesaat setelah aksi ditekan */
   const [reaction, setReaction] = useState<string | null>(null);
+  const [isBouncing, setIsBouncing] = useState(false);
 
   const triggerReaction = useCallback(
     (actionText: string) => {
@@ -182,10 +183,14 @@ export function PetHouseScreen() {
 
           {/* Large emoji */}
           <div
-            className="text-[140px] leading-none select-none"
+            className={`text-[140px] leading-none select-none cursor-pointer transition-transform duration-200 ${isBouncing ? "animate-bounce" : ""}`}
             style={{
               filter: "drop-shadow(0 8px 10px rgba(0,0,0,0.12))",
               opacity: isMissing ? 0.85 : 1,
+            }}
+            onClick={() => {
+              setIsBouncing(true);
+              setTimeout(() => setIsBouncing(false), 500);
             }}
           >
             {active.emoji}

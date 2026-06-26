@@ -14,6 +14,7 @@ export function AudioPlayer({ animal, variant = 'sound', size = 'md' }: Props) {
   const [soundState, setSoundState] = useState<ButtonState>('idle');
   const [speaking, setSpeaking] = useState(false);
   const soundRef = useRef<SoundPlayback | null>(null);
+  const narrationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Cleanup saat unmount
   useEffect(() => {
@@ -29,12 +30,10 @@ export function AudioPlayer({ animal, variant = 'sound', size = 'md' }: Props) {
   const handleSound = () => {
     if (soundState === 'loading') return;
 
-    // Toggle: stop jika sedang playing
+    // Stop current jika sedang playing, lalu restart dari awal
     if (soundState === 'playing' && soundRef.current) {
       soundRef.current.stop();
       soundRef.current = null;
-      setSoundState('idle');
-      return;
     }
 
     setSoundState('loading');
@@ -48,10 +47,16 @@ export function AudioPlayer({ animal, variant = 'sound', size = 'md' }: Props) {
   };
 
   const handleNarration = () => {
-    if (speaking) return;
+    if (narrationTimeoutRef.current) {
+      clearTimeout(narrationTimeoutRef.current);
+    }
+    window.speechSynthesis.cancel();
     setSpeaking(true);
     speakAnimalDescription(animal);
-    setTimeout(() => setSpeaking(false), 15000);
+    narrationTimeoutRef.current = setTimeout(() => {
+      setSpeaking(false);
+      narrationTimeoutRef.current = null;
+    }, 15000);
   };
 
   const soundIcon = () => {
@@ -69,7 +74,6 @@ export function AudioPlayer({ animal, variant = 'sound', size = 'md' }: Props) {
     return (
       <button
         onClick={handleNarration}
-        disabled={speaking}
         className={`${sizeClasses[size]} rounded-full bg-[var(--green)] border-[3px] border-[var(--ink)] flex items-center justify-center shadow-[0_3px_0_var(--ink)] text-white flex-shrink-0 transition-all active:translate-y-[2px] active:shadow-[0_1px_0_var(--ink)] ${
           speaking ? 'opacity-70 animate-pulse' : ''
         }`}
@@ -91,7 +95,6 @@ export function AudioPlayer({ animal, variant = 'sound', size = 'md' }: Props) {
         </button>
         <button
           onClick={handleNarration}
-          disabled={speaking}
           className={`${sizeClasses[size]} rounded-full bg-[var(--orange)] border-[3px] border-[var(--ink)] flex items-center justify-center shadow-[0_3px_0_var(--ink)] text-white flex-shrink-0 transition-all active:translate-y-[2px] active:shadow-[0_1px_0_var(--ink)] ${
             speaking ? 'opacity-70 animate-pulse' : ''
           }`}

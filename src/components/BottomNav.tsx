@@ -20,7 +20,7 @@ export function BottomNav() {
           <button
             key={tab.id}
             onClick={() => setTab(tab.id)}
-            className="flex flex-col items-center gap-0.5 transition-colors"
+            className="flex flex-col items-center gap-0.5 transition-transform duration-100 active:scale-95"
           >
             <div
               className={`w-[26px] h-[26px] flex items-center justify-center text-base ${
