@@ -1,11 +1,11 @@
-import { useGameStore } from '@/store/gameStore';
+import { useGameStore } from "@/store/gameStore";
 
 const tabs = [
-  { id: 'home', label: 'Home', emoji: '🏠' },
-  { id: 'explore', label: 'Jelajah', emoji: '🔍' },
-  { id: 'games', label: 'Games', emoji: '🎮' },
-  { id: 'collection', label: 'Koleksi', emoji: '📚' },
-  { id: 'profile', label: 'Profil', emoji: '🦊' },
+  { id: "home", label: "Home", emoji: "🏠" },
+  { id: "explore", label: "Jelajah", emoji: "🔍" },
+  { id: "games", label: "Games", emoji: "🎮" },
+  /* { id: 'collection', label: 'Koleksi', emoji: '📚' }, */
+  { id: "profile", label: "Profil", emoji: "🦊" },
 ];
 
 export function BottomNav() {
@@ -24,9 +24,7 @@ export function BottomNav() {
           >
             <div
               className={`w-[26px] h-[26px] flex items-center justify-center text-base ${
-                isActive
-                  ? 'bg-[var(--green-pale)] rounded-full'
-                  : ''
+                isActive ? "bg-[var(--green-pale)] rounded-full" : ""
               }`}
             >
               <span>{tab.emoji}</span>
@@ -34,7 +32,7 @@ export function BottomNav() {
             <span
               className="font-display text-[10.5px] font-bold"
               style={{
-                color: isActive ? 'var(--green-deep)' : 'var(--ink-soft)',
+                color: isActive ? "var(--green-deep)" : "var(--ink-soft)",
               }}
             >
               {tab.label}
