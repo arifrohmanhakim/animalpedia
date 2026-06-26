@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useGameStore } from "@/store/gameStore";
 import { animals } from "@/data/animals";
+import { getCategoryActivity, pickRandomFunFact } from "@/data/petActivities";
 
 export function PetHouseScreen() {
   const petAnimals = useGameStore((s) => s.petAnimals);
@@ -42,6 +43,27 @@ export function PetHouseScreen() {
         Math.floor((now - new Date(petEntry.adoptedAt).getTime()) / 86_400_000),
       )
     : 0;
+
+  /* Aktivitas "Main Bareng" khas kategori hewan aktif (mamalia, burung, laut, dst) */
+  const activity = active
+    ? getCategoryActivity(active.category)
+    : getCategoryActivity("");
+
+  /* Reaksi singkat berisi funFact, muncul sesaat setelah aksi ditekan */
+  const [reaction, setReaction] = useState<string | null>(null);
+
+  const triggerReaction = useCallback(
+    (actionText: string) => {
+      if (!active) return;
+      const fact = pickRandomFunFact(active.funFacts);
+      const message = fact
+        ? `Asyik, kita ${actionText}! Tahukah kamu, ${fact.charAt(0).toLowerCase()}${fact.slice(1)}`
+        : `Asyik, kita ${actionText}!`;
+      setReaction(message);
+      window.setTimeout(() => setReaction(null), 3200);
+    },
+    [active],
+  );
 
   // Empty state
   if (ownedPets.length === 0 || !active) {
@@ -179,11 +201,11 @@ export function PetHouseScreen() {
             Dipelihara sejak {daysAdopted} hari
           </div>
 
-          {/* Speech bubble (kangen mode) */}
-          {isMissing && (
+          {/* Speech bubble: reaksi funFact (prioritas) atau pesan kangen */}
+          {(reaction || isMissing) && (
             <div className="crayon-card bg-[var(--paper)] px-4 py-2.5 mt-3 mb-1 text-center max-w-[260px]">
               <div className="text-[11px] font-bold text-[var(--ink)] leading-snug">
-                "{feedMessage(hunger, happiness, active.foodEmoji)}"
+                "{reaction ?? feedMessage(hunger, happiness, active.foodEmoji)}"
               </div>
             </div>
           )}
@@ -197,7 +219,7 @@ export function PetHouseScreen() {
               color={hunger < 50 ? "var(--orange)" : "var(--green)"}
             />
             <StatBar
-              emoji="🎮"
+              emoji={activity.emoji}
               label="Senang"
               value={happiness}
               color={happiness < 50 ? "var(--blue)" : "var(--blue)"}
@@ -210,8 +232,8 @@ export function PetHouseScreen() {
             />
           </div>
 
-          {/* Reassurance text (kangen mode) */}
-          {isMissing && (
+          {/* Reassurance text (kangen mode, disembunyikan saat ada reaksi funFact) */}
+          {isMissing && !reaction && (
             <div className="text-[10px] font-semibold text-[var(--ink-soft)] mt-3 text-center leading-relaxed max-w-[240px]">
               Tenang, {active.name} nggak akan kemana-mana.
               <br />
@@ -226,19 +248,28 @@ export function PetHouseScreen() {
             emoji={active.foodEmoji}
             label="Beri Makan"
             highlight={isMissing}
-            onClick={() => feedPet(active.id)}
+            onClick={() => {
+              feedPet(active.id);
+              triggerReaction("makan bareng");
+            }}
           />
           <ActionButton
-            emoji="🎮"
-            label="Main Bareng"
+            emoji={activity.emoji}
+            label={activity.label}
             highlight={isMissing}
-            onClick={() => playWithPet(active.id)}
+            onClick={() => {
+              playWithPet(active.id);
+              triggerReaction(activity.actionText);
+            }}
           />
           <ActionButton
             emoji="💛"
             label="Elus-elus"
             highlight={isMissing}
-            onClick={() => petPet(active.id)}
+            onClick={() => {
+              petPet(active.id);
+              triggerReaction("elus-elusan");
+            }}
           />
         </div>
       </div>
