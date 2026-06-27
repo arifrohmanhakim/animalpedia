@@ -1,15 +1,18 @@
-import { useCallback, useMemo, useState } from 'react';
-import { useGameStore } from '@/store/gameStore';
-import { animals, categories } from '@/data/animals';
+import { useCallback, useMemo, useState } from "react";
+import { useGameStore } from "@/store/gameStore";
+import { animals, categories } from "@/data/animals";
 
 export function CollectionScreen() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const isDiscovered = useGameStore((s) => s.isDiscovered);
   const getCollectionProgress = useGameStore((s) => s.getCollectionProgress);
+  const setTab = useGameStore((s) => s.setTab);
 
   const viewAnimal = useCallback((animalId: string) => {
-    window.dispatchEvent(new CustomEvent('view-animal', { detail: { animalId } }));
+    window.dispatchEvent(
+      new CustomEvent("view-animal", { detail: { animalId } }),
+    );
   }, []);
 
   const progress = getCollectionProgress();
@@ -20,24 +23,31 @@ export function CollectionScreen() {
     return animals.filter(
       (a) =>
         a.name.toLowerCase().includes(q) ||
-        a.englishName.toLowerCase().includes(q)
+        a.englishName.toLowerCase().includes(q),
     );
   }, [searchQuery]);
 
   const getAnimalsByCategory = (catId: string) => {
-    if (catId === 'semua') return filteredAnimals;
+    if (catId === "semua") return filteredAnimals;
     return filteredAnimals.filter((a) => a.category === catId);
   };
 
   const getCategoryColor = (catId: string) => {
     switch (catId) {
-      case 'laut': return 'var(--blue)';
-      case 'mamalia': return 'var(--green)';
-      case 'burung': return '#9B6FD1';
-      case 'reptil': return 'var(--orange)';
-      case 'serangga': return 'var(--yellow-deep)';
-      case 'amfibi': return 'var(--green-deep)';
-      default: return 'var(--green)';
+      case "laut":
+        return "var(--blue)";
+      case "mamalia":
+        return "var(--green)";
+      case "burung":
+        return "#9B6FD1";
+      case "reptil":
+        return "var(--orange)";
+      case "serangga":
+        return "var(--yellow-deep)";
+      case "amfibi":
+        return "var(--green-deep)";
+      default:
+        return "var(--green)";
     }
   };
 
@@ -45,14 +55,24 @@ export function CollectionScreen() {
     <div className="screen-container bg-[var(--cream)]">
       {/* Sticky header */}
       <div className="flex-shrink-0 px-5 pt-4 pb-2 bg-[var(--cream)] z-10">
-        <h1 className="font-display text-xl font-bold">Album Koleksiku 📚</h1>
+        <div className="flex items-center gap-3 mb-1">
+          <button
+            onClick={() => setTab("profile")}
+            className="w-[32px] h-[32px] rounded-full bg-[var(--paper)] border-2 border-[var(--ink)] flex items-center justify-center text-sm flex-shrink-0 active:scale-90 transition-all"
+          >
+            ←
+          </button>
+          <h1 className="font-display text-xl font-bold">Album Koleksiku 📚</h1>
+        </div>
         <p className="text-xs font-semibold text-[var(--ink-soft)] mt-1">
           {progress.discovered} dari {progress.total} hewan ditemukan
         </p>
         <div className="progress-track mt-2">
           <div
             className="progress-fill"
-            style={{ width: `${(progress.discovered / progress.total) * 100}%` }}
+            style={{
+              width: `${(progress.discovered / progress.total) * 100}%`,
+            }}
           />
         </div>
 
@@ -67,7 +87,10 @@ export function CollectionScreen() {
             className="flex-1 bg-transparent text-xs font-semibold text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)]"
           />
           {searchQuery && (
-            <button onClick={() => setSearchQuery('')} className="text-xs font-bold">
+            <button
+              onClick={() => setSearchQuery("")}
+              className="text-xs font-bold"
+            >
               ✕
             </button>
           )}
@@ -99,14 +122,14 @@ export function CollectionScreen() {
                         onClick={() => viewAnimal(animal.id)}
                         className={`crayon-card aspect-square flex items-center justify-center text-[34px] sm:text-[40px] transition-transform active:scale-90 hover:scale-105 ${
                           discovered
-                            ? 'cursor-pointer'
-                            : 'bg-[var(--cream-deep)] text-[var(--ink-soft)] opacity-60 cursor-pointer'
+                            ? "cursor-pointer"
+                            : "bg-[var(--cream-deep)] text-[var(--ink-soft)] opacity-60 cursor-pointer"
                         }`}
                         style={{
                           background: discovered ? animal.color : undefined,
                         }}
                       >
-                        {discovered ? animal.emoji : '❓'}
+                        {discovered ? animal.emoji : "❓"}
                       </button>
                     );
                   })}
