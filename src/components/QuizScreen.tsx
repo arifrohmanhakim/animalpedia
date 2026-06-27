@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useGameStore } from '@/store/gameStore';
-import { animals } from '@/data/animals';
-import { showToastXP, showToastBadge } from '@/components/ToastNotification';
+import { useState } from "react";
+import { useGameStore } from "@/store/gameStore";
+import { animals } from "@/data/animals";
+import { showToastXP, showToastBadge } from "@/components/ToastNotification";
 
 interface Props {
   animalId: string;
@@ -22,10 +22,16 @@ function generateQuestions(animalId: string): QuizQuestion[] {
 
   const otherAnimals = animals.filter((a) => a.id !== animalId);
 
-  const getRandomOptions = (correctValue: string, allValues: string[], count: number = 3) => {
+  const getRandomOptions = (
+    correctValue: string,
+    allValues: string[],
+    count: number = 3,
+  ) => {
     const others = allValues.filter((v) => v !== correctValue);
     const shuffled = [...others].sort(() => Math.random() - 0.5);
-    const options = [correctValue, ...shuffled.slice(0, count)].sort(() => Math.random() - 0.5);
+    const options = [correctValue, ...shuffled.slice(0, count)].sort(
+      () => Math.random() - 0.5,
+    );
     return {
       options,
       correctIndex: options.indexOf(correctValue),
@@ -34,11 +40,11 @@ function generateQuestions(animalId: string): QuizQuestion[] {
 
   const q1 = getRandomOptions(
     animal.food,
-    animals.map((a) => a.food)
+    animals.map((a) => a.food),
   );
   const q2 = getRandomOptions(
     animal.habitat,
-    animals.map((a) => a.habitat)
+    animals.map((a) => a.habitat),
   );
 
   const maxFacts = Math.min(animal.funFacts.length, 3);
@@ -77,8 +83,55 @@ function generateQuestions(animalId: string): QuizQuestion[] {
   ];
 }
 
+function MiniConfetti() {
+  const emojis = ["🎉", "⭐", "✨"];
+  const particles = Array.from({ length: 8 }, (_, i) => ({
+    id: i,
+    emoji: emojis[i % emojis.length],
+    x: 10 + Math.random() * 80,
+    delay: Math.random() * 0.2,
+    duration: 0.6 + Math.random() * 0.4,
+    size: 14 + Math.random() * 10,
+  }));
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="absolute"
+          style={{
+            left: `${p.x}%`,
+            top: "20%",
+            fontSize: `${p.size}px`,
+            animation: `mini-confetti-fall ${p.duration}s ease-out ${p.delay}s forwards`,
+          }}
+        >
+          {p.emoji}
+        </div>
+      ))}
+      <style>{`
+        @keyframes mini-confetti-fall {
+          0% {
+            transform: translateY(0) rotate(0deg) scale(0);
+            opacity: 1;
+          }
+          30% {
+            transform: translateY(10px) rotate(90deg) scale(1.1);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(60px) rotate(360deg) scale(0.6);
+            opacity: 0;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 function CelebrationConfetti() {
-  const emojis = ['🎉', '🎊', '⭐', '🌟', '✨', '💫', '🌈', '🦋'];
+  const emojis = ["🎉", "🎊", "⭐", "🌟", "✨", "💫", "🌈", "🦋"];
   const particles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
     emoji: emojis[i % emojis.length],
@@ -96,7 +149,7 @@ function CelebrationConfetti() {
           className="absolute animate-fade-in-up"
           style={{
             left: `${p.x}%`,
-            top: '-10%',
+            top: "-10%",
             fontSize: `${p.size}px`,
             animation: `confetti-fall ${p.duration}s ease-out ${p.delay}s forwards`,
           }}
@@ -137,6 +190,8 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  /* Key yang berubah setiap jawaban, supaya CSS animation re-trigger walau class-nya sama */
+  const [animKey, setAnimKey] = useState(0);
 
   if (!animal || questions.length === 0) {
     return (
@@ -153,6 +208,7 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
     if (showResult) return;
     setSelectedAnswer(index);
     setShowResult(true);
+    setAnimKey((k) => k + 1);
 
     if (index === question.correctIndex) {
       setScore((s) => s + 1);
@@ -185,26 +241,34 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
     }
   };
 
-  const progressPercent = ((currentQ + (showResult ? 1 : 0)) / totalQuestions) * 100;
+  const progressPercent =
+    ((currentQ + (showResult ? 1 : 0)) / totalQuestions) * 100;
 
   if (finished) {
     return (
       <div className="absolute inset-0 z-50 bg-[var(--cream)] flex flex-col items-center justify-center px-8 overflow-hidden">
         {score >= totalQuestions / 2 && <CelebrationConfetti />}
         <div className="text-8xl mb-4 z-20">
-          {score === totalQuestions ? '🏆' : score >= totalQuestions / 2 ? '🎉' : '💪'}
+          {score === totalQuestions
+            ? "🏆"
+            : score >= totalQuestions / 2
+              ? "🎉"
+              : "💪"}
         </div>
         <h2 className="font-display text-2xl font-extrabold text-center z-20">
           {score === totalQuestions
-            ? 'Sempurna!'
+            ? "Sempurna!"
             : score >= totalQuestions / 2
-            ? 'Hebat!'
-            : 'Ayo coba lagi!'}
+              ? "Hebat!"
+              : "Ayo coba lagi!"}
         </h2>
         <p className="text-sm font-semibold text-[var(--ink-soft)] mt-2 text-center z-20">
           Kamu menjawab {score} dari {totalQuestions} pertanyaan dengan benar
         </p>
-        <div className="mt-4 text-lg font-bold z-20" style={{ color: 'var(--green-deep)' }}>
+        <div
+          className="mt-4 text-lg font-bold z-20"
+          style={{ color: "var(--green-deep)" }}
+        >
           +{score === totalQuestions ? 15 : 10} XP ⭐
         </div>
 
@@ -231,7 +295,10 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
         <div className="progress-track flex-1">
           <div
             className="progress-fill"
-            style={{ width: `${progressPercent}%`, background: 'var(--orange)' }}
+            style={{
+              width: `${progressPercent}%`,
+              background: "var(--orange)",
+            }}
           />
         </div>
         <span className="text-xs font-bold text-[var(--ink-soft)]">
@@ -241,7 +308,18 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
 
       {/* Question */}
       <div className="flex-1 flex flex-col items-center px-5 pb-5">
-        <div className="text-6xl mt-4 mb-2 animate-float">{animal.emoji}</div>
+        <div
+          key={animKey}
+          className={
+            showResult
+              ? selectedAnswer === question.correctIndex
+                ? "text-6xl mt-4 mb-2 animate-bounce-happy"
+                : "text-6xl mt-4 mb-2 animate-sad-droop"
+              : "text-6xl mt-4 mb-2 animate-float"
+          }
+        >
+          {animal.emoji}
+        </div>
         <h2 className="font-display text-lg font-bold text-center leading-snug mt-2 mb-6">
           {question.question}
         </h2>
@@ -249,19 +327,21 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
         {/* Options */}
         <div className="flex flex-col gap-3 w-full max-w-sm">
           {question.options.map((option, i) => {
-            let bg = 'var(--paper)';
-            let border = 'var(--ink)';
-            let shadow = 'var(--ink)';
+            let bg = "var(--paper)";
+            let border = "var(--ink)";
+            let shadow = "var(--ink)";
+            const isWrongSelected =
+              showResult && i === selectedAnswer && i !== question.correctIndex;
 
             if (showResult) {
               if (i === question.correctIndex) {
-                bg = 'var(--green-pale)';
-                border = 'var(--green-deep)';
-                shadow = 'var(--green-deep)';
+                bg = "var(--green-pale)";
+                border = "var(--green-deep)";
+                shadow = "var(--green-deep)";
               } else if (i === selectedAnswer) {
-                bg = 'var(--red-pale)';
-                border = 'var(--red)';
-                shadow = 'var(--red)';
+                bg = "var(--red-pale)";
+                border = "var(--red)";
+                shadow = "var(--red)";
               }
             }
 
@@ -270,21 +350,30 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
                 key={i}
                 onClick={() => handleAnswer(i)}
                 disabled={showResult}
-                className="w-full crayon-btn flex items-center gap-2.5 px-4 py-3.5 text-left"
+                className={`w-full crayon-btn flex items-center gap-2.5 px-4 py-3.5 text-left ${
+                  isWrongSelected ? "animate-shake" : ""
+                }`}
                 style={{
                   background: bg,
                   borderColor: border,
                   boxShadow: `0 3px 0 ${shadow}`,
-                  color: showResult && i === question.correctIndex ? 'var(--green-deep)' : 'var(--ink)',
+                  color:
+                    showResult && i === question.correctIndex
+                      ? "var(--green-deep)"
+                      : "var(--ink)",
                 }}
               >
-                <span className="flex-1 font-display text-sm font-bold">{option}</span>
+                <span className="flex-1 font-display text-sm font-bold">
+                  {option}
+                </span>
                 {showResult && i === question.correctIndex && (
                   <span className="text-sm">✓</span>
                 )}
-                {showResult && i === selectedAnswer && i !== question.correctIndex && (
-                  <span className="text-sm">✗</span>
-                )}
+                {showResult &&
+                  i === selectedAnswer &&
+                  i !== question.correctIndex && (
+                    <span className="text-sm">✗</span>
+                  )}
               </button>
             );
           })}
@@ -293,27 +382,31 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
         {/* Feedback */}
         {showResult && (
           <div
-            className="mt-auto w-full max-w-sm crayon-card p-3 text-center"
+            className="mt-auto w-full max-w-sm crayon-card p-3 text-center relative overflow-hidden"
             style={{
-              background: selectedAnswer === question.correctIndex
-                ? 'var(--green-pale)'
-                : 'var(--red-pale)',
-              borderColor: selectedAnswer === question.correctIndex
-                ? 'var(--green-deep)'
-                : 'var(--red)',
+              background:
+                selectedAnswer === question.correctIndex
+                  ? "var(--green-pale)"
+                  : "var(--red-pale)",
+              borderColor:
+                selectedAnswer === question.correctIndex
+                  ? "var(--green-deep)"
+                  : "var(--red)",
             }}
           >
+            {selectedAnswer === question.correctIndex && <MiniConfetti />}
             <div
               className="font-extrabold text-sm"
               style={{
-                color: selectedAnswer === question.correctIndex
-                  ? 'var(--green-deep)'
-                  : 'var(--red)',
+                color:
+                  selectedAnswer === question.correctIndex
+                    ? "var(--green-deep)"
+                    : "var(--red)",
               }}
             >
               {selectedAnswer === question.correctIndex
-                ? '✅ Benar! +10 XP ⭐'
-                : '❌ Belum tepat'}
+                ? "✅ Benar! +10 XP ⭐"
+                : "❌ Belum tepat"}
             </div>
             <div className="text-[11px] font-semibold mt-1 text-[var(--ink-soft)]">
               {question.explanation}
@@ -323,7 +416,9 @@ export function QuizScreen({ animalId, onBack, onFinish }: Props) {
               onClick={handleNext}
               className="mt-3 w-full crayon-btn bg-[var(--orange)] text-white text-sm py-2.5"
             >
-              {currentQ < totalQuestions - 1 ? 'Soal Selanjutnya →' : 'Lihat Hasil 🏆'}
+              {currentQ < totalQuestions - 1
+                ? "Soal Selanjutnya →"
+                : "Lihat Hasil 🏆"}
             </button>
           </div>
         )}

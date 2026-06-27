@@ -6,28 +6,28 @@
 
 @layer base {
   :root {
-    --cream: #FBF3E7;
-    --cream-deep: #F3E4CC;
-    --paper: #FFFCF6;
-    --ink: #5B3E2B;
-    --ink-soft: #8C6B4F;
-    --green: #3FA66C;
-    --green-deep: #2C7A4F;
-    --green-pale: #DCF0E1;
-    --orange: #F2994A;
-    --orange-deep: #C9671F;
-    --orange-pale: #FCE6CC;
-    --blue: #4FA8D8;
-    --blue-deep: #2E7CA8;
-    --blue-pale: #DCEFF8;
-    --yellow: #FFC857;
-    --yellow-deep: #C98E12;
-    --red: #E8604C;
-    --red-pale: #FBDCD5;
-    --purple: #9B59B6;
-    --purple-deep: #7D3C98;
-    --purple-pale: #E8DAEF;
-    --line: #E8D8BE;
+    --cream: #fbf3e7;
+    --cream-deep: #f3e4cc;
+    --paper: #fffcf6;
+    --ink: #5b3e2b;
+    --ink-soft: #8c6b4f;
+    --green: #3fa66c;
+    --green-deep: #2c7a4f;
+    --green-pale: #dcf0e1;
+    --orange: #f2994a;
+    --orange-deep: #c9671f;
+    --orange-pale: #fce6cc;
+    --blue: #4fa8d8;
+    --blue-deep: #2e7ca8;
+    --blue-pale: #dceff8;
+    --yellow: #ffc857;
+    --yellow-deep: #c98e12;
+    --red: #e8604c;
+    --red-pale: #fbdcd5;
+    --purple: #9b59b6;
+    --purple-deep: #7d3c98;
+    --purple-pale: #e8daef;
+    --line: #e8d8be;
 
     --background: 37 50% 95%;
     --foreground: 30 38% 26%;
@@ -66,7 +66,7 @@
 
   body {
     @apply bg-[#EDE3CF] text-[var(--ink)];
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior: none;
   }
@@ -78,12 +78,12 @@
 
 /* Leaflet overrides untuk tema anak-anak */
 .leaflet-container {
-  font-family: 'Quicksand', sans-serif !important;
+  font-family: "Quicksand", sans-serif !important;
   border-radius: 12px;
 }
 
 .leaflet-tooltip {
-  font-family: 'Baloo 2', cursive !important;
+  font-family: "Baloo 2", cursive !important;
   font-weight: 700 !important;
   border: 2px solid var(--ink) !important;
   border-radius: 12px !important;
@@ -99,7 +99,7 @@
 
 @layer utilities {
   .font-display {
-    font-family: 'Baloo 2', cursive;
+    font-family: "Baloo 2", cursive;
   }
 
   .crayon-card {
@@ -110,12 +110,14 @@
   }
 
   .crayon-btn {
-    font-family: 'Baloo 2', cursive;
+    font-family: "Baloo 2", cursive;
     font-weight: 700;
     border: 3px solid var(--ink);
     border-radius: 18px;
     box-shadow: 0 3px 0 var(--ink);
-    transition: transform 0.08s ease, box-shadow 0.08s ease;
+    transition:
+      transform 0.08s ease,
+      box-shadow 0.08s ease;
   }
 
   .crayon-btn:active {
@@ -124,7 +126,7 @@
   }
 
   .sticker-badge {
-    font-family: 'Baloo 2', cursive;
+    font-family: "Baloo 2", cursive;
     font-weight: 800;
     font-size: 11px;
     color: #fff;
@@ -153,7 +155,7 @@
   }
 
   .pill-tab {
-    font-family: 'Baloo 2', cursive;
+    font-family: "Baloo 2", cursive;
     font-size: 13px;
     font-weight: 700;
     padding: 7px 16px;
@@ -176,23 +178,95 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-6px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
   }
 
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(63, 166, 108, 0.4); }
-    50% { box-shadow: 0 0 0 12px rgba(63, 166, 108, 0); }
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(63, 166, 108, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 12px rgba(63, 166, 108, 0);
+    }
   }
 
   @keyframes fade-in-up {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes scale-in {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Quiz feedback animations */
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-7px);
+    }
+    40% {
+      transform: translateX(6px);
+    }
+    60% {
+      transform: translateX(-4px);
+    }
+    80% {
+      transform: translateX(3px);
+    }
+  }
+
+  @keyframes bounce-happy {
+    0% {
+      transform: scale(1) translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: scale(1.25) translateY(-14px) rotate(-8deg);
+    }
+    50% {
+      transform: scale(1.1) translateY(-4px) rotate(6deg);
+    }
+    75% {
+      transform: scale(1.2) translateY(-10px) rotate(-4deg);
+    }
+    100% {
+      transform: scale(1) translateY(0) rotate(0deg);
+    }
+  }
+
+  @keyframes sad-droop {
+    0% {
+      transform: scale(1) translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: scale(0.92) translateY(6px) rotate(-3deg);
+    }
+    100% {
+      transform: scale(0.96) translateY(3px) rotate(0deg);
+    }
   }
 
   .animate-float {
@@ -211,9 +285,36 @@
     animation: scale-in 0.4s ease-out forwards;
   }
 
-  .animate-stagger-1 { animation-delay: 0.1s; opacity: 0; }
-  .animate-stagger-2 { animation-delay: 0.2s; opacity: 0; }
-  .animate-stagger-3 { animation-delay: 0.3s; opacity: 0; }
-  .animate-stagger-4 { animation-delay: 0.4s; opacity: 0; }
-  .animate-stagger-5 { animation-delay: 0.5s; opacity: 0; }
+  .animate-shake {
+    animation: shake 0.45s ease-in-out;
+  }
+
+  .animate-bounce-happy {
+    animation: bounce-happy 0.7s ease-out;
+  }
+
+  .animate-sad-droop {
+    animation: sad-droop 0.5s ease-out forwards;
+  }
+
+  .animate-stagger-1 {
+    animation-delay: 0.1s;
+    opacity: 0;
+  }
+  .animate-stagger-2 {
+    animation-delay: 0.2s;
+    opacity: 0;
+  }
+  .animate-stagger-3 {
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+  .animate-stagger-4 {
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
+  .animate-stagger-5 {
+    animation-delay: 0.5s;
+    opacity: 0;
+  }
 }
